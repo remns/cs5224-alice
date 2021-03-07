@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {courses: []};
+    this.componentDidMount.bind(this);
+    this.render.bind(this);
+  }
+
+  // https://3jqms9dxp6.execute-api.ap-southeast-1.amazonaws.com/Prod/courses
+  componentDidMount(){
+    fetch(process.env.REACT_APP_API + '/courses')
+        .then((response) => {
+          return response.json();
+        })
+        .then((results) => {
+          console.log(results);
+          this.setState({ courses: results });
+        });
+  }
+
+  render () {
+    const courses = this.state.courses.map((item, i) => (
+      <div>
+        <p>{ item.Title } (by {item.Uni})</p>
+      </div>
+    ));
+
+    return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          List of Courses:
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>{ courses }</div>
       </header>
-    </div>
-  );
+    </div>)
+  }
 }
-
-export default App;
