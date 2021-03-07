@@ -1,0 +1,13 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      # Install all dependencies (including dependencies for running tests)
+      - cd ./frontend && npm install && cd -
+  pre_build:
+    commands:
+      - cd ./frontend && npm run-script build && cd -
+  build:
+    commands:
+      # Use AWS SAM to package the application by using AWS CloudFormation
+      - cd ./frontend && aws s3 sync ./build s3://$S3_STATIC_HOST --acl public-read && cd -
