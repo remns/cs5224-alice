@@ -10,7 +10,6 @@ export default class App extends Component {
     this.render.bind(this);
   }
 
-  // https://3jqms9dxp6.execute-api.ap-southeast-1.amazonaws.com/Prod/courses
   componentDidMount(){
     fetch(process.env.REACT_APP_API + '/courses')
         .then((response) => {
