@@ -3,11 +3,25 @@ phases:
   install:
     commands:
       # Install all dependencies (including dependencies for running tests)
+      - cd ./backend && npm install && cd -
       - cd ./frontend && npm install && cd -
   pre_build:
     commands:
+      - cd ./backend
+      # Discover and run unit tests in the '__tests__' directory
+      - npm run test 
+      # Remove all unit tests to reduce the size of the package that will be ultimately uploaded to Lambda
+      - rm -rf ./__tests__
+      # Remove all dependencies not needed for the Lambda deployment package (the packages from devDependencies in package.json)
+      - npm prune --production
+      - cd ..
       - cd ./frontend && npm run-script build && cd -
   build:
     commands:
       # Use AWS SAM to package the application by using AWS CloudFormation
+      - cd ./backend && aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml && cd -
       - cd ./frontend && aws s3 sync ./build s3://$S3_STATIC_HOST --acl public-read && cd -
+artifacts:
+  type: zip
+  files:
+    - backend/template-export.yml
