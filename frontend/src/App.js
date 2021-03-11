@@ -1,41 +1,32 @@
 import React, { Component } from 'react';
-import './App.css';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+
+import Profile from './scenes/Profile';
+import Institutions from './scenes/Institutions';
+
+import 'fontsource-roboto';
+import './styles/main.css';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {courses: []};
-    this.componentDidMount.bind(this);
-    this.render.bind(this);
-  }
-
-  componentDidMount(){
-    fetch(process.env.REACT_APP_API + '/courses')
-        .then((response) => {
-          return response.json();
-        })
-        .then((results) => {
-          console.log(results);
-          this.setState({ courses: results });
-        });
   }
 
   render () {
-    const courses = this.state.courses.map((item, i) => (
-      <div>
-        <p>{ item.Title } (by {item.Uni})</p>
-      </div>
-    ));
-
     return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          List of Courses:
-        </p>
-        <div>{ courses }</div>
-      </header>
-    </div>)
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Profile} />
+          <Route path="/institutions" component={Institutions} />
+        </Switch>
+      </Router>
+    )
   }
 }
