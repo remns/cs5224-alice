@@ -1,8 +1,26 @@
-{
-    "Nanyang Technological University": "NTU",
-    "National University of Singapore": "NUS",
-    "Singapore Management University": "SMU",
-    "Singapore Institute of Technology": "SIT",
-    "Singapore University of Technology and Design": "SUTD",
-    "Singapore University of Social Sciences": "SUSS"
-}
+[
+    {
+        "Id": "NUS",
+        "Name": "National University of Singapore"
+    },
+    {
+        "Id": "NTU",
+        "Name": "Nanyang Technological University"
+    },
+    {
+        "Id": "SMU",
+        "Name": "Singapore Management University"
+    },
+    {
+        "Id": "SIT",
+        "Name": "Singapore Institute of Technology"
+    },
+    {
+        "Id": "SUTD",
+        "Name": "Singapore University of Technology and Design"
+    },
+    {
+        "Id": "SUSS",
+        "Name": "Singapore University of Social Sciences"
+    }
+]

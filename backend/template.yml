@@ -61,6 +61,38 @@ Resources:
             Path: /courses
             Method: GET
 
+  getUniversitiesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-universities.getUniversitiesHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get all universities
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /universities
+            Method: GET
+            
+  getInterestsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-interests.getInterestsHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get all interests
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /interests
+            Method: GET
+
   CourseTable:
     Type: AWS::DynamoDB::Table
     Properties: 

@@ -1,6 +1,6 @@
-const dataFile = require("../../data/course-data.json");
+const dataFile = require("../../data/interests.json");
 
-exports.getCoursesHandler = async (event) => {
+exports.getInterestsHandler = async (event) => {
     const { httpMethod, path } = event;
     if (httpMethod !== 'GET') {
         throw new Error(`${httpMethod} method not allowed.`);

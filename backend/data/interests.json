@@ -1,0 +1,16 @@
+[
+    { "Id": "ADM", "Name":"Art, Design, Media" },
+    { "Id": "ART", "Name":"Arts & Social Sciences" },
+    { "Id": "BIZ", "Name":"Business & Accountancy" },
+    { "Id": "DEN", "Name":"Dentistry" },
+    { "Id": "DAE", "Name":"Design & Environment" },
+    { "Id": "EDU", "Name":"Education" },
+    { "Id": "ENG", "Name":"Engineering" },
+    { "Id": "HEA", "Name":"Health Science" },
+    { "Id": "ICT", "Name":"Infocomm Technology" },
+    { "Id": "LAW", "Name":"Law" },
+    { "Id": "MED", "Name":"Medicine" },
+    { "Id": "OTH", "Name":"Others" },
+    { "Id": "SCI", "Name":"Science" },
+    { "Id": "SPS", "Name":"Sports Science" }
+]
