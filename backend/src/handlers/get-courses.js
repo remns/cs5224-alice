@@ -2,7 +2,7 @@ const data = require("./../../data/course-data.json");
 
 exports.getCoursesHandler = async (event) => {
     const { httpMethod, path } = event;
-    if (httpMethod !== 'GET') {
+    if (httpMethod !== 'GET' && httpMethod !== 'POST') {
         throw new Error(`${httpMethod} method not allowed.`);
     }
     console.log('received:', JSON.stringify(event));

@@ -55,7 +55,12 @@ Resources:
           # Make table name accessible as environment variable from function code during execution
           DDB_TABLE: !Ref CourseTable
       Events:
-        Api:
+        ApiPost:
+          Type: Api
+          Properties:
+            Path: /courses
+            Method: POST
+        ApiGet:
           Type: Api
           Properties:
             Path: /courses
