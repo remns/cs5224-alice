@@ -14,7 +14,7 @@ exports.getUniversitiesHandler = async (event) => {
         headers: {
             "Access-Control-Allow-Origin" : "*"
         },
-        body: { "data" : JSON.stringify(dataFile) }
+        body: JSON.stringify(dataFile)
     };
 
     console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);

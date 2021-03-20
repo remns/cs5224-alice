@@ -1,4 +1,4 @@
-const dataFile = require("../../data/interests.json");
+const dataFile = require("./../../data/interests.json");
 
 exports.getInterestsHandler = async (event) => {
     const { httpMethod, path } = event;
@@ -14,7 +14,7 @@ exports.getInterestsHandler = async (event) => {
         headers: {
             "Access-Control-Allow-Origin" : "*"
         },
-        body: { "data" : JSON.stringify(dataFile) }
+        body: JSON.stringify(dataFile)
     };
 
     console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);
