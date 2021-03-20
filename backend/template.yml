@@ -125,6 +125,22 @@ Resources:
             Path: /polytechnics
             Method: GET
 
+  getGesStatisticsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-statistics.getStatisticsHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get statistical ges data
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /statistics
+            Method: GET
+
   CourseTable:
     Type: AWS::DynamoDB::Table
     Properties: 
