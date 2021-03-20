@@ -93,6 +93,38 @@ Resources:
             Path: /interests
             Method: GET
 
+  getJuniorCollegesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-jc.getJcHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get all JCs
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /juniorcolleges
+            Method: GET
+
+  getPolytechnicsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-polytechnic.getPolytechnicHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get all Polytechnics
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /polytechnics
+            Method: GET
+
   CourseTable:
     Type: AWS::DynamoDB::Table
     Properties: 

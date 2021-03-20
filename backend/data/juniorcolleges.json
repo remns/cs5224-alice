@@ -1,0 +1,90 @@
+[
+    {
+        "Id": "ASRJC",
+        "Name": "Anderson Serangoon Junior College"
+    },
+    {
+        "Id": "ACJC",
+        "Name": "Anglo-Chinese Junior College"
+    },
+    {
+        "Id": "ACSI",
+        "Name": "Anglo-Chinese School (Independent) (Junior College)"
+    },
+    {
+        "Id": "CJC",
+        "Name": "Catholic Junior College"
+    },
+    {
+        "Id": "DHS",
+        "Name": "Dunman High School (Junior College)"
+    },
+    {
+        "Id": "EJC",
+        "Name": "Eunoia Junior College"
+    },
+    {
+        "Id": "HCI",
+        "Name": "Hwa Chong Institution (Junior College)"
+    },
+    {
+        "Id": "JPJC",
+        "Name": "Jurong Pioneer Junior College"
+    },
+    {
+        "Id": "MI",
+        "Name": "Millennia Institute"
+    },
+    {
+        "Id": "NUSHS",
+        "Name": "NUS High School of Mathematics and Science"
+    },
+    {
+        "Id": "NYJC",
+        "Name": "Nanyang Junior College"
+    },
+    {
+        "Id": "NJC",
+        "Name": "National Junior College"
+    },
+    {
+        "Id": "RI",
+        "Name": "Raffles Institution (Junior College)"
+    },
+    {
+        "Id": "RVHS",
+        "Name": "River Valley High School (Junior College)"
+    },
+    {
+        "Id": "SOTA",
+        "Name": "School of the Arts, Singapore"
+    },
+    {
+        "Id": "SSS",
+        "Name": "Singapore Sports School"
+    },
+    {
+        "Id": "SAJC",
+        "Name": "St. Andrew's Junior College"
+    },
+    {
+        "Id": "SJI",
+        "Name": "St. Joseph's Institution (Junior College)"
+    },
+    {
+        "Id": "TMJC",
+        "Name": "Tampines Meridian Junior College"
+    },
+    {
+        "Id": "TJC",
+        "Name": "Temasek Junior College"
+    },
+    {
+        "Id": "VJC",
+        "Name": "Victoria Junior College"
+    },
+    {
+        "Id": "YIJC",
+        "Name": "Yishun Innova Junior College"
+    }
+]

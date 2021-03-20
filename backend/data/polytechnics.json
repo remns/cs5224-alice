@@ -1,0 +1,22 @@
+[
+    {
+        "Id": "NYP",
+        "Name": "Nanyang Polytechnic"
+    },
+    {
+        "Id": "NP",
+        "Name": "Ngee Ann Polytechnic"
+    },
+    {
+        "Id": "RP",
+        "Name": "Republic Polytechnic"
+    },
+    {
+        "Id": "SP",
+        "Name": "Singapore Polytechnic"
+    },
+    {
+        "Id": "TP",
+        "Name": "Temasek Polytechnic"
+    }
+]
