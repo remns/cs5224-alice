@@ -28,4 +28,8 @@ function getAllPoly() {
 
 export {
   getAllUniversity,
+  getAllInterest,
+  getAllCourse,
+  getAllJC,
+  getAllPoly
 }
