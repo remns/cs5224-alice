@@ -14,6 +14,7 @@ import {getAllUniversity, getAllInterest, getAllCourse} from '../api/API.js'
 import FilterDisplay from '../components/FilterDisplay';
 import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
 import CourseDisplay from '../components/CourseDisplay';
+import CourseSort from '../components/CourseSort';
 
 const styles = {
   root: {
@@ -150,6 +151,11 @@ class Institutions extends Component {
     this.setState({course: filteredCourse});
   }
 
+  sortCourse(sortId, isAscending) {
+    const sortedCourses = CourseSort.sortBySortId(sortId, this.state.course, isAscending);
+    this.setState({course: sortedCourses});
+  }
+
   render () {
     return (
       <Container maxWidth="xl">
@@ -169,7 +175,7 @@ class Institutions extends Component {
             <br /> 
 
             {/* Filter Interests */}
-            <Paper>
+            <Paper style={{padding: '10px'}}>
               <Typography variant="h4" style={{textAlign: "center"}}>
                 <FavoriteTwoToneIcon/> Interests
               </Typography>
@@ -189,7 +195,7 @@ class Institutions extends Component {
               <Typography variant="h4" style={{textAlign: "center"}}>
                 <MenuBookTwoToneIcon /> Courses
               </Typography>
-              <CourseDisplay data={this.state.course} />
+              <CourseDisplay data={this.state.course} sortCourse={this.sortCourse.bind(this)} />
             </Paper>
           </Grid>       
 
