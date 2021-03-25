@@ -9,7 +9,7 @@ import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 
-import {getAllUniversity, getAllInterest, getAllCourse} from '../api/API.js'
+import {getAllUniversity, getAllInterest, getAllCourses} from '../api/API.js'
 
 import FilterDisplay from '../components/FilterDisplay';
 import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
@@ -54,23 +54,23 @@ class Institutions extends Component {
         })
       })
       .catch(console.log)
-    
+
     // grab interest list
     const interestPromise = getAllInterest();
     interestPromise
       .then(res => res.json())
       .then((data) => {
         data.forEach(row => row.isSelected = true);
-        
+
         this.setState({
           interest: data,
           interestList: data
         })
       })
       .catch(console.log)
-    
+
     // grab course list
-    const coursePromise = getAllCourse();
+    const coursePromise = getAllCourses();
     coursePromise
       .then(res => res.json())
       .then((data) => {
@@ -161,7 +161,7 @@ class Institutions extends Component {
       <Container maxWidth="xl">
         <Grid container spacing={2}>
 
-          
+
           <Grid item xs={3}>
 
             {/* Filter University */}
@@ -172,15 +172,15 @@ class Institutions extends Component {
               <FilterDisplay data={this.state.university} onClick={this.filterUniversity.bind(this)} />
             </Paper>
 
-            <br /> 
+            <br />
 
             {/* Filter Interests */}
             <Paper style={{padding: '10px'}}>
               <Typography variant="h4" style={{textAlign: "center"}}>
                 <FavoriteTwoToneIcon/> Interests
               </Typography>
-              <FilterDropdownDisplay 
-                data={this.state.interest} 
+              <FilterDropdownDisplay
+                data={this.state.interest}
                 interestList={this.state.interestList}
                 onSelect={this.addToInterestList.bind(this)}
                 onDelete={this.removeFromInterestList.bind(this)} />
@@ -195,9 +195,9 @@ class Institutions extends Component {
               <Typography variant="h4" style={{textAlign: "center"}}>
                 <MenuBookTwoToneIcon /> Courses
               </Typography>
-              <CourseDisplay data={this.state.course} sortCourse={this.sortCourse.bind(this)} />
+              <CourseDisplay data={this.state.course} sortCourse={this.sortCourse.bind(this)} {...this.props}/>
             </Paper>
-          </Grid>       
+          </Grid>
 
 
 

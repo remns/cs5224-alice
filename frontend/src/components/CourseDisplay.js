@@ -122,6 +122,8 @@ class CourseDisplay extends React.Component {
   }
 
   showCourses(courses) {
+    let props = this.props;
+
     return courses.map( (row, index) => {
       let gradeList = [];
       let IGP = row["Indicative Grade Profile"];
@@ -132,7 +134,7 @@ class CourseDisplay extends React.Component {
       let annualCost = (row['Fee Type'] === "One-Time") ? row['Fee Citizen'] / row['Duration'] : row['Fee Citizen'];
 
       return (
-        <Accordion key={index} expanded={this.state.expanded === index} 
+        <Accordion key={index} expanded={this.state.expanded === index}
           onChange={() => this.setState({expanded: (this.state.expanded === index) ? -1 : index})}>
 
 
@@ -142,14 +144,14 @@ class CourseDisplay extends React.Component {
                 <Typography>{showRanking(((this.state.currentPage - 1) * 10) + index + 1)}</Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography>{row.Programme}</Typography> 
-              </Grid> 
+                <Typography>{row.Programme}</Typography>
+              </Grid>
               <Grid item xs={4}>
                 <Typography>{row.University}</Typography>
               </Grid>
               <Grid item xs={1}>
                 <Typography>POINTS</Typography>
-              </Grid>        
+              </Grid>
             </Grid>
           </AccordionSummary>
 
@@ -159,7 +161,7 @@ class CourseDisplay extends React.Component {
               <Grid item xs={4} container direction="column" justify="center" alignItems="center">
                 <Typography variant="h6">Grade</Typography>
                 {
-                  (gradeList.length >= 0) 
+                  (gradeList.length >= 0)
                     && gradeList.map( (gradeRow, index) => {
                       return <Typography>{gradeRow.name} : {gradeRow.value}</Typography>
                     })
@@ -187,7 +189,7 @@ class CourseDisplay extends React.Component {
 
           <Divider />
           <AccordionActions>
-            <Button size="large" color="primary">
+            <Button size="large" color="primary" onClick={() => props.history.push('/institutions/' + row["Id"])}>
               More Details
             </Button>
           </AccordionActions>
@@ -229,7 +231,7 @@ class CourseDisplay extends React.Component {
         </Grid>
 
         <hr />
-        
+
 
         {/* courses */}
         <Grid container>
@@ -238,7 +240,7 @@ class CourseDisplay extends React.Component {
           </Grid>
         </Grid>
 
-        
+
 
 
         {/* PAGING */}
@@ -250,8 +252,8 @@ class CourseDisplay extends React.Component {
         >
           <Pagination
             size="large"
-            count={noOfPage} 
-            page={this.state.currentPage} 
+            count={noOfPage}
+            page={this.state.currentPage}
             onChange={this.handlePageChange.bind(this)} />
         </Grid>
       </Container>

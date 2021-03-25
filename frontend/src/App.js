@@ -10,6 +10,7 @@ import {
 
 import Profile from './scenes/Profile';
 import Institutions from './scenes/Institutions';
+import Details from './scenes/Details';
 
 import 'fontsource-roboto';
 import './styles/main.css';
@@ -24,7 +25,8 @@ export default class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Profile} />
-          <Route path="/institutions" component={Institutions} />
+          <Route exact path="/institutions" component={Institutions} />
+          <Route exact path="/institutions/:id" render={(props) => <Details {...props} /> }/>
         </Switch>
       </Router>
     )

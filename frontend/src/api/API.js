@@ -10,7 +10,7 @@ function getAllInterest() {
   return fetchPromise
 }
 
-function getAllCourse() {
+function getAllCourses() {
   const fetchPromise = fetch(SERVER_URL + "/courses")
   return fetchPromise
 }
@@ -25,11 +25,17 @@ function getAllPoly() {
   return fetchPromise
 }
 
+function getAllStatistics() {
+  const fetchPromise = fetch(SERVER_URL + "/statistics")
+  return fetchPromise
+}
+
 
 export {
   getAllUniversity,
   getAllInterest,
-  getAllCourse,
+  getAllCourses,
   getAllJC,
-  getAllPoly
+  getAllPoly,
+  getAllStatistics
 }
