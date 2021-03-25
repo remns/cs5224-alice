@@ -47,8 +47,8 @@ exports.getCoursesHandler = async (event) => {
         if (interestsFilter) {
             responseData = responseData.filter(x=> x.Category.some(y=> interestsFilter.includes(y)));
         }
-        responseData.forEach((course) => {course = { ...course, ROI: getROI(course)}}); // Append ROI field
-        responseData.forEach((course) => {course = { ...course, Entry_Probability: getEntryProbability(course, body)}}) // Append probability field
+        reponseData = responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
+        reponseData = responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
     }
 
     const response = {
