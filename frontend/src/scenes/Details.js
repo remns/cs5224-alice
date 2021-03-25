@@ -176,8 +176,8 @@ export default class Details extends Component {
             </Grid>
           </Grid>
 
-          <Typography style={{color: 'white'}}>{course.University}</Typography>
-          <Typography variant="subtitle2" style={{color: 'white'}}>{course.School}</Typography>
+          <Typography style={{marginTop: 10, color: 'white'}} align="center"><b>{course.University}</b></Typography>
+          <Typography variant="subtitle2" style={{color: 'white'}} align="center">{course.School}</Typography>
 
           {/* CATEGORIES */}
           <Typography variant="subtitle2" style={{marginTop: 10, color: 'white'}}><b>Category</b></Typography>
