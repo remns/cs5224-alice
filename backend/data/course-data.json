@@ -39,9 +39,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.14,
             "Polytechnic (>=3.2 - <3.6)": 0.56,
             "Polytechnic (3.6 - 4.00)": 0.64
@@ -87,9 +87,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.41,
             "Polytechnic (>=3.2 - <3.6)": 0.7,
             "Polytechnic (3.6 - 4.00)": 1.0
@@ -135,9 +135,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.08,
             "Polytechnic (>=3.2 - <3.6)": 0.72,
             "Polytechnic (3.6 - 4.00)": 0.81
@@ -159,9 +159,9 @@
         "Fee International": 109204,
         "Duration": 3,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.09,
             "Polytechnic (>=3.2 - <3.6)": 0.38,
             "Polytechnic (3.6 - 4.00)": 0.56
@@ -183,9 +183,9 @@
         "Fee International": 96878,
         "Duration": 3,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.17,
             "Polytechnic (>=3.2 - <3.6)": 0.46,
             "Polytechnic (3.6 - 4.00)": 0.43
@@ -221,9 +221,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.46,
             "Polytechnic (>=3.2 - <3.6)": 0.8,
             "Polytechnic (3.6 - 4.00)": 1.0
@@ -269,9 +269,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.13,
             "Polytechnic (>=3.2 - <3.6)": 0.51,
             "Polytechnic (3.6 - 4.00)": 0.57
@@ -306,9 +306,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.0,
             "Polytechnic (>=3.2 - <3.6)": 0.09,
             "Polytechnic (3.6 - 4.00)": 0.14
@@ -331,9 +331,9 @@
         "Fee International": 96878,
         "Duration": 3,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.12,
             "Polytechnic (>=3.2 - <3.6)": 0.35,
             "Polytechnic (3.6 - 4.00)": 0.33
@@ -379,9 +379,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.12,
             "Polytechnic (>=3.2 - <3.6)": 0.56,
             "Polytechnic (3.6 - 4.00)": 0.82
@@ -427,9 +427,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.17,
             "Polytechnic (>=3.2 - <3.6)": 0.71,
             "Polytechnic (3.6 - 4.00)": 0.82
@@ -475,9 +475,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.17,
             "Polytechnic (>=3.2 - <3.6)": 0.79,
             "Polytechnic (3.6 - 4.00)": 0.84
@@ -523,9 +523,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.03,
             "Polytechnic (>=3.2 - <3.6)": 0.48,
             "Polytechnic (3.6 - 4.00)": 0.69
@@ -560,9 +560,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.22,
             "Polytechnic (>=3.2 - <3.6)": 0.76,
             "Polytechnic (3.6 - 4.00)": 0.92
@@ -608,9 +608,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.01,
             "Polytechnic (>=3.2 - <3.6)": 0.38,
             "Polytechnic (3.6 - 4.00)": 0.43
@@ -656,9 +656,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": "NA",
             "Polytechnic (>=3.2 - <3.6)": "NA",
             "Polytechnic (3.6 - 4.00)": "NA"
@@ -680,9 +680,9 @@
         "Fee International": 96878,
         "Duration": 3.67,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": "NA",
             "Polytechnic (>=3.2 - <3.6)": "NA",
             "Polytechnic (3.6 - 4.00)": "NA"
@@ -704,9 +704,9 @@
         "Fee International": 145606,
         "Duration": 3.67,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.0,
             "Polytechnic (>=3.2 - <3.6)": 0.2,
             "Polytechnic (3.6 - 4.00)": 0.23
@@ -741,9 +741,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.38,
             "Polytechnic (>=3.2 - <3.6)": 0.97,
             "Polytechnic (3.6 - 4.00)": 0.75
@@ -789,9 +789,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.43,
             "Polytechnic (>=3.2 - <3.6)": 0.89,
             "Polytechnic (3.6 - 4.00)": 1.0
@@ -838,9 +838,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.37,
             "Polytechnic (>=3.2 - <3.6)": 0.92,
             "Polytechnic (3.6 - 4.00)": 0.85
@@ -886,9 +886,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.54,
             "Polytechnic (>=3.2 - <3.6)": 0.9,
             "Polytechnic (3.6 - 4.00)": 0.92
@@ -923,9 +923,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.44,
             "Polytechnic (>=3.2 - <3.6)": 0.0,
             "Polytechnic (3.6 - 4.00)": 0.5
@@ -960,9 +960,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.21,
             "Polytechnic (>=3.2 - <3.6)": 0.67,
             "Polytechnic (3.6 - 4.00)": 0.83
@@ -1019,9 +1019,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.25,
             "Polytechnic (>=3.2 - <3.6)": 0.9,
             "Polytechnic (3.6 - 4.00)": 0.46
@@ -1067,9 +1067,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.45,
             "Polytechnic (>=3.2 - <3.6)": 0.95,
             "Polytechnic (3.6 - 4.00)": 0.67
@@ -1115,9 +1115,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.57,
             "Polytechnic (>=3.2 - <3.6)": 0.75,
             "Polytechnic (3.6 - 4.00)": 0.8
@@ -1163,9 +1163,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.3,
             "Polytechnic (>=3.2 - <3.6)": 0.95,
             "Polytechnic (3.6 - 4.00)": 1.0
@@ -1211,9 +1211,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.5,
             "Polytechnic (>=3.2 - <3.6)": 0.0,
             "Polytechnic (3.6 - 4.00)": 1.0
@@ -1259,9 +1259,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.5,
             "Polytechnic (>=3.2 - <3.6)": 0.0,
             "Polytechnic (3.6 - 4.00)": 0.0
@@ -1296,9 +1296,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.19,
             "Polytechnic (>=3.2 - <3.6)": 0.87,
             "Polytechnic (3.6 - 4.00)": 0.5
@@ -1345,9 +1345,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.49,
             "Polytechnic (>=3.2 - <3.6)": 0.8,
             "Polytechnic (3.6 - 4.00)": 0.73
@@ -1393,9 +1393,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.12,
             "Polytechnic (>=3.2 - <3.6)": 0.63,
             "Polytechnic (3.6 - 4.00)": 0.7
@@ -1417,9 +1417,9 @@
         "Fee International": 114020,
         "Duration": 3,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.58,
             "Polytechnic (>=3.2 - <3.6)": 0.97,
             "Polytechnic (3.6 - 4.00)": 0.44
@@ -1466,9 +1466,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.01,
             "Polytechnic (>=3.2 - <3.6)": 0.68,
             "Polytechnic (3.6 - 4.00)": 0.76
@@ -1490,9 +1490,9 @@
         "Fee International": 114020,
         "Duration": 3,
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.32,
             "Polytechnic (>=3.2 - <3.6)": 0.89,
             "Polytechnic (3.6 - 4.00)": 0.71
@@ -1538,9 +1538,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.32,
             "Polytechnic (>=3.2 - <3.6)": 0.72,
             "Polytechnic (3.6 - 4.00)": 0.96
@@ -1586,9 +1586,9 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<=70.00)": 0.07,
-            "UAE (>70.00 to 80.00)": 0.45,
-            "UAE (>80 to 90)": 0.56,
+            "UAS (<=70.00)": 0.07,
+            "UAS (>70.00 to 80.00)": 0.45,
+            "UAS (>80 to 90)": 0.56,
             "Polytechnic (<3.2)": 0.23,
             "Polytechnic (>=3.2 - <3.6)": 0.08,
             "Polytechnic (3.6 - 4.00)": 0.6
@@ -6838,8 +6838,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.07,
-            "UAE (60.00 - 90.00)": 0.81,
+            "UAS (<60.00)": 0.07,
+            "UAS (60.00 - 90.00)": 0.81,
             "Polytechnic (<3.00)": 0.05,
             "Polytechnic (3.00 - 4.00)": 0.87
         }
@@ -6885,8 +6885,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.05,
-            "UAE (60.00 - 90.00)": 0.81,
+            "UAS (<60.00)": 0.05,
+            "UAS (60.00 - 90.00)": 0.81,
             "Polytechnic (<3.00)": 0.05,
             "Polytechnic (3.00 - 4.00)": 0.96
         }
@@ -6920,8 +6920,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.05,
-            "UAE (60.00 - 90.00)": 0.82,
+            "UAS (<60.00)": 0.05,
+            "UAS (60.00 - 90.00)": 0.82,
             "Polytechnic (<3.00)": 0.05,
             "Polytechnic (3.00 - 4.00)": 0.86
         }
@@ -6942,8 +6942,8 @@
         "Fee International": "NA",
         "Duration": 4,
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.14,
-            "UAE (60.00 - 90.00)": 0.61,
+            "UAS (<60.00)": 0.14,
+            "UAS (60.00 - 90.00)": 0.61,
             "Polytechnic (<3.00)": 0.09,
             "Polytechnic (3.00 - 4.00)": 0.93
         }
@@ -6999,8 +6999,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.08,
-            "UAE (60.00 - 90.00)": 0.89,
+            "UAS (<60.00)": 0.08,
+            "UAS (60.00 - 90.00)": 0.89,
             "Polytechnic (<3.00)": 0.05,
             "Polytechnic (3.00 - 4.00)": 0.99
         }
@@ -7056,8 +7056,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.05,
-            "UAE (60.00 - 90.00)": 0.57,
+            "UAS (<60.00)": 0.05,
+            "UAS (60.00 - 90.00)": 0.57,
             "Polytechnic (<3.00)": 0.05,
             "Polytechnic (3.00 - 4.00)": 0.95
         }
@@ -7113,8 +7113,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.05,
-            "UAE (60.00 - 90.00)": 0.92,
+            "UAS (<60.00)": 0.05,
+            "UAS (60.00 - 90.00)": 0.92,
             "Polytechnic (<3.00)": 0.08,
             "Polytechnic (3.00 - 4.00)": 0.99
         }
@@ -7148,8 +7148,8 @@
             }
         ],
         "Indicative Grade Profile": {
-            "UAE (<60.00)": 0.08,
-            "UAE (60.00 - 90.00)": 0.86,
+            "UAS (<60.00)": 0.08,
+            "UAS (60.00 - 90.00)": 0.86,
             "Polytechnic (<3.00)": 0.11,
             "Polytechnic (3.00 - 4.00)": 1.0
         }
