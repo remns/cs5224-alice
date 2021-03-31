@@ -15,51 +15,50 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 
+import {getAllInterest} from '../api/API.js';
+import EducationInput from '../components/EducationInput';
+import GPAInput from '../components/GPAInput';
+import ALevelInput from '../components/ALevelInput';
+import InterestsInput from '../components/InterestsInput';
+
 export default class Profile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       courses: [],
-      interests: [
-        {
-          name: "Arts",
-          value: 0
-        },
-        {
-          name: "Science",
-          value: 1
-        },
-        {
-          name: "Math",
-          value: 2
-        }
-      ],
+      interests: [],
       interestsSelected: [],
       currentInput: 0,
-      gpa: null,
+      gpa: '',
       alevel: {
-        h2_1: null,
-        h2_2: null,
-        h2_3: null,
-        h1: null,
-        pw: null,
-        gp: null,
-        mtl: null
+        h2_1: '',
+        h2_2: '',
+        h2_3: '',
+        h1: '',
+        pw: '',
+        gp: '',
+        mtl: ''
       }
     };
 
   }
 
   componentDidMount(){
-    fetch(process.env.REACT_APP_API + '/courses')
-        .then((response) => {
-          return response.json();
+    this.retriveInterest();
+  }
+
+  retriveInterest = () => {
+    const promise = getAllInterest();
+    promise
+      .then(res => res.json())
+      .then((data) => {
+        data.map((e, index) => e.value = index);
+        this.setState({
+          interests: data,
         })
-        .then((results) => {
-          console.log(results);
-          this.setState({ courses: results });
-        });
+      })
+      .catch(console.log)
   }
 
   onNextSelected = () => {
@@ -67,6 +66,22 @@ export default class Profile extends Component {
       this.props.history.push('/institutions');
     }
     this.setState({ currentInput: this.state.currentInput + 1});
+  }
+
+  onEducationInput = (education) => {
+    this.setState({ education: education });
+  }
+
+  onGPAInput = (gpa) => {
+    this.setState({ gpa: gpa });
+  }
+
+  onALevelInput = (alevel) => {
+    this.setState({ alevel: alevel });
+  }
+
+  onInterestInput = (interests) => {
+    this.setState({ interestsSelected: interests });
   }
 
   render () {
@@ -94,111 +109,19 @@ export default class Profile extends Component {
             {
               (this.state.currentInput == 0) ?
               (
-                <FormControl fullWidth>
-                    <InputLabel>Select your education level</InputLabel>
-                    <Select
-                      value={this.state.education}
-                      onChange={(event) => {this.setState({ education: event.target.value })}}
-                      variant="outlined"
-                      autoWidth
-                    >
-                      <MenuItem value={0}>Polytechnic</MenuItem>
-                      <MenuItem value={1}>Junior College</MenuItem>
-                    </Select>
-                </FormControl>
+                <EducationInput onChange={this.onEducationInput} value={this.state.education} />
               ) :
               (this.state.currentInput == 1 && this.state.education == 0) ?
               (
-                <TextField
-                  label="Enter your GPA"
-                  variant="outlined"
-                  type="number"
-                  min="0.1"
-                  value={this.state.gpa}
-                  onChange={(event) => {this.setState({ gpa: event.target.value })}}
-                  fullWidth
-                  />
+                <GPAInput onChange={this.onGPAInput} value={this.state.gpa} />
               ) :
               (this.state.currentInput == 1 && this.state.education == 1) ?
               (
-                <Grid
-                  container
-                  spacing={1}
-                  direction="row"
-                  style={{ maxWidth: 500 }}
-                  >
-                  <Grid item xs={3}>
-                    <TextField
-                      label="H2"
-                      variant="outlined"
-                      type="number"
-                      value={this.state.alevel.h2_1}
-                      onChange={(event) => {this.setState({ alevel: {...this.state.alevel, h2_1: event.target.value} })}}
-                      fullWidth
-                      />
-                  </Grid>
-                  <Grid item xs={3}>
-                    <TextField
-                      label="H2"
-                      variant="outlined"
-                      type="number"
-                      value={this.state.alevel.h2_2}
-                      onChange={(event) => {this.setState({ alevel: {...this.state.alevel, h2_2: event.target.value} })}}
-                      fullWidth
-                      />
-                  </Grid>
-                  <Grid item xs={3}>
-                    <TextField
-                      label="H2"
-                      variant="outlined"
-                      type="number"
-                      value={this.state.alevel.h2_3}
-                      onChange={(event) => {this.setState({ alevel: {...this.state.alevel, h2_3: event.target.value} })}}
-                      fullWidth
-                      />
-                  </Grid>
-                  <Grid item xs={3}>
-                    <TextField
-                      label="H1"
-                      variant="outlined"
-                      type="number"
-                      value={this.state.alevel.h1}
-                      onChange={(event) => {this.setState({ alevel: {...this.state.alevel, h1: event.target.value} })}}
-                      fullWidth
-                      />
-                  </Grid>
-                </Grid>
+                <ALevelInput onChange={this.onALevelInput} />
               ) :
               (this.state.currentInput == 2) ?
               (
-                <FormControl fullWidth>
-                    <InputLabel>Select your interests</InputLabel>
-                    <Select
-                      value={this.state.interestsSelected}
-                      onChange={(event) => { this.setState({interestsSelected: event.target.value}) }}
-                      input={<Input />}
-                      renderValue={(selected) => {
-                        let results = [];
-                        for(let i = 0; i < this.state.interests.length; i++){
-                          if(selected.indexOf(this.state.interests[i].value) > -1){
-                            results.push(this.state.interests[i].name);
-                          }
-                        }
-                        return results.join(", ");
-                      }}
-                      variant="outlined"
-                      autoWidth
-                      multiple
-                      displayEmpty
-                    >
-                      {this.state.interests.map((el) => (
-                        <MenuItem key={el.name} value={el.value}>
-                          <Checkbox checked={this.state.interestsSelected.indexOf(el.value) > -1} />
-                          <ListItemText primary={el.name} />
-                        </MenuItem>
-                      ))}
-                    </Select>
-                </FormControl>
+                <InterestsInput onChange={this.onInterestInput} value={this.state.interestsSelected} />
               )  :
               <Box />
             }
