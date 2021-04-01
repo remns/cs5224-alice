@@ -150,7 +150,7 @@ class CourseDisplay extends React.Component {
                 <Typography>{row.University}</Typography>
               </Grid>
               <Grid item xs={1}>
-                <Typography>POINTS</Typography>
+                <Typography>{(row.ROI) ? row.ROI : '-'}</Typography>
               </Grid>
             </Grid>
           </AccordionSummary>
@@ -169,8 +169,6 @@ class CourseDisplay extends React.Component {
                 {(gradeList.length === 0) && <Typography>No Data Available</Typography>}
               </Grid>
 
-              <Divider orientation="vertical" flexItem />
-
               <Grid container xs={4} direction="column" justify="center" alignItems="center">
                 <Typography variant="h6">Cost</Typography>
                 <Rating name="read-only" value={RatingRubrics.getCostRating(annualCost)} readOnly />
@@ -178,9 +176,7 @@ class CourseDisplay extends React.Component {
                 <Typography>Fee(Citizen): $ {row["Fee Citizen"]} ({row["Fee Type"]})</Typography>
               </Grid>
 
-              <Divider orientation="vertical" flexItem />
-
-              <Grid container xs={3} direction="column" justify="center" alignItems="center">
+              <Grid container xs={4} direction="column" justify="center" alignItems="center">
                 <Typography variant="h6">Salary</Typography>
                 {this.showMoneyStats(row)}
               </Grid>
@@ -189,9 +185,17 @@ class CourseDisplay extends React.Component {
 
           <Divider />
           <AccordionActions>
-            <Button size="large" color="primary" onClick={() => props.history.push('/institutions/' + row["Id"])}>
-              More Details
-            </Button>
+            <Grid container>
+              <Grid xs={4} container direction="row" justify="center" alignItems="center">
+                <Typography variant="h6">Probability of Entry: {(row.Entry_Probability) ? row.Entry_Probability + " %": '-'}</Typography>
+              </Grid>
+              <Grid xs={6}></Grid>
+              <Grid xs={2} container direction="row" justify="flex-end" alignItems="center">
+                <Button size="large" color="primary" onClick={() => props.history.push('/institutions/' + row["Id"])}>
+                  More Details
+                </Button>
+              </Grid>
+            </Grid>
           </AccordionActions>
 
         </Accordion>
