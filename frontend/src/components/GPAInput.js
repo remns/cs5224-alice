@@ -25,7 +25,7 @@ export default class GPAInput extends Component {
     render() {
         return (
           <TextField
-            label="Enter your GPA"
+            label="Enter your GPA (Max 4.0)"
             variant="outlined"
             value={this.props.value}
             onChange={(event) => this.onInputChange(event)}

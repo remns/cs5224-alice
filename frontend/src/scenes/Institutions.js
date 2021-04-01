@@ -42,6 +42,8 @@ class Institutions extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.location.state);
+    
     // grab university list
     const uniPromise = getAllUniversity();
     uniPromise

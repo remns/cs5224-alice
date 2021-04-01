@@ -31,6 +31,7 @@ export default class Profile extends Component {
       interestsSelected: [],
       currentInput: 0,
       gpa: '',
+      education: 0,
       alevel: {
         h2_1: '',
         h2_2: '',
@@ -63,9 +64,43 @@ export default class Profile extends Component {
 
   onNextSelected = () => {
     if(this.state.currentInput == 2){
-      this.props.history.push('/institutions');
+      let result = {
+        education: this.state.education,
+        gpa: this.state.gpa,
+        alevel: this.state.alevel,
+        interests: this.state.interestsSelected
+      };
+
+      this.props.history.push('/institutions', result);
     }
     this.setState({ currentInput: this.state.currentInput + 1});
+  }
+
+  canGoNext = () => { // Validate the input and enable/disable button accordingly
+    switch(this.state.currentInput){
+      case 0:
+        return this.state.education != undefined;
+        break;
+      case 1:
+        if(this.state.education == 0){
+          return this.state.gpa.length > 0 && parseFloat(this.state.gpa) <= 4;
+        }
+        else if(this.state.education == 1){
+          for(let key in this.state.alevel){
+            if(this.state.alevel[key].length == 0){
+              return false;
+            }
+          }
+          return true;
+        }
+        break;
+      case 2:
+        return this.state.interestsSelected.length != 0;
+        break;
+      default:
+        return false;
+        break;
+    }
   }
 
   onEducationInput = (education) => {
@@ -126,13 +161,13 @@ export default class Profile extends Component {
               <Box />
             }
 
-
             <Button
               type="button"
               fullWidth
               color="primary"
               variant="contained"
               onClick={this.onNextSelected}
+              disabled={!this.canGoNext()}
               >
               {(this.state.currentInput == 2) ? "Find universities" : "Next"}
               </Button>
