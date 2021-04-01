@@ -10,10 +10,22 @@ import {
 import Profile from './scenes/Profile';
 import Institutions from './scenes/Institutions';
 import Statistics from './scenes/Statistics';
+import Comparison from './scenes/Comparison';
 import Details from './scenes/Details';
+import HeaderBar from './scenes/HeaderBar';
 
 import 'fontsource-roboto';
 import './styles/main.css';
+
+const DefaultContainer = () => (
+  <div>
+    <HeaderBar />
+    <Route exact path="/institutions" component={Institutions} />
+    <Route exact path="/institutions/:id" render={(props) => <Details {...props} /> }/>
+    <Route exact path="/compare" component={Comparison} />
+    <Route exact path="/statistics" component={Statistics} />
+  </div>
+)
 
 export default class App extends Component {
   constructor(props) {
@@ -25,9 +37,7 @@ export default class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Profile} />
-          <Route exact path="/institutions" component={Institutions} />
-          <Route exact path="/institutions/:id" render={(props) => <Details {...props} /> }/>
-          <Route exact path="/statistics" component={Statistics} />
+          <Route {...this.props} component={DefaultContainer} />
         </Switch>
       </Router>
     )
