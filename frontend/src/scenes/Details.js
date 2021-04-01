@@ -50,7 +50,6 @@ export default class Details extends Component {
     .then(res => res.json())
     .then((data) => {
       let statsResult = data.find(el => this.state.id == el.Id);
-      console.log(statsResult);
       this.setState({
         stats: statsResult
       });

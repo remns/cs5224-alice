@@ -25,9 +25,15 @@ function getAllPoly() {
   return fetchPromise
 }
 
-function getAllStatistics() {
-  const fetchPromise = fetch(SERVER_URL + "/statistics")
-  return fetchPromise
+function getAllStatistics(category, limit) {
+  if(!category && !limit){
+    const fetchPromise = fetch(SERVER_URL + "/statistics")
+    return fetchPromise
+  }
+  else{
+    const fetchPromise = fetch(SERVER_URL + "/statistics?category=" + category + "&limit=" + limit)
+    return fetchPromise
+  }
 }
 
 
