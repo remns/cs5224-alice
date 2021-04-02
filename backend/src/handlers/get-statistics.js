@@ -1,6 +1,13 @@
 const dataFile = require("./../../data/course-data.json");
 stats_cache = [];
 
+/*
+Description: Get aggregated GES statistics for each course and sorted in descending order by a specific category
+HTTP Method: GET
+HTTP Parameters (query string): 
+    - limit=<number>, limits the number of results returned. If not specified, full list of courses will be returned
+    - category=<GES Category>, results will be sorted according to this category. If not specified, results will not be sorted.
+*/
 exports.getStatisticsHandler = async (event) => {
     const { httpMethod, path, queryStringParameters } = event;
     if (httpMethod !== 'GET') {
