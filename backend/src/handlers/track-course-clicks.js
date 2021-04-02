@@ -40,23 +40,27 @@ exports.trackCourseClicksHandler = async (event) => {
     console.log("DEBUG: Updating course click");
     console.log("Params: ", JSON.stringify(params));
 
+    var response;
+
     await docClient.update(params).promise()
       .then(function(data){
-        console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+        response = {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin" : "*"
+            },
+            body: JSON.stringify(data)
+        };
       })
       .catch(function(err) {
-        console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-        console.error(err);
-        throw new Error("Failed to update");
-
+        response = {
+            statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin" : "*"
+            },
+            body: JSON.stringify(err)
+        };
       });
-
-    const response = {
-        statusCode: 204,
-        headers: {
-            "Access-Control-Allow-Origin" : "*"
-        },
-    };
 
     console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);
     return response;
