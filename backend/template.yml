@@ -199,6 +199,31 @@ Resources:
             Path: /track/course
             Method: POST
 
+  getCourseClicksFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-course-clicks.getCourseClicksHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get course clicks
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ClicksTable
+      Environment:
+        Variables:
+          # Make table name accessible as environment variable from function code during execution
+          DDB_TABLE: !Ref ClicksTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /statistics-clicks
+            Method: GET
+
+
   CourseTable:
     Type: AWS::DynamoDB::Table
     Properties: 
