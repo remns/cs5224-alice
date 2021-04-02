@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "b273416b-03d0-4f60-b9bb-d64763f87fa6",
+		"name": "Alice API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Courses",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Filters\": {\r\n        \"University\": [\r\n            \"National University of Singapore\",\r\n            \"Nanyang Technological University\"\r\n        ],\r\n        \"Category\": [\r\n            \"Infocomm Technology\",\r\n            \"Engineering\"\r\n        ]\r\n    },\r\n    \"Profile\" : {\r\n        \"School Type\": \"Polytechnic\",\r\n        \"School\" : \"Nanyang Polytechnic\",\r\n        \"Grades\" : {\r\n            \"GPA\": 3.74\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/courses",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CoursesByIgp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/courses-igp?category=Polytechnic 10th Percentile&limit=10",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"courses-igp"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Polytechnic 10th Percentile",
+							"description": "Valid values: A-Levels 10th Percentile, A-Levels 90th Percentile, Polytechnic 10th Percentile, Polytechnic 90th Percentile"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrackCourseClick",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/track/course?id=1",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"track",
+						"course"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCourseClicks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/statistics-clicks?limit=3",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"statistics-clicks"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
