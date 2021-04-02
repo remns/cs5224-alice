@@ -61,7 +61,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api}}/statistics-clicks?limit=3",
+					"raw": "{{api}}/statistics-clicks?limit=4",
 					"host": [
 						"{{api}}"
 					],
@@ -71,7 +71,7 @@
 					"query": [
 						{
 							"key": "limit",
-							"value": "3"
+							"value": "4"
 						}
 					]
 				}
@@ -83,7 +83,26 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "{{api}}/statistics?category=Polytechnic 10th Percentile&limit=10",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"statistics"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Polytechnic 10th Percentile",
+							"description": "Valid values: \n[\"Overall Employment\", \"Full-Time Employment\", \"Basic Monthly Mean\", \"Basic Monthly Median\", \"Gross Monthly Mean\", \"Gross Monthly Median\", \"Gross Monthly 25th Percentile\", \"Gross Monthly 75th Percentile\"]\n\n[\"A-Levels 10th Percentile\", \"A-Levels 90th Percentile\", \"Polytechnic 10th Percentile\", \"Polytechnic 90th Percentile\"]"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
 			},
 			"response": []
 		}
