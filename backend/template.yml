@@ -175,6 +175,30 @@ Resources:
             Path: /statistics
             Method: GET
 
+  trackCourseClicksFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/track-course-clicks.trackCourseClicksHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get statistical ges data
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ClicksTable
+      Environment:
+        Variables:
+          # Make table name accessible as environment variable from function code during execution
+          DDB_TABLE: !Ref ClicksTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /track/course
+            Method: POST
+
   CourseTable:
     Type: AWS::DynamoDB::Table
     Properties: 
@@ -197,3 +221,43 @@ Resources:
       TableName: AliceCourseTable
       # Tags: 
       #   - Tag
+
+  ClicksTable:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      AttributeDefinitions: 
+        - 
+          AttributeName: CourseId
+          AttributeType: N
+        - 
+          AttributeName: Clicks
+          AttributeType: N
+        - 
+          AttributeName: GsiPk
+          AttributeType: N
+      KeySchema: 
+        - 
+          AttributeName: CourseId
+          KeyType: HASH
+      BillingMode: PROVISIONED
+      GlobalSecondaryIndexes: 
+        - 
+          IndexName: "ClicksIndex2"
+          KeySchema: 
+            - 
+              AttributeName: "GsiPk"
+              KeyType: "HASH"
+            - 
+              AttributeName: "Clicks"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "KEYS_ONLY"
+          ProvisionedThroughput:
+            ReadCapacityUnits: 2
+            WriteCapacityUnits: 2
+      # LocalSecondaryIndexes: 
+      #   - LocalSecondaryIndex          
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+      TableName: AliceClicksTable
