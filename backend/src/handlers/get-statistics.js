@@ -1,13 +1,15 @@
 const dataFile = require("./../../data/course-data.json");
+const enrollmentDataFile = require("./../../data/enrollment-data.json");
 ges_cache = [];
 igp_cache = [];
+enrollment_cache = [];
 
 /*
 Description: Get statistics for each course and sorted in descending order by a specific category
 HTTP Method: GET
 HTTP Parameters (query string): 
     - limit=<number>, limits the number of results returned. If not specified, full list of courses will be returned
-    - category=<GES or IGP Category>, results will be sorted according to this category. If not specified, results will not be sorted.
+    - category=<GES or IGP or Enrollment Category>, results will be sorted according to this category. If not specified, results will not be sorted.
 */
 exports.getStatisticsHandler = async (event) => {
     const { httpMethod, path, queryStringParameters } = event;
@@ -18,6 +20,7 @@ exports.getStatisticsHandler = async (event) => {
 
     let gesCats = ["Overall Employment", "Full-Time Employment", "Basic Monthly Mean", "Basic Monthly Median", "Gross Monthly Mean", "Gross Monthly Median", "Gross Monthly 25th Percentile", "Gross Monthly 75th Percentile"];
     let igpCats = ["A-Levels 10th Percentile", "A-Levels 90th Percentile", "Polytechnic 10th Percentile", "Polytechnic 90th Percentile"];
+    let enrollment = "Intake";
 
     let error = false;
 
@@ -110,6 +113,10 @@ exports.getStatisticsHandler = async (event) => {
                     responseData = filterAndSortByCategoryNumber(igp_cache, "Polytechnic 90th Percentile");
                     break;
             }
+        }
+        else if (queryStringParameters.category === enrollment){
+            fillEnrollmentCache();
+            responseData = enrollment_cache.sort((a, b) => b['Intake'] - a['Intake']);
         }
         else {
             console.log("invalid category option");
@@ -217,6 +224,17 @@ function fillIgpCache() {
                 ({Id, "Course Code": courseCode, "Indicative Grade Profile": igp}) => 
                 ({Id, "Course Code": courseCode, "Indicative Grade Profile": igp})
                 )
+                (x));
+    }
+}
+
+function fillEnrollmentCache() {
+    if (enrollment_cache.length === 0) {
+        console.log("Retrieving enrollment data");
+
+        enrollment_cache = enrollmentDataFile
+            .map(x=> 
+                ({"Course Code": Programme, "Intake": intake})
                 (x));
     }
 }

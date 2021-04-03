@@ -1,0 +1,482 @@
+[
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Arts & Social Sciences",
+  "Programme": "Arts and Social Science",
+  "Intake": 4509
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Arts & Social Sciences",
+  "Programme": "Arts (Hons)",
+  "Intake": 244
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Arts & Social Sciences",
+  "Programme": "Social Sciences",
+  "Intake": 1221
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Dentistry",
+  "Programme": "Dental Surgery",
+  "Intake": 253
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Chemical Engineering",
+  "Intake": 968
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Civil Engineering",
+  "Intake": 509
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Electrical Engineering",
+  "Intake": 781
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Engineering Science",
+  "Intake": 126
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Environmental Engineering",
+  "Intake": 161
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Industrial and Systems Engineering",
+  "Intake": 177
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Materials Science and Engineering",
+  "Intake": 280
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Engineering",
+  "Programme": "Mechanical Engineering",
+  "Intake": 1383
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Law",
+  "Programme": "Law",
+  "Intake": 900
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Science",
+  "Programme": "Pharmacy",
+  "Intake": 486
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Science",
+  "Programme": "Science",
+  "Intake": 2662
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Faculty of Science",
+  "Programme": "Science (Hons)",
+  "Intake": 753
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Multidisciplinary Programmes",
+  "Programme": "Computer Engineering",
+  "Intake": 683
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Multidisciplinary Programmes",
+  "Programme": "Environmental Studies",
+  "Intake": 118
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "NUS Business School",
+  "Programme": "Accountancy",
+  "Intake": 644
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "NUS Business School",
+  "Programme": "Accountancy (Hons)",
+  "Intake": 260
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "NUS Business School",
+  "Programme": "Business Administration",
+  "Intake": 2349
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "NUS Business School",
+  "Programme": "Business Administration (Hons)",
+  "Intake": 646
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Computing",
+  "Programme": "Business Analytics",
+  "Intake": 698
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Computing",
+  "Programme": "\"Computer Science",
+  "Intake": " Information Systems"
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Design & Environment",
+  "Programme": "Architecture",
+  "Intake": 670
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Design & Environment",
+  "Programme": "Industrial Design",
+  "Intake": 303
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Design & Environment",
+  "Programme": "Project and Facilities Management",
+  "Intake": 598
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Design & Environment",
+  "Programme": "Real Estate",
+  "Intake": 607
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Yale-NUS College",
+  "Programme": "Arts (Hons)",
+  "Intake": 1018
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Yale-NUS College",
+  "Programme": "Science (Hons)",
+  "Intake": 1018
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Yong Siew Toh Conservatory of Music",
+  "Programme": "Music",
+  "Intake": 216
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Yoo Loo Lin School of Medicine",
+  "Programme": "Medicine and Surgery",
+  "Intake": 1507
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Yoo Loo Lin School of Medicine",
+  "Programme": "Nursing",
+  "Intake": 829
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "Yoo Loo Lin School of Medicine",
+  "Programme": "Nursing (Hons)",
+  "Intake": 128
+ },
+ {
+  "University": "National University of Singapore",
+  "School": "School of Design & Environment",
+  "Programme": "Landscape Architecture",
+  "Intake": 34
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Business (Nanyang Business School)",
+  "Programme": "Accountancy",
+  "Intake": 1296
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Business (Nanyang Business School)",
+  "Programme": "Double Degree in Accountancy and Business",
+  "Intake": 643
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Business (Nanyang Business School)",
+  "Programme": "Business",
+  "Intake": 2171
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Business (Nanyang Business School)",
+  "Programme": "Double Degree in Business and Computer Engineering/Computing",
+  "Intake": 261
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Aerospace Engineering",
+  "Intake": 471
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Bioengineering",
+  "Intake": 398
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Chemical and Biomolecular Engineering",
+  "Intake": 18
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Civil Engineering",
+  "Intake": 390
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Computer Engineering",
+  "Intake": 358
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Computer Science",
+  "Intake": 1675
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Electrical and Electronic Engineering",
+  "Intake": 2199
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Environmental Engineering",
+  "Intake": 134
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Information Engineering and Media",
+  "Intake": 351
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Maritime Studies",
+  "Intake": 338
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Materials Engineering",
+  "Intake": 770
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Engineering",
+  "Programme": "Mechanical Engineering",
+  "Intake": 1970
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Art, Design and Media",
+  "Intake": 619
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Chinese",
+  "Intake": 344
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Communication Studies",
+  "Intake": 714
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Economics",
+  "Intake": 486
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "English",
+  "Intake": 424
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "History",
+  "Intake": 258
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Linguistics and Multilingual Studies",
+  "Intake": 327
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Philosophy",
+  "Intake": 179
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Psychology",
+  "Intake": 538
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Public Policy and Global Affairs",
+  "Intake": 242
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Humanities Arts & Social Sciences",
+  "Programme": "Sociology",
+  "Intake": 438
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Science",
+  "Programme": "Biological Sciences",
+  "Intake": 739
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Science",
+  "Programme": "Chemistry and Biological Chemistry",
+  "Intake": 844
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Science",
+  "Programme": "Environmental Earth Systems Sciences",
+  "Intake": 113
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Science",
+  "Programme": "Mathematical Sciences",
+  "Intake": 633
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Science",
+  "Programme": "Physics and Applied Physics",
+  "Intake": 349
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "College of Science",
+  "Programme": "Data Science and Artificial Intelligence",
+  "Intake": 150
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "Lee Kong Chian School of Medicine",
+  "Programme": "Medicine",
+  "Intake": 671
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "National Institute of Education (NIE)",
+  "Programme": "Arts (with Education)",
+  "Intake": 279
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "National Institute of Education (NIE)",
+  "Programme": "Science (with Education)",
+  "Intake": 141
+ },
+ {
+  "University": "Nanyang Technological University",
+  "School": "Sports Science and Management",
+  "Programme": "Sports Science and Management",
+  "Intake": 302
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Accountancy",
+  "Programme": "Accountancy",
+  "Intake": 1274
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Business",
+  "Programme": "Business Management",
+  "Intake": 3355
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Economics",
+  "Programme": "Economics",
+  "Intake": 1081
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Computing & Information Systems",
+  "Programme": "Information Systems",
+  "Intake": 1607
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Computing & Information Systems",
+  "Programme": "Computer Science",
+  "Intake": 155
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Computing & Information Systems",
+  "Programme": "Computing and Law",
+  "Intake": 21
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Social Sciences",
+  "Programme": "Social Sciences",
+  "Intake": 970
+ },
+ {
+  "University": "Singapore Management University",
+  "School": "School of Law",
+  "Programme": "Law",
+  "Intake": 681
+ }
+]
