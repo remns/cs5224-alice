@@ -234,8 +234,8 @@ function fillEnrollmentCache() {
 
         enrollment_cache = enrollmentDataFile
         .map(x=> (
-            ({"Programme": Programme, "Intake": Intake}) => 
-            ({"Programme": Programme, "Intake": Intake})
+            ({"Programme": Programme, "University": University, "Intake": Intake}) => 
+            ({"Programme": Programme, "University": University, "Intake": Intake})
             )
             (x));    
         }
