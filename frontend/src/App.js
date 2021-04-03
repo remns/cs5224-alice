@@ -10,7 +10,8 @@ import {
 import Profile from './scenes/Profile';
 import Institutions from './scenes/Institutions';
 import Statistics from './scenes/Statistics';
-import Comparison from './scenes/Comparison';
+import ComparePage from './scenes/ComparePage';
+import CompareResult from './scenes/CompareResult';
 import Details from './scenes/Details';
 import HeaderBar from './scenes/HeaderBar';
 
@@ -22,7 +23,8 @@ const DefaultContainer = () => (
     <HeaderBar />
     <Route exact path="/institutions" component={Institutions} />
     <Route exact path="/institutions/:id" render={(props) => <Details {...props} /> }/>
-    <Route exact path="/compare" component={Comparison} />
+    <Route exact path="/compare" component={ComparePage} />
+    <Route exact path="/compare/result" component={CompareResult} />
     <Route exact path="/statistics" component={Statistics} />
   </div>
 )

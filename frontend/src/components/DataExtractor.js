@@ -62,8 +62,23 @@ function getGESYear(course) {
   return year;
 }
 
+function getAnnualCost(course) {
+  if (course['Fee Type'] === 'One-Time') {
+    return (course['Fee Citizen'] / course['Duration']).toFixed(0);
+  }
+
+  // Annual
+  return course['Fee Citizen'];
+}
+
+function getROI(course) {
+  return course['ROI'];
+}
+
 export default {
   getMedianSalary,
   getEmploymentRate,
-  getGESYear
+  getGESYear,
+  getAnnualCost,
+  getROI
 }

@@ -23,14 +23,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ButtonAppBar(props) {
-  console.log(props);
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Grid container xs={12}>
+          <Grid container>
             <Grid item xs={1}>
               <Typography variant="h6">
                 logo
@@ -43,9 +42,9 @@ function ButtonAppBar(props) {
             </Grid>
             <Grid item xs={9}>
               <Grid container direction="row" justify="flex-end" alignItems="center">
-                <Button variant="h6" color="inherit" component={Link} to='/institutions'>Home</Button>
-                <Button variant="h6" color="inherit">Dashboard</Button>
-                <Button variant="h6" color="inherit" component={Link} to='/compare' >
+                <Button className="h6" color="inherit" component={Link} to='/institutions'>Home</Button>
+                <Button className="h6" color="inherit">Dashboard</Button>
+                <Button className="h6" color="inherit" component={Link} to='/compare' >
                   Compare Universities
                 </Button>
               </Grid>

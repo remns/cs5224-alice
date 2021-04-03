@@ -222,7 +222,8 @@ class CourseDisplay extends React.Component {
       <Container>
 
         {/* Tools */}
-        <hr />
+        <Divider style={{marginTop:'10px', marginBottom: '10px'}} />
+        
         <Grid container direction="row" justify="space-between" alignItems="stretch">
           <Grid item xs={6} container direction="row" justify="flex-start" alignItems="flex-end">
             <Typography>
@@ -234,7 +235,7 @@ class CourseDisplay extends React.Component {
           </Grid>
         </Grid>
 
-        <hr />
+        <Divider style={{marginTop:'10px', marginBottom: '10px'}} />
 
 
         {/* courses */}

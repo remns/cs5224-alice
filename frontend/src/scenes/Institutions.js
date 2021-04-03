@@ -160,10 +160,8 @@ class Institutions extends Component {
 
   render () {
     return (
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" style={{marginTop: '30px'}}>
         <Grid container spacing={2}>
-
-
           <Grid item xs={3}>
 
             {/* Filter University */}

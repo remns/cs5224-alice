@@ -35,6 +35,7 @@ function CompareInput(props) {
         onChange={(event) => props.handleChange(props.uniAtr, event.target.value)}
         helperText="Please select the university."
         fullWidth={true}
+        variant="outlined"
       >
         <MenuItem key={0} value={''}>
           None
@@ -57,6 +58,7 @@ function CompareInput(props) {
           onChange={(event) => props.handleChange(props.courseAtr, event.target.value)}
           helperText="Please select the course."
           fullWidth={true}
+          variant="outlined"
           style={{marginTop: '30px'}}
         >
           <MenuItem key={0} value={''}>
@@ -75,7 +77,7 @@ function CompareInput(props) {
   );
 }
 
-class Comparison extends Component {
+class ComparePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -139,7 +141,13 @@ class Comparison extends Component {
     let course2 = this.state.course.find(cou => cou.Id === this.state.course2);
 
     let compareList = [course1, course2];
-    console.log(compareList);
+    let states = {
+      compareList: compareList,
+      university: this.state.university,
+      course: this.state.course
+    }
+
+    this.props.history.push('/compare/result', states);
   }
 
   render() {
@@ -189,4 +197,4 @@ class Comparison extends Component {
   }
 }
 
-export default Comparison;
+export default ComparePage;
