@@ -39,36 +39,39 @@ function SortInput(props) {
   const sortMethods = CourseSort.sortLabels;
 
   return (
-    <Grid container direction="row">
-      <Grid xs={9} direction="row" justify="center" alignItems="center" style={{marginRight: '10px'}}>
-        <TextField select label="Sort By" value={dropdownVal} onChange={handleChange} variant="outlined" fullWidth={true}>
-          {
-            sortMethods.map( (method, index) => {
-              return (
-                <MenuItem key={index} value={method.id}>
-                  {method.name}
-                </MenuItem>
-              );
-            })
-          }
-        </TextField>
+    <Grid container direction="row" direction="row" justify="center" alignItems="center">
+      <Grid item xs={2}>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <FormControlLabel
+            control={
+              <Switch
+                disabled={(dropdownVal === '')}
+                checked={isChecked}
+                onChange={(event) => handleSwitchChange(event, dropdownVal)}
+                color="primary"
+              />
+            }
+            label={isChecked ? 'ASC' : 'DESC'}
+          />
+        </Grid>
       </Grid>
 
-      <Divider orientation="vertical" flexItem style={{marginRight: '10px'}} />
-
-      <Grid xs={2} container direction="column" justify="center" alignItems="center" >
-        <FormControlLabel
-          control={
-            <Switch
-              disabled={(dropdownVal === '')}
-              checked={isChecked}
-              onChange={(event) => handleSwitchChange(event, dropdownVal)}
-              color="primary"
-            />
-          }
-          label={isChecked ? 'ASC' : 'DESC'}
-        />
+      <Grid item xs={10}>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <TextField select label="Sort By" value={dropdownVal} onChange={handleChange} variant="outlined" fullWidth={true}>
+            {
+              sortMethods.map((method, index) => {
+                return (
+                  <MenuItem key={index} value={method.id}>
+                    {method.name}
+                  </MenuItem>
+                );
+              })
+            }
+          </TextField>
+        </Grid>
       </Grid>
+
     </Grid>
   );
 }
@@ -87,18 +90,18 @@ class CourseDisplay extends React.Component {
       let noOfPage = Math.round(this.props.data.length / 10);
 
       if (this.state.currentPage > noOfPage) {
-        this.setState({currentPage: 1});
+        this.setState({ currentPage: 1 });
       }
 
-      this.setState({expanded: -1})
+      this.setState({ expanded: -1 })
     }
   }
 
   handlePageChange(event, value) {
     if (this.state.currentPage !== value) {
-      this.setState({expanded: -1})
+      this.setState({ expanded: -1 })
     }
-    this.setState({currentPage: value});
+    this.setState({ currentPage: value });
   }
 
   showMoneyStats(row) {
@@ -124,18 +127,18 @@ class CourseDisplay extends React.Component {
   showCourses(courses) {
     let props = this.props;
 
-    return courses.map( (row, index) => {
+    return courses.map((row, index) => {
       let gradeList = [];
       let IGP = row["Indicative Grade Profile"];
       for (var key in IGP) {
-        gradeList.push({name: key, value: IGP[key]});
+        gradeList.push({ name: key, value: IGP[key] });
       }
 
       let annualCost = (row['Fee Type'] === "One-Time") ? row['Fee Citizen'] / row['Duration'] : row['Fee Citizen'];
 
       return (
         <Accordion key={index} expanded={this.state.expanded === index}
-          onChange={() => this.setState({expanded: (this.state.expanded === index) ? -1 : index})}>
+          onChange={() => this.setState({ expanded: (this.state.expanded === index) ? -1 : index })}>
 
 
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -158,27 +161,34 @@ class CourseDisplay extends React.Component {
 
           <AccordionDetails>
             <Grid container direction="row" justify="center" alignItems="center">
-              <Grid item xs={4} container direction="column" justify="center" alignItems="center">
-                <Typography variant="h6">Grade</Typography>
-                {
-                  (gradeList.length >= 0)
-                    && gradeList.map( (gradeRow, index) => {
-                      return <Typography>{gradeRow.name} : {gradeRow.value}</Typography>
+              <Grid item xs={4} >
+                <Grid container direction="column" justify="center" alignItems="center">
+                  <Typography variant="h6">Grade</Typography>
+                  {
+                    (gradeList.length >= 0)
+                    && gradeList.map((gradeRow, index) => {
+                      return <Typography key={index}>{gradeRow.name} : {gradeRow.value}</Typography>
                     })
-                }
-                {(gradeList.length === 0) && <Typography>No Data Available</Typography>}
+                  }
+                  {(gradeList.length === 0) && <Typography>No Data Available</Typography>}
+                </Grid>
               </Grid>
 
-              <Grid container xs={4} direction="column" justify="center" alignItems="center">
-                <Typography variant="h6">Cost</Typography>
-                <Rating name="read-only" value={RatingRubrics.getCostRating(annualCost)} readOnly />
-                <Typography>Years of Study: {row.Duration}</Typography>
-                <Typography>Fee(Citizen): $ {row["Fee Citizen"]} ({row["Fee Type"]})</Typography>
+              <Grid item xs={4}>
+                <Grid container direction="column" justify="center" alignItems="center">
+                  <Typography variant="h6">Cost</Typography>
+                  <Rating name="read-only" value={RatingRubrics.getCostRating(annualCost)} readOnly />
+                  <Typography>Years of Study: {row.Duration}</Typography>
+                  <Typography>Fee(Citizen): $ {row["Fee Citizen"]} ({row["Fee Type"]})</Typography>
+
+                </Grid>
               </Grid>
 
-              <Grid container xs={4} direction="column" justify="center" alignItems="center">
-                <Typography variant="h6">Salary</Typography>
-                {this.showMoneyStats(row)}
+              <Grid item xs={4}>
+                <Grid container direction="column" justify="center" alignItems="center">
+                  <Typography variant="h6">Salary</Typography>
+                  {this.showMoneyStats(row)}
+                </Grid>
               </Grid>
             </Grid>
           </AccordionDetails>
@@ -186,14 +196,18 @@ class CourseDisplay extends React.Component {
           <Divider />
           <AccordionActions>
             <Grid container>
-              <Grid xs={4} container direction="row" justify="center" alignItems="center">
-                <Typography variant="h6">Probability of Entry: {(row.Entry_Probability) ? row.Entry_Probability + " %": '-'}</Typography>
+              <Grid item xs={4}>
+                <Grid container direction="row" justify="center" alignItems="center">
+                  <Typography variant="h6">Probability of Entry: {(row.Entry_Probability) ? row.Entry_Probability + " %" : '-'}</Typography>
+                </Grid>
               </Grid>
-              <Grid xs={6}></Grid>
-              <Grid xs={2} container direction="row" justify="flex-end" alignItems="center">
-                <Button size="large" color="primary" onClick={() => props.history.push('/institutions/' + row["Id"])}>
-                  More Details
+              <Grid item xs={6}></Grid>
+              <Grid item xs={2}>
+                <Grid container direction="row" justify="flex-end" alignItems="center">
+                  <Button size="large" color="primary" onClick={() => props.history.push('/institutions/' + row["Id"])}>
+                    More Details
                 </Button>
+                </Grid>
               </Grid>
             </Grid>
           </AccordionActions>
@@ -219,11 +233,8 @@ class CourseDisplay extends React.Component {
     courses = courses.slice(lastRow - 10, lastRow);
 
     return (
-      <Container>
+      <div style={{ marginTop: '10px', marginBottom: '10px' }}>
 
-        {/* Tools */}
-        <Divider style={{marginTop:'10px', marginBottom: '10px'}} />
-        
         <Grid container direction="row" justify="space-between" alignItems="stretch">
           <Grid item xs={6} container direction="row" justify="flex-start" alignItems="flex-end">
             <Typography>
@@ -235,17 +246,12 @@ class CourseDisplay extends React.Component {
           </Grid>
         </Grid>
 
-        <Divider style={{marginTop:'10px', marginBottom: '10px'}} />
-
-
         {/* courses */}
         <Grid container>
           <Grid item xs={12}>
             {this.showCourses(courses)}
           </Grid>
         </Grid>
-
-
 
 
         {/* PAGING */}
@@ -261,7 +267,7 @@ class CourseDisplay extends React.Component {
             page={this.state.currentPage}
             onChange={this.handlePageChange.bind(this)} />
         </Grid>
-      </Container>
+      </div>
     );
   }
 }
