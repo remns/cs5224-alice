@@ -233,10 +233,12 @@ function fillEnrollmentCache() {
         console.log("Retrieving enrollment data");
 
         enrollment_cache = enrollmentDataFile
-            .map(x=> 
-                ({"Course Code": Programme, "Intake": Intake})
-                (x));
-    }
+        .map(x=> (
+            ({"Programme": Programme, "Intake": Intake}) => 
+            ({"Programme": Programme, "Intake": Intake})
+            )
+            (x));    
+        }
 }
 
 function filterAndSortByCategoryString(dataset, category) {
