@@ -20,7 +20,7 @@ exports.getStatisticsHandler = async (event) => {
 
     let gesCats = ["Overall Employment", "Full-Time Employment", "Basic Monthly Mean", "Basic Monthly Median", "Gross Monthly Mean", "Gross Monthly Median", "Gross Monthly 25th Percentile", "Gross Monthly 75th Percentile"];
     let igpCats = ["A-Levels 10th Percentile", "A-Levels 90th Percentile", "Polytechnic 10th Percentile", "Polytechnic 90th Percentile"];
-    let enrollment = "Intake";
+    let enrollment = ["Intake"];
 
     let error = false;
 
@@ -114,7 +114,7 @@ exports.getStatisticsHandler = async (event) => {
                     break;
             }
         }
-        else if (queryStringParameters.category === enrollment){
+        else if (enrollment.includes(queryStringParameters.category)) {
             fillEnrollmentCache();
             responseData = enrollment_cache.sort((a, b) => b['Intake'] - a['Intake']);
         }
