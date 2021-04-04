@@ -9,6 +9,9 @@ import {
   withRouter,
   Link
 } from "react-router-dom";
+import HomeIcon from '@material-ui/icons/Home';
+import CompareIcon from '@material-ui/icons/Compare';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  icon: {
+    paddingRight: '5px'
+  }
 }));
 
 function ButtonAppBar(props) {
@@ -29,26 +35,25 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static" style={{ background: '#2783A8' }}>
         <Toolbar>
-          <Grid container>
+          <Grid container direction="row" justify="center" alignItems="center">
             <Grid item xs={1}>
-              <Typography variant="h6">
-                <img style={{width: 100}} src="/images/alice2_inverted.png" />
-              </Typography>
+              <Grid container direction="row" justify="center" alignItems="center">
+                <img style={{ width: 100, minHeight: "100%" }} src="/images/alice2_inverted.png" />
+              </Grid>
             </Grid>
             <Grid item xs={2}>
-              {
-                /*
-                <Typography variant="h6" className={classes.title}>
-                    ALICE
-                </Typography>
-                */
-              }
             </Grid>
             <Grid item xs={9}>
               <Grid container direction="row" justify="flex-end" alignItems="center">
-                <Button className="h6" color="inherit" component={Link} to='/institutions'>Home</Button>
-                <Button className="h6" color="inherit" component={Link} to='/compare'>Compare Universities</Button>
-                <Button className="h6" color="inherit" component={Link} to='/statistics'>Statistics</Button>
+                <Button className="h6" color="inherit" component={Link} to='/institutions'>
+                  <HomeIcon className={classes.icon} /> Home
+                </Button>
+                <Button className="h6" color="inherit" component={Link} to='/compare'>
+                  <CompareIcon className={classes.icon} /> Compare Universities
+                </Button>
+                <Button className="h6" color="inherit" component={Link} to='/statistics'>
+                  <EqualizerIcon className={classes.icon} /> Statistics
+                </Button>
               </Grid>
             </Grid>
 
