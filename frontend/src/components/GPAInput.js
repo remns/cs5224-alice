@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
+import React, { Component } from 'react';
 
 export default class GPAInput extends Component {
     constructor(props) {

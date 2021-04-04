@@ -1,17 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import {
-  withRouter,
-  Link
-} from "react-router-dom";
-import HomeIcon from '@material-ui/icons/Home';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
 import CompareIcon from '@material-ui/icons/Compare';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import HomeIcon from '@material-ui/icons/Home';
+import React from 'react';
+import {
+  Link, withRouter
+} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +36,7 @@ function ButtonAppBar(props) {
           <Grid container direction="row" justify="center" alignItems="center">
             <Grid item xs={1}>
               <Grid container direction="row" justify="center" alignItems="center">
-                <img style={{ width: 100, minHeight: "100%" }} src="/images/alice2_inverted.png" />
+                <img style={{ width: 100, minHeight: "100%" }} src="/images/alice2_inverted.png" alt="logo" />
               </Grid>
             </Grid>
             <Grid item xs={2}>

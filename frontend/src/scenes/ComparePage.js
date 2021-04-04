@@ -47,7 +47,7 @@ function CompareInput(props) {
           helperText="Please select the course."
           fullWidth={true}
           variant="outlined"
-          style={{marginTop: '30px'}}
+          style={{ marginTop: '30px' }}
         >
           <MenuItem key={0} value={''}>
             None
@@ -142,7 +142,7 @@ class ComparePage extends Component {
     if (!this.state.university || this.state.university.length === 0) {
       return <Loading />;
     }
-  
+
     if (!this.state.course || this.state.course.length === 0) {
       return <Loading />;
     }
@@ -161,21 +161,23 @@ class ComparePage extends Component {
 
               <Grid container direction="row" justify="center" alignItems="center">
 
-                <Grid xs={5} container direction="row" justify="center" alignItems="center">
+                <Grid xs={5} item direction="row" justify="center" alignItems="center">
                   <CompareInput selectedUni={this.state.uni1} selectedCourse={this.state.course1} university={this.state.university} course={this.state.course} handleChange={this.handleChange.bind(this)} uniAtr={"uni1"} courseAtr={"course1"} />
                 </Grid>
-                <Grid xs={2} container direction="row" justify="center" alignItems="center">
-                  <Typography variant="h5"> VS </Typography>
+                <Grid xs={2} item>
+                  <Grid container direction="row" justify="center" alignItems="center">
+                    <Typography variant="h5"> VS </Typography>
+                  </Grid>
                 </Grid>
-                <Grid xs={5} container direction="row" justify="center" alignItems="center">
+                <Grid xs={5} item direction="row" justify="center" alignItems="center">
                   <CompareInput selectedUni={this.state.uni2} selectedCourse={this.state.course2} university={this.state.university} course={this.state.course} handleChange={this.handleChange.bind(this)} uniAtr={"uni2"} courseAtr={"course2"} />
                 </Grid>
 
 
                 <Grid>
-                  <Button variant="contained" color="primary" onClick={this.handleClick.bind(this)} 
-                    disabled={(this.state.uni1 === '' || this.state.uni2 === '' || 
-                    this.state.course1 === '' || this.state.course2 === '' || this.state.course1 === this.state.course2)}>
+                  <Button variant="contained" color="primary" onClick={this.handleClick.bind(this)}
+                    disabled={(this.state.uni1 === '' || this.state.uni2 === '' ||
+                      this.state.course1 === '' || this.state.course2 === '' || this.state.course1 === this.state.course2)}>
                     Compare
                   </Button>
                 </Grid>

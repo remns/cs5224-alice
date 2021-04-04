@@ -1,24 +1,10 @@
-import React, { Component } from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
-
-import {getAllStatistics, getAllCourses, postCourseClick} from '../api/API.js'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react';
+import { getAllCourses, getAllStatistics, postCourseClick } from '../api/API.js';
 import Chart from '../components/Chart';
+
 
 export default class Details extends Component {
   constructor(props) {
