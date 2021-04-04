@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 const dynamodb = require('aws-sdk/clients/dynamodb');
-const dataFile = require("./../data/course-data.json");
+const dataFile = require("./../../data/course-data.json");
 
 AWS.config.update({
   region: "ap-southeast-1",
@@ -8,13 +8,16 @@ AWS.config.update({
 });
 const docClient = new dynamodb.DocumentClient();
 
-const tableName = "AliceClicksTable"
+const tableName = "AliceClicksTable2"
 
 dataFile.forEach(course => {
     var params = {
         TableName: tableName,
         Item:{
             "CourseId": course.Id,
+            "University": course.University,
+            "Programme": course.Programme,
+            "GsiPk": 1,
             "Clicks": 0
         }
     };

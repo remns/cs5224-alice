@@ -23,7 +23,7 @@ exports.getCourseClicksHandler = async (event) => {
         ExpressionAttributeValues: {
             ":id": 1
         },
-        ProjectionExpression: "CourseId, Clicks",
+        ProjectionExpression: "CourseId, Clicks, University, Programme",
         ScanIndexForward: false,
       };
 
