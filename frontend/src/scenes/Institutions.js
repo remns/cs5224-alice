@@ -253,11 +253,11 @@ class Institutions extends Component {
             <Grid item xs={6}>
               <Button variant="outlined" color="secondary"
                 onClick={() => this.setState({ isResetConfigureOpen: true })}>
-                Reset to Initial Configuration
+                Load Initial Configuration
               </Button>
               <ConfirmationDialog
                 title={"Confirmation"}
-                message="This will RESET all your filters and grades to the initial configuration you submitted during the profile setup or the previous saved configuration, whichever is nearer. Are you sure you want to reset?"
+                message="This will LOAD all your filters and grades in your initial configuration you submitted during the profile setup or the previous saved configuration, whichever is nearer. Are you sure you want to reset?"
                 isOpen={this.state.isResetConfigureOpen}
                 handleOpen={(isOpen) => this.setState({ isResetConfigureOpen: isOpen })}
                 onClickAgree={this.loadInitialConfiguration.bind(this)} />
