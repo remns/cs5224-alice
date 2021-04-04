@@ -1,4 +1,4 @@
-function getCostRating(annualCost) {
+const getCostRating = (annualCost) => {
   let costRating = (annualCost >= 20000) ? 5 : 
                       (annualCost >= 10000) ? 4 :
                       (annualCost >= 8000) ? 3 :
@@ -6,7 +6,7 @@ function getCostRating(annualCost) {
   return costRating;
 }
 
-function getSalaryRating(monthlySalary) {
+const getSalaryRating = (monthlySalary) => {
   let salaryRating = (monthlySalary >= 5000) ? 5 : 
                       (monthlySalary >= 4000) ? 4 :
                       (monthlySalary >= 3000) ? 3 :

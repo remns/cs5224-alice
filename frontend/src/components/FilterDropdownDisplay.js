@@ -1,19 +1,18 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
+import React from 'react';
+import Loading from './Loading';
 
-import Loading from './Loading'
 
 function ResultBox(props) {
-  if (!props.data) return (null);
-  let interestList = props.interestList;
+  if (!props.interest) return (null);
+  let interestList = props.interest.filter(inter => inter.isSelected);
 
   const handleDelete = (interestId) => () => {
     props.onDelete(interestId);
@@ -42,9 +41,9 @@ function Dropdown(props) {
     props.onSelect(event.target.value);
   };
 
-  if (!props.data) return (null);
+  if (!props.interest) return (null);
 
-  let availableInterest = props.data.filter(inter => !inter.isSelected);
+  let availableInterest = props.interest.filter(inter => !inter.isSelected);
 
   return (
     <FormControl variant="outlined" fullWidth={true} style={{marginLeft: "10px", marginRight: "10px"}}>
@@ -73,7 +72,7 @@ function Dropdown(props) {
 }
 
 function FilterDropdownDisplay(props) {
-  if (!props.data) {
+  if (!props.interest) {
     return <Loading />
   }
 

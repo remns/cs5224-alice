@@ -45,6 +45,42 @@ function getAllTrackClicks(limit) {
   return fetchPromise
 }
 
+function getAllCourseWithProfile(profile) {
+  if (!profile) {
+    return null;
+  }
+
+  let educationType = ["Polytechnic", "Junior College"];
+  let grades = null;
+  if (profile.education === 1) {
+    grades = profile.gpa;
+  }
+
+  if (profile.education === 0) {
+    let alevelObj = profile.alevel;
+    let gradeArr = [];
+    for (let key in alevelObj) {
+      gradeArr.push(alevelObj[key]);
+    }
+    grades = gradeArr;
+  }
+
+  let parsedProfile = {
+    Filters: {},
+    Profile: {
+      "School Type": educationType[profile.education],
+      "Grades": grades
+    }
+  }
+  let data = {
+    method: 'POST',
+    body: JSON.stringify(parsedProfile)
+  };
+  const fetchPromise = fetch(SERVER_URL + "/courses", data);
+
+  return fetchPromise
+}
+
 
 export {
   getAllUniversity,
@@ -53,5 +89,6 @@ export {
   getAllJC,
   getAllPoly,
   getAllStatistics,
-  getAllTrackClicks
+  getAllTrackClicks,
+  getAllCourseWithProfile
 }

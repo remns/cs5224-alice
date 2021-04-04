@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/styles';
-import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
+import Typography from '@material-ui/core/Typography';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
+import GradeTwoToneIcon from '@material-ui/icons/GradeTwoTone';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
-
-import {getAllUniversity, getAllInterest, getAllCourses} from '../api/API.js'
-
-import FilterDisplay from '../components/FilterDisplay';
-import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
+import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
+import SettingsTwoToneIcon from '@material-ui/icons/SettingsTwoTone';
+import { withStyles } from '@material-ui/styles';
+import React, { Component } from 'react';
+import { getAllCourses, getAllCourseWithProfile, getAllInterest, getAllUniversity } from '../api/API.js';
+import ALevelInput from '../components/ALevelInput.js';
+import ConfirmationDialog from '../components/ConfirmationDialog.js';
 import CourseDisplay from '../components/CourseDisplay';
 import CourseSort from '../components/CourseSort';
+import EducationInput from '../components/EducationInput.js';
+import FilterDisplay from '../components/FilterDisplay';
+import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
+import GPAInput from '../components/GPAInput.js';
+import SearchBar from '../components/SearchBar';
+
+
 
 const styles = {
   root: {
@@ -37,13 +45,30 @@ class Institutions extends Component {
       course: [],
 
       originalCourse: [],
-      interestList: []
+
+      isResetConfigureOpen: false,
+      isOverwriteConfigureOpen: false,
+
+      alevel: {
+        gp: '',
+        h1: '',
+        h2_1: '',
+        h2_2: '',
+        h2_3: '',
+        mtl: '',
+        pw: ''
+      },
+      education: '',
+      gpa: '',
     }
   }
 
   componentDidMount() {
-    console.log(this.props.location.state);
-    
+    if (!this.props.location.state) {
+      this.props.history.push('/');
+      return;
+    }
+
     // grab university list
     const uniPromise = getAllUniversity();
     uniPromise
@@ -65,8 +90,7 @@ class Institutions extends Component {
         data.forEach(row => row.isSelected = true);
 
         this.setState({
-          interest: data,
-          interestList: data
+          interest: data
         })
       })
       .catch(console.log)
@@ -77,116 +101,272 @@ class Institutions extends Component {
       .then(res => res.json())
       .then((data) => {
         this.setState({
-          course: courseFilter(data, this.state.university, this.state.interestList),
+          course: courseFilter(data, this.state.university, this.state.interest),
           originalCourse: data
         })
 
       })
       .catch(console.log)
+    
+    // send post request to server
+    const personalisedCoursePromise = getAllCourseWithProfile(this.props.location.state.interests);
+    personalisedCoursePromise
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(console.log)
+  }
+
+  integrateCurrentProfile() {
+    let profileInterest = this.props.location.state.interests;
+    console.log(this.props.location.state);
   }
 
   filterUniversity(universityId) {
     // set filter
     let university = [...this.state.university];
     let index = university.findIndex(uni => uni.Id === universityId);
-    let selectedUni = {...university[index]};
+    let selectedUni = { ...university[index] };
 
     selectedUni.isChecked = !selectedUni.isChecked;
     university[index] = selectedUni;
 
-    this.setState({university});
-
-    // filter course
-    this.setState({course: []});
-    let course = [...this.state.originalCourse];
-    let filteredCourse = courseFilter(course, university, this.state.interestList)
-    this.setState({course: filteredCourse});
+    this.setState({ university });
   }
 
   addToInterestList(interestId) {
-    if (interestId === "" || interestId === "None") return ;
-    let isExist = this.state.interestList.some(inter => inter.Id === interestId);
-    if (isExist) {
-      return ;
+    if (interestId === "" || interestId === "None") return;
+    let isExist = this.state.interest.some(inter => inter.Id === interestId);
+    if (!isExist) {
+      return;
     }
 
     // remove from dropdown list
     let copiedInterest = [...this.state.interest];
     let index = copiedInterest.findIndex(inter => inter.Id === interestId);
-    let selectedInterest = {...copiedInterest[index]};
+    let selectedInterest = { ...copiedInterest[index] };
 
     selectedInterest.isSelected = true;
     copiedInterest[index] = selectedInterest;
-    this.setState({interest: copiedInterest});
-
-    // add to interest list
-    let copiedList = [...this.state.interestList];
-    copiedList.push(selectedInterest);
-    this.setState({interestList: copiedList});
-
-    // filter course
-    this.setState({course: []});
-    let course = [...this.state.originalCourse];
-    let filteredCourse = courseFilter(course, this.state.university, copiedList)
-    this.setState({course: filteredCourse});
+    this.setState({ interest: copiedInterest });
   }
 
   removeFromInterestList(interestId) {
-    // remove from interestlist
-    let copiedInterestList = [...this.state.interestList];
-    let updatedInterestList = copiedInterestList.filter(inter => inter.Id !== interestId);
-    this.setState({interestList: updatedInterestList});
-
-    // add back to dropdown
+    // add back to dropdown list
     let copiedInterest = [...this.state.interest];
     let index = copiedInterest.findIndex(inter => inter.Id === interestId);
-    let selectedInterest = {...copiedInterest[index]};
+    let selectedInterest = { ...copiedInterest[index] };
 
     selectedInterest.isSelected = false;
     copiedInterest[index] = selectedInterest;
-    this.setState({interest: copiedInterest});
-
-    // filter course
-    this.setState({course: []});
-    let course = [...this.state.originalCourse];
-    let filteredCourse = courseFilter(course, this.state.university, updatedInterestList)
-    this.setState({course: filteredCourse});
+    this.setState({ interest: copiedInterest });
   }
 
   sortCourse(sortId, isAscending) {
     const sortedCourses = CourseSort.sortBySortId(sortId, this.state.course, isAscending);
-    this.setState({course: sortedCourses});
+    this.setState({ course: sortedCourses });
   }
 
-  render () {
+  onClickSearch(value) {
+    let copiedCourseList = [...this.state.originalCourse];
+    let filteredCourseList = copiedCourseList.filter(course =>
+      course.Programme.toLowerCase().includes(value.toLowerCase()));
+    this.setState({
+      course: filteredCourseList
+    })
+  }
+
+  clearAllFilter() {
+    let copiedInterest = [...this.state.interest];
+    copiedInterest.forEach(interest => interest.isSelected = true);
+
+    let copiedUniversity = [...this.state.university];
+    copiedUniversity.forEach(uni => uni.isChecked = true);
+
+    this.setState({
+      interest: copiedInterest,
+      unviersity: copiedUniversity,
+      course: this.state.originalCourse
+    })
+  }
+
+  loadInitialConfiguration() {
+    this.setState({ isResetConfigureOpen: false });
+
+  }
+
+  saveCurrentConfiguration() {
+    this.setState({ isOverwriteConfigureOpen: false });
+  }
+
+  emptyGradeFields() {
+    this.setState({
+      education: '',
+      alevel: {
+        gp: '',
+        h1: '',
+        h2_1: '',
+        h2_2: '',
+        h2_3: '',
+        mtl: '',
+        pw: ''
+      },
+      gpa: ''
+    })
+  }
+
+  sendRequest() {
+    this.emptyGradeFields();
+  }
+
+  isFormFilled() {
+    if (this.state.education !== '') {
+      if (this.state.education === 1) {
+        for(let key in this.state.alevel){
+          if(this.state.alevel[key].length === 0){
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      if (this.state.education === 0) {
+        return this.state.gpa.length > 0 && parseFloat(this.state.gpa) <= 4
+      }
+    }
+
+    return false;
+  }
+
+  configureButtons() {
     return (
-      <Container maxWidth="xl">
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Grid item xs={12}>
+          <Typography variant="h4" style={{ textAlign: "center" }}><SettingsTwoToneIcon /> Settings</Typography>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Divider style={{ margin: '10px' }} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grid container>
+            <Grid item xs={6}>
+              <Button variant="outlined" color="secondary"
+                onClick={() => this.setState({ isResetConfigureOpen: true })}>
+                Load Initial Configuration
+              </Button>
+              <ConfirmationDialog
+                title={"Confirmation"}
+                message="This will LOAD all your filters and grades in your initial configuration you submitted during the profile setup or the previous saved configuration, whichever is nearer. Are you sure you want to reset?"
+                isOpen={this.state.isResetConfigureOpen}
+                handleOpen={(isOpen) => this.setState({ isResetConfigureOpen: isOpen })}
+                onClickAgree={this.loadInitialConfiguration.bind(this)} />
+
+            </Grid>
+            <Grid item xs={6}>
+              <Button variant="outlined" color="primary"
+                onClick={() => this.setState({ isOverwriteConfigureOpen: true })}>
+                Save Current Configuration
+              </Button>
+              <ConfirmationDialog
+                title={"Confirmation"}
+                message="This will OVERWRITE all your filters and grades in your inital configuration you submitted during the profile setup or your previous saved configuration, whichever is nearer. Are you sure you want to overwrite?"
+                isOpen={this.state.isOverwriteConfigureOpen}
+                handleOpen={(isOpen) => this.setState({ isOverwriteConfigureOpen: isOpen })}
+                onClickAgree={this.saveCurrentConfiguration.bind(this)} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    );
+  }
+
+  render() {
+    let filteredCourse = courseFilter(this.state.course, this.state.university, this.state.interest);
+
+    return (
+      <Container maxWidth="xl" style={{ marginTop: '30px', marginBottom: '30px' }}>
         <Grid container spacing={2}>
-
-
           <Grid item xs={3}>
 
+            {/** Save current configuration, Reset to initial configuration */}
+            <Paper style={{ padding: '10px' }}>
+              {this.configureButtons()}
+            </Paper>
+
+            <br />
+
             {/* Filter University */}
-            <Paper style={{padding: '10px', textAlign: "flex-start"}}>
-              <Typography variant="h4" style={{textAlign: "center"}}>
+            <Paper style={{ padding: '10px', textAlign: "flex-start" }}>
+              <Typography variant="h4" style={{ textAlign: "center" }}>
                 <SchoolTwoToneIcon /> Universities
               </Typography>
+
+              <Divider style={{ margin: '10px' }} />
+
               <FilterDisplay data={this.state.university} onClick={this.filterUniversity.bind(this)} />
             </Paper>
 
             <br />
 
             {/* Filter Interests */}
-            <Paper style={{padding: '10px'}}>
-              <Typography variant="h4" style={{textAlign: "center"}}>
-                <FavoriteTwoToneIcon/> Interests
+            <Paper style={{ padding: '10px' }}>
+              <Typography variant="h4" style={{ textAlign: "center" }}>
+                <FavoriteTwoToneIcon /> Interests
               </Typography>
+
+              <Divider style={{ margin: '10px' }} />
+
               <FilterDropdownDisplay
-                data={this.state.interest}
-                interestList={this.state.interestList}
+                interest={this.state.interest}
                 onSelect={this.addToInterestList.bind(this)}
                 onDelete={this.removeFromInterestList.bind(this)} />
             </Paper>
+
+            <br />
+
+            {/**Resubmit grades Poly / JC */}
+            <Paper style={{ padding: '10px' }}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography variant="h4" style={{ textAlign: "center" }}><GradeTwoToneIcon /> Grades</Typography>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Divider style={{ margin: '10px' }} />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <EducationInput value={this.state.education} onChange={(value) => {
+                    this.emptyGradeFields();
+                    this.setState({ education: value })
+                  }} />
+                </Grid>
+
+                <Grid item xs={12} style={{ marginTop: '30px' }}>
+                  {
+                    this.state.education === 0 &&
+                    <GPAInput value={this.state.gpa} onChange={(value) => this.setState({ gpa: value })} />
+                  }
+                  {
+                    this.state.education === 1 &&
+                    <ALevelInput onChange={(value) => this.setState({ alevel: value })} />
+                  }
+                </Grid>
+
+                <Grid item xs={12} style={{ marginTop: '30px' }}>
+                  <Grid container direction="row" justify="center" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={this.sendRequest.bind(this)} disabled={!this.isFormFilled()}>
+                      Update My Grade
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Paper>
+
 
           </Grid>
 
@@ -194,14 +374,33 @@ class Institutions extends Component {
           {/* Display Courses */}
           <Grid item xs={9}>
             <Paper>
-              <Typography variant="h4" style={{textAlign: "center"}}>
-                <MenuBookTwoToneIcon /> Courses
-              </Typography>
-              <CourseDisplay data={this.state.course} sortCourse={this.sortCourse.bind(this)} {...this.props}/>
+              <Grid container direction="row" justify="center" alignItems="center" style={{ padding: '10px' }}>
+                <Grid item xs={2} style={{ textAlign: 'center' }}>
+                  <Typography variant="h4">
+                    <MenuBookTwoToneIcon /> Courses
+                  </Typography>
+                </Grid>
+                <Grid item xs={5}>
+                  <Grid container direction="row" justify="center" alignItems="center">
+                    <Button variant="contained" onClick={this.clearAllFilter.bind(this)}>
+                      Clear All Filters
+                    </Button>
+                  </Grid>
+                </Grid>
+                <Grid item xs={5}>
+                  <Grid container direction="row" justify="flex-end" alignItems="center">
+                    <SearchBar onClick={this.onClickSearch.bind(this)} courseList={this.state.originalCourse} />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Divider />
+
+              <Container style={{ padding: '10px' }}>
+                <CourseDisplay data={filteredCourse} sortCourse={this.sortCourse.bind(this)} {...this.props} />
+              </Container>
             </Paper>
           </Grid>
-
-
 
         </Grid>
       </Container>
@@ -210,10 +409,6 @@ class Institutions extends Component {
 
   }
 }
-
-Institutions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Institutions);
 
