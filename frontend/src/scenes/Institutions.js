@@ -15,7 +15,7 @@ import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import SettingsTwoToneIcon from '@material-ui/icons/SettingsTwoTone';
 import GradeTwoToneIcon from '@material-ui/icons/GradeTwoTone';
 
-import { getAllUniversity, getAllInterest, getAllCourses } from '../api/API.js'
+import { getAllUniversity, getAllInterest, getAllCourses, getAllCourseWithProfile } from '../api/API.js'
 
 import FilterDisplay from '../components/FilterDisplay';
 import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
@@ -95,9 +95,6 @@ class Institutions extends Component {
         this.setState({
           interest: data
         })
-
-        // integrate profile's interest
-        this.integrateProfileInterest();
       })
       .catch(console.log)
 
@@ -113,9 +110,18 @@ class Institutions extends Component {
 
       })
       .catch(console.log)
+    
+    // send post request to server
+    const personalisedCoursePromise = getAllCourseWithProfile(this.props.location.state.interests);
+    personalisedCoursePromise
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(console.log)
   }
 
-  integrateProfileInterest() {
+  integrateCurrentProfile() {
     let profileInterest = this.props.location.state.interests;
     console.log(this.props.location.state);
   }

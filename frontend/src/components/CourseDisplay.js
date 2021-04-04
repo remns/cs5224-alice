@@ -198,7 +198,7 @@ class CourseDisplay extends React.Component {
             <Grid container>
               <Grid item xs={4}>
                 <Grid container direction="row" justify="center" alignItems="center">
-                  <Typography variant="h6">Probability of Entry: {(row.Entry_Probability) ? row.Entry_Probability + " %" : '-'}</Typography>
+                  <Typography variant="h6">Probability of Entry: {(row.Entry_Probability) ? row.Entry_Probability : '-'}</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={6}></Grid>
