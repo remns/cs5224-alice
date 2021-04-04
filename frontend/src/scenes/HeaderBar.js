@@ -43,10 +43,8 @@ function ButtonAppBar(props) {
             <Grid item xs={9}>
               <Grid container direction="row" justify="flex-end" alignItems="center">
                 <Button className="h6" color="inherit" component={Link} to='/institutions'>Home</Button>
-                <Button className="h6" color="inherit">Dashboard</Button>
-                <Button className="h6" color="inherit" component={Link} to='/compare' >
-                  Compare Universities
-                </Button>
+                <Button className="h6" color="inherit" component={Link} to='/compare'>Compare Universities</Button>
+                <Button className="h6" color="inherit" component={Link} to='/statistics'>Statistics</Button>
               </Grid>
             </Grid>
 

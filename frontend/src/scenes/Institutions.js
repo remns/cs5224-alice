@@ -269,7 +269,7 @@ class Institutions extends Component {
             <Grid item xs={6}>
               <Button variant="outlined" color="primary"
                 onClick={() => this.setState({ isOverwriteConfigureOpen: true })}>
-                Save Current Configuration lala
+                Save Current Configuration
               </Button>
               <ConfirmationDialog
                 title={"Confirmation"}
