@@ -23,6 +23,8 @@ import GPAInput from '../components/GPAInput';
 import ALevelInput from '../components/ALevelInput';
 import InterestsInput from '../components/InterestsInput';
 
+import configuration from '../components/configuration.js';
+
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -66,12 +68,21 @@ export default class Profile extends Component {
 
   onNextSelected = () => {
     if(this.state.currentInput == 2){
+
+      let interestsId = [];
+      for(let i = 0; i < this.state.interestsSelected.length; i++){
+        let interest = this.state.interests.find((el, index) => index == this.state.interestsSelected[i]);
+        interestsId.push(interest.Id);
+      }
+
       let result = {
         education: this.state.education,
         gpa: this.state.gpa,
         alevel: this.state.alevel,
-        interests: this.state.interestsSelected
+        interests: interestsId
       };
+
+      configuration.setConfiguration(undefined, interestsId, undefined, this.state.alevel, this.state.education, this.state.gpa);
 
       this.props.history.push('/institutions', result);
     }

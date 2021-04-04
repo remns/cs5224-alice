@@ -22,7 +22,7 @@ import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
 import GPAInput from '../components/GPAInput.js';
 import SearchBar from '../components/SearchBar';
 
-
+import configuration from '../components/configuration.js';
 
 const styles = {
   root: {
@@ -64,6 +64,7 @@ class Institutions extends Component {
   }
 
   componentDidMount() {
+    console.log(configuration.getConfiguration());
     if (!this.props.location.state) {
       this.props.history.push('/');
       return;
@@ -107,7 +108,7 @@ class Institutions extends Component {
 
       })
       .catch(console.log)
-    
+
     // send post request to server
     const personalisedCoursePromise = getAllCourseWithProfile(this.props.location.state.interests);
     personalisedCoursePromise
