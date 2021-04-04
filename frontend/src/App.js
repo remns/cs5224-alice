@@ -14,9 +14,6 @@ import Profile from './scenes/Profile';
 import Statistics from './scenes/Statistics';
 import './styles/main.css';
 
-
-
-
 const DefaultContainer = () => (
   <div>
     <HeaderBar />

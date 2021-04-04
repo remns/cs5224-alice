@@ -28,9 +28,7 @@ exports.getCoursesHandler = async (event) => {
             "Profile" : {
                 "School Type": "Polytechnic"
                 "School" : "Nanyang Polytechnic"
-                "Grades" : {
-                    "GPA": 3.74
-                }
+                "Grades" : 3.74
             }
         }
      */
@@ -47,8 +45,10 @@ exports.getCoursesHandler = async (event) => {
         if (interestsFilter) {
             responseData = responseData.filter(x=> x.Category.some(y=> interestsFilter.includes(y)));
         }
-        reponseData = responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
-        reponseData = responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
+        responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
+        responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
+        responseData.map((course) => course.RecScore = getRecScore(course)); // Append probability field
+        responseData = responseData.sort((a, b) => b.RecScore - a.RecScore);
     }
 
     const response = {
@@ -59,15 +59,37 @@ exports.getCoursesHandler = async (event) => {
         body: JSON.stringify(responseData)
     };
 
-    console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);
+    // console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);
     return response;
 };
 
+function getRecScore(course) {
+    score = 0;
+    if (course.ROI >= 1.5) {
+        score +=3;
+    }
+    else if (course.ROI >= 1) {
+        score +=2;
+    }
+
+    switch(course.Entry_Probability) {
+        case "High":
+            score +=3
+            break;
+        case "Medium":
+            score +=2;
+            break;
+        case "High":
+            score +=1;
+            break;
+    }
+    return score;
+}
 
 function getROI(course) {
     gesData = course.GES
     if (gesData == null) {
-        return "Unavailable"
+        return null
     } else {
         latestGes = gesData[gesData.length -1]
         grossMonthlyMedian = latestGes["Basic Monthly Median"]
@@ -78,7 +100,7 @@ function getROI(course) {
         if (grossMonthlyMedian == 'NA' || duration == 'NA'
         || feeCitizen == 'NA' || fullTimeEmployment == 'NA'
         || courseType == 'NA') {
-            return "Unavailable"
+            return null
         }
 
         if (courseType == "Annual") { 
@@ -121,7 +143,7 @@ function getEntryProbabilityJC (course, body) {
             return getEntryProbability_Jc_SUSS(course, uas)
             break
         default: // SUTD
-            return "Unavailable"
+            return null
             break
     }
 }
@@ -177,10 +199,10 @@ function getEntryProbability_Jc_SUSS(course, uas) {
         else {
             percentage = course["Indicative Grade Profile"]["UAE (60.00 - 90.00)"]
         }
-        if (percentage == "NA") return "Unavailable"
-        return percentage < 0.1 ? "Low" : "High"
+        if (percentage == "NA") return null
+        return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -195,10 +217,10 @@ function getEntryProbability_Jc_SIT(course, uas) {
         else {
             percentage = course["Indicative Grade Profile"]["UAE (>80 to 90)"]
         }
-        if (percentage == "NA") return "Unavailable"
-        return percentage < 0.1 ? "Low" : "High"
+        if (percentage == "NA") return null
+        return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -206,17 +228,26 @@ function getEntryProbability_Jc_NUSNTUSMU (course, body) {
     grades = body.Profile.Grades
     gradeString = ''.concat(grades[0]).concat(grades[1]).concat(grades[2]).concat("/").concat(grades[3])
     try {
-        igp = course["Indicative Grade Profile"]["A-Levels 10th Percentile"]
-            if (igp.localeCompare(gradeString) == 1) { // i.e. B> A
-                return "High"
-            } else if (igp.localeCompare(gradeString) == 0) {
-                return "High"
-            }
-            else {
-                return "Low"
-            }
+        igp10 = course["Indicative Grade Profile"]["A-Levels 10th Percentile"]
+        igp90 = course["Indicative Grade Profile"]["A-Levels 90th Percentile"]
+        tenP = igp10.localeCompare(gradeString) < 0;
+        ninetyP = igp90.localeCompare(gradeString) < 0;
+        console.log(`gradeString ${gradeString}`)
+        console.log(`compare 10th percentile:: ${tenP}`)
+        console.log(`compare 90th percentile:: ${ninetyP}`)
+        if (igp10.localeCompare(gradeString) < 0) {
+            // grade is less than 10th percentile
+            return "Low"
+        }
+        else if (igp90.localeCompare(gradeString) < 0) {
+            // grade is between 10th & 90th percenile
+            return "Medium"
+        }
+        else {
+            return "High"
+        }
     } catch(error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -234,22 +265,26 @@ function getEntryProbabilityPoly(course, body) {
         case "Singapore University of Social Sciences":
             return getEntryProbability_Poly_SUSS(course, gpa)
         default: // SUTD
-            return "Unavailable"
+            return null
     }
 }
 
 function getEntryProbability_Poly_NUSNTUSMU(course, gpa) {
     try {
-        igp = course["Indicative Grade Profile"]["Polytechnic 10th Percentile"]
-        if (gpa < igp) {
+        igp10 = course["Indicative Grade Profile"]["Polytechnic 10th Percentile"]
+        igp90 = course["Indicative Grade Profile"]["Polytechnic 90th Percentile"]
+        if (gpa < igp10) {
             return "Low"
+        }
+        else if (gpa < igp90) {
+            return "Medium"
         }
         else {
             return "High"
         }
     }
     catch (error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -262,9 +297,9 @@ function getEntryProbability_Poly_SIT(course, gpa) {
         } else {
             percentage = course["Indicative Grade Profile"]["Polytechnic (3.6 - 4.0)"]
         }
-        return percentage < 0.1 ? "Low" : "High"
+        return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 } 
 
@@ -275,8 +310,8 @@ function getEntryProbability_Poly_SUSS(course, gpa) {
         } else {
             percentage = course["Indicative Grade Profile"]["Polytechnic (3.00 - 4.00)"]
         }
-        return percentage < 0.1 ? "Low" : "High"
+        return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 }

@@ -202,6 +202,7 @@ function getCompareROI(compareList) {
                         ? curr
                         : prev);
   let maxROI = DataExtractor.getROI(maxCourse);
+
   return (
     <Grid container direction="row">
       <Grid item xs={2} component={Box} borderRight={1}>
@@ -214,10 +215,11 @@ function getCompareROI(compareList) {
           if (!course.ROI) {
             return getEmptyField();
           }
+          let ROI = (course.ROI) ? (parseFloat(course.ROI).toFixed(2) * 100) + " %" : '-';
           return (
             <Grid item xs key={index} component={Box} borderRight={1}>
-              <Grid container direction="column" justify="center" alignItems="center" style={styles.rowItem}>
-                <Typography align="center" display="inline">$ {course.ROI}</Typography>
+              <Grid container direction="row" justify="center" alignItems="center" style={styles.rowItem}>
+                <Typography align="center" display="inline">{ROI}</Typography>
                 {
                   course.ROI === maxROI &&
                   getBestSignature()

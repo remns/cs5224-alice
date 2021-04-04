@@ -1,26 +1,14 @@
-import React, { Component } from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
-import {getAllInterest} from '../api/API.js';
+import React, { Component } from 'react';
+import { getAllInterest } from '../api/API.js';
+import ALevelInput from '../components/ALevelInput';
 import EducationInput from '../components/EducationInput';
 import GPAInput from '../components/GPAInput';
-import ALevelInput from '../components/ALevelInput';
 import InterestsInput from '../components/InterestsInput';
 
 import configuration from '../components/configuration.js';
