@@ -346,7 +346,7 @@ export default class Statistics extends Component {
         container
         spacing={0}
         direction="row"
-        style={{ minHeight: '100vh' }}
+        style={{ minHeight: '100vh', paddingLeft: 20, paddingRight: 20}}
       >
         {/* STATISTICS */}
         <Grid item xs={12} style={{marginTop: 20, marginBottom: 20}}>
@@ -366,7 +366,7 @@ export default class Statistics extends Component {
         </Grid>
 
         {/* MOST EMPLOYABLE COURSES */}
-        <Grid item xs={8} style={{marginBottom: 10}}>
+        <Grid item xs={8} style={{marginBottom: 15}}>
           <Card style={{padding: 10}}>
             <Typography variant="h6" style={{marginBottom: 5}}><b>Most employable courses</b></Typography>
             <Chart chart={this.getChartDataTopGraduateEmployment()}/>
@@ -374,15 +374,37 @@ export default class Statistics extends Component {
         </Grid>
 
         {/* TOP AVERAGE SALARY */}
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <Card style={{marginRight: 10, padding: 10}}>
             <Typography style={{marginBottom: 5}}><b>Top Average Salary</b></Typography>
             <Chart chart={this.getChartDataTopAverageSalary()}/>
           </Card>
         </Grid>
 
+        <Grid container item xs={4} justify="center" alignItems="center">
+          {
+            (this.state.salary.length > 0) &&
+            <Grid container item direction="row" justify="center" alignItems="center">
+              <Typography variant="h5" color="secondary"><b>Highest Average Salary</b></Typography>
+              <Typography variant="h4" align="center"><b>{this.state.salary[0]["Course Code"]}</b></Typography>
+              <Typography variant="h6"><b>Salary: {parseFloat(this.state.salary[0]["Basic Monthly Mean"])} SGD</b></Typography>
+            </Grid>
+          }
+        </Grid>
+
         {/* TOP INTAKE BY PROGRAMME */}
-        <Grid item xs={6}>
+        <Grid container item xs={4} justify="center" alignItems="center">
+          {
+            (this.state.intake.length > 0) &&
+            <Grid container item direction="row" justify="center" alignItems="center">
+              <Typography variant="h5" color="secondary"><b>Most Intake</b></Typography>
+              <Typography variant="h4" align="center"><b>{this.state.intake[0]["Programme"]}</b></Typography>
+              <Typography variant="h5" align="center" color="textSecondary"><b>{this.state.intake[0]["University"]}</b></Typography>
+              <Typography variant="h6"><b>Intake: {this.state.intake[0]["Intake"]} Students</b></Typography>
+            </Grid>
+          }
+        </Grid>
+        <Grid item xs={8} style={{marginTop: 15}}>
           <Card style={{padding: 10}}>
             <Typography style={{marginBottom: 5}}><b>Top Intake by Programme</b></Typography>
             <Chart chart={this.getChartDataIntake()}/>
@@ -390,17 +412,26 @@ export default class Statistics extends Component {
         </Grid>
 
         {/* POPULAR COURSES */}
-        <Grid item xs={2} />
-        <Grid item xs={8} style={{marginTop: 10}}>
+        <Grid item xs={8} style={{marginTop: 15}}>
           <Card style={{padding: 10}}>
             <Typography style={{marginBottom: 5}}><b>Popular Courses</b></Typography>
             <Chart chart={this.getChartDataPopularCourses()}/>
           </Card>
         </Grid>
-        <Grid item xs={2} />
+        <Grid container item xs={4} justify="center" alignItems="center">
+          {
+            (this.state.popularCourses.length > 0) &&
+            <Grid container item direction="row" justify="center" alignItems="center">
+              <Typography variant="h5" color="secondary"><b>Most Browsed</b></Typography>
+              <Typography variant="h4" align="center"><b>{this.state.popularCourses[0]["Programme"]}</b></Typography>
+              <Typography variant="h5" align="center" color="textSecondary"><b>{this.state.popularCourses[0]["University"]}</b></Typography>
+              <Typography variant="h6"><b>Browsed: {this.state.popularCourses[0]["Clicks"]} times</b></Typography>
+            </Grid>
+          }
+        </Grid>
 
         {/* IGP */}
-        <Grid item xs={12} style={{marginTop: 20, marginBottom: 40}}>
+        <Grid item xs={12} style={{marginTop: 40, marginBottom: 20}}>
           <Typography variant="h4" align="center"><b>Indicative Grade Profiles Ranking</b></Typography>
           <Typography variant="h6" color="textSecondary" align="center"><b>Only data for NUS, NTU, SMU are included</b></Typography>
         </Grid>
@@ -424,7 +455,7 @@ export default class Statistics extends Component {
         </Grid>
 
         {/* POLYTECHNIC */}
-        <Grid item xs={12} style={{marginTop: 15, marginBottom: 15}}>
+        <Grid item xs={12} style={{marginTop: 20, marginBottom: 15}}>
           <Typography variant="h5"><b>Polytechnic</b></Typography>
         </Grid>
 

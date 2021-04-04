@@ -159,7 +159,7 @@ export default class Details extends Component {
         <Grid item xs={3} style={{backgroundColor: '#2783A8'}}>
           <Grid
             container
-            style={{minHeight: 100, backgroundColor: '#A87A47'}}
+            style={{minHeight: 100, backgroundColor: '#A87A47', paddingLeft: 15, paddingRight: 15}}
             direction="column"
             alignItems="center"
             justify="center">
@@ -168,6 +168,7 @@ export default class Details extends Component {
             </Grid>
           </Grid>
 
+          <div style={{paddingLeft: 15, paddingRight: 15}}>
           <Typography style={{marginTop: 10, color: 'white'}} align="center"><b>{course.University}</b></Typography>
           <Typography variant="subtitle2" style={{color: 'white'}} align="center">{course.School}</Typography>
 
@@ -178,10 +179,11 @@ export default class Details extends Component {
               <Typography variant="subtitle2">{el}</Typography>
             )}
           </Typography>
+          </div>
         </Grid>
 
         {/* Other Details */}
-        <Grid item xs={9}>
+        <Grid item xs={9} style={{paddingLeft: 15, paddingRight: 15}}>
 
           {/* Overview */}
           <Typography variant="h5" align="center" style={{marginTop: 15, marginBottom: 15}}><b>Overview</b></Typography>
@@ -301,7 +303,7 @@ export default class Details extends Component {
                   <Typography><b>Yearly Basic Monthly Median</b></Typography>
                   <Chart chart={this.getBasicMonthlyMedianData()}/>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{marginTop: 15}}>
                   <Typography><b>Yearly Employment Rate</b></Typography>
                   <Chart chart={this.getEmploymentRateData()}/>
                 </Grid>
