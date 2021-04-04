@@ -134,11 +134,10 @@ class CourseDisplay extends React.Component {
       }
 
       let annualCost = (row['Fee Type'] === "One-Time") ? row['Fee Citizen'] / row['Duration'] : row['Fee Citizen'];
-
+      let ROI = (row.ROI) ? (parseFloat(row.ROI).toFixed(2) * 100) + " %" : '-';
       return (
         <Accordion key={index} expanded={this.state.expanded === index}
           onChange={() => this.setState({ expanded: (this.state.expanded === index) ? -1 : index })}>
-
 
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Grid container>
@@ -148,11 +147,8 @@ class CourseDisplay extends React.Component {
               <Grid item xs={6}>
                 <Typography>{row.Programme}</Typography>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={5}>
                 <Typography>{row.University}</Typography>
-              </Grid>
-              <Grid item xs={1}>
-                <Typography>{(row.ROI) ? row.ROI : '-'}</Typography>
               </Grid>
             </Grid>
           </AccordionSummary>
@@ -200,8 +196,12 @@ class CourseDisplay extends React.Component {
                   <Typography variant="h6">Probability of Entry: {(row.Entry_Probability) ? row.Entry_Probability : '-'}</Typography>
                 </Grid>
               </Grid>
-              <Grid item xs={6}></Grid>
-              <Grid item xs={2}>
+              <Grid item xs={4}>
+                <Grid container direction="row" justify="center" alignItems="center">
+                  <Typography variant="h6">Return of Investment (ROI): {ROI}</Typography>
+                </Grid>
+              </Grid>
+              <Grid item xs={4}>
                 <Grid container direction="row" justify="flex-end" alignItems="center">
                   <Button size="large" color="primary" onClick={() => props.history.push('/institutions/' + row["Id"])}>
                     More Details
