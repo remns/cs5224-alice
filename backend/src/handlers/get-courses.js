@@ -48,6 +48,7 @@ exports.getCoursesHandler = async (event) => {
         responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
         responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
         responseData.map((course) => course.RecScore = getRecScore(course)); // Append probability field
+        responseData = responseData.sort((a, b) => b.RecScore - a.RecScore);
     }
 
     const response = {
