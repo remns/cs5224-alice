@@ -14,13 +14,6 @@ const styles = {
 }
 
 function CompareInput(props) {
-  if (!props.university || props.university.length === 0) {
-    return <Loading />;
-  }
-
-  if (!props.course || props.course.length === 0) {
-    return <Loading />;
-  }
   let filteredCourse = [];
   if (props.selectedUni !== '') {
     filteredCourse = props.course.filter(course => course.University === props.selectedUni);
@@ -151,6 +144,13 @@ class ComparePage extends Component {
   }
 
   render() {
+    if (!this.state.university || this.state.university.length === 0) {
+      return <Loading />;
+    }
+  
+    if (!this.state.course || this.state.course.length === 0) {
+      return <Loading />;
+    }
 
     return (
       <div>

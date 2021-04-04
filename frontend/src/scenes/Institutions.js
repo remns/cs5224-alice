@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/styles';
 import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+import SettingsTwoToneIcon from '@material-ui/icons/SettingsTwoTone';
 
 import { getAllUniversity, getAllInterest, getAllCourses } from '../api/API.js'
 
@@ -20,6 +21,7 @@ import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
 import CourseDisplay from '../components/CourseDisplay';
 import CourseSort from '../components/CourseSort';
 import SearchBar from '../components/SearchBar';
+import ConfirmationDialog from '../components/ConfirmationDialog.js';
 
 const styles = {
   root: {
@@ -42,7 +44,9 @@ class Institutions extends Component {
       course: [],
 
       originalCourse: [],
-      interestList: []
+
+      isResetConfigureOpen: false,
+      isOverwriteConfigureOpen: false
     }
   }
 
@@ -73,9 +77,11 @@ class Institutions extends Component {
         data.forEach(row => row.isSelected = true);
 
         this.setState({
-          interest: data,
-          interestList: data
+          interest: data
         })
+
+        // integrate profile's interest
+        this.integrateProfileInterest();
       })
       .catch(console.log)
 
@@ -85,12 +91,17 @@ class Institutions extends Component {
       .then(res => res.json())
       .then((data) => {
         this.setState({
-          course: courseFilter(data, this.state.university, this.state.interestList),
+          course: courseFilter(data, this.state.university, this.state.interest),
           originalCourse: data
         })
 
       })
       .catch(console.log)
+  }
+
+  integrateProfileInterest() {
+    let profileInterest = this.props.location.state.interests;
+    console.log(this.props.location.state);
   }
 
   filterUniversity(universityId) {
@@ -107,8 +118,8 @@ class Institutions extends Component {
 
   addToInterestList(interestId) {
     if (interestId === "" || interestId === "None") return;
-    let isExist = this.state.interestList.some(inter => inter.Id === interestId);
-    if (isExist) {
+    let isExist = this.state.interest.some(inter => inter.Id === interestId);
+    if (!isExist) {
       return;
     }
 
@@ -120,20 +131,10 @@ class Institutions extends Component {
     selectedInterest.isSelected = true;
     copiedInterest[index] = selectedInterest;
     this.setState({ interest: copiedInterest });
-
-    // add to interest list
-    let copiedList = [...this.state.interestList];
-    copiedList.push(selectedInterest);
-    this.setState({ interestList: copiedList });
   }
 
   removeFromInterestList(interestId) {
-    // remove from interestlist
-    let copiedInterestList = [...this.state.interestList];
-    let updatedInterestList = copiedInterestList.filter(inter => inter.Id !== interestId);
-    this.setState({ interestList: updatedInterestList });
-
-    // add back to dropdown
+    // add back to dropdown list
     let copiedInterest = [...this.state.interest];
     let index = copiedInterest.findIndex(inter => inter.Id === interestId);
     let selectedInterest = { ...copiedInterest[index] };
@@ -160,7 +161,6 @@ class Institutions extends Component {
   clearAllFilter() {
     let copiedInterest = [...this.state.interest];
     copiedInterest.forEach(interest => interest.isSelected = true);
-    this.setState({interestList: copiedInterest});
 
     let copiedUniversity = [...this.state.university];
     copiedUniversity.forEach(uni => uni.isChecked = true);
@@ -172,6 +172,59 @@ class Institutions extends Component {
     })
   }
 
+  loadInitialConfiguration() {
+    this.setState({isResetConfigureOpen: false});
+
+  }
+
+  saveCurrentConfiguration() {
+    this.setState({isOverwriteConfigureOpen: false});
+  }
+
+  configureButtons() {
+    return (
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Grid item xs={12} direction="row" justify="center" alignItems="center">
+          <Typography variant="h4" style={{ textAlign: "center" }}><SettingsTwoToneIcon /> Settings</Typography>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Divider style={{ margin: '10px' }} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grid container>
+            <Grid item xs={6}>
+              <Button variant="outlined" color="secondary" 
+                onClick={() => this.setState({isResetConfigureOpen: true})}>
+                Reset to Initial Configuration
+              </Button>
+              <ConfirmationDialog
+                title={"Confirmation"}
+                message="This will RESET all your filters and grades to the initial configuration you submitted during the profile setup or the previous saved configuration, whichever is nearer. Are you sure you want to reset?"
+                isOpen={this.state.isResetConfigureOpen}
+                handleOpen={(isOpen) => this.setState({isResetConfigureOpen: isOpen})} 
+                onClickAgree={this.loadInitialConfiguration.bind(this)} />
+
+            </Grid>
+            <Grid item xs={6}>
+              <Button variant="outlined" color="primary"
+                onClick={() => this.setState({isOverwriteConfigureOpen: true})}>
+                Save Current Configuration
+              </Button>
+              <ConfirmationDialog
+                title={"Confirmation"}
+                message="This will OVERWRITE all your filters and grades in your inital configuration you submitted during the profile setup or your previous saved configuration, whichever is nearer. Are you sure you want to overwrite?"
+                isOpen={this.state.isOverwriteConfigureOpen}
+                handleOpen={(isOpen) => this.setState({isOverwriteConfigureOpen: isOpen})} 
+                onClickAgree={this.saveCurrentConfiguration.bind(this)} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    );
+  }
+
   render() {
     let filteredCourse = courseFilter(this.state.course, this.state.university, this.state.interest);
 
@@ -179,6 +232,13 @@ class Institutions extends Component {
       <Container maxWidth="xl" style={{ marginTop: '30px' }}>
         <Grid container spacing={2}>
           <Grid item xs={3}>
+
+            {/** Save current configuration, Reset to initial configuration */}
+            <Paper style={{ padding: '10px' }}>
+              {this.configureButtons()}
+            </Paper>
+
+            <br />
 
             {/* Filter University */}
             <Paper style={{ padding: '10px', textAlign: "flex-start" }}>
@@ -202,8 +262,7 @@ class Institutions extends Component {
               <Divider style={{ margin: '10px' }} />
 
               <FilterDropdownDisplay
-                data={this.state.interest}
-                interestList={this.state.interestList}
+                interest={this.state.interest}
                 onSelect={this.addToInterestList.bind(this)}
                 onDelete={this.removeFromInterestList.bind(this)} />
             </Paper>
@@ -222,11 +281,8 @@ class Institutions extends Component {
                 </Grid>
                 <Grid item xs={5}>
                   <Grid container direction="row" justify="center" alignItems="center">
-                    <Button variant="contained" style={{marginRight: '10px'}}>
-                      Reset to My Profile
-                    </Button>
                     <Button variant="contained" onClick={this.clearAllFilter.bind(this)}>
-                      Clear All Filter
+                      Clear All Filters
                     </Button>
                   </Grid>
                 </Grid>

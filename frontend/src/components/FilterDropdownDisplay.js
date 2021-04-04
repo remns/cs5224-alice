@@ -12,8 +12,8 @@ import FaceIcon from '@material-ui/icons/Face';
 import Loading from './Loading'
 
 function ResultBox(props) {
-  if (!props.data) return (null);
-  let interestList = props.interestList;
+  if (!props.interest) return (null);
+  let interestList = props.interest.filter(inter => inter.isSelected);
 
   const handleDelete = (interestId) => () => {
     props.onDelete(interestId);
@@ -42,9 +42,9 @@ function Dropdown(props) {
     props.onSelect(event.target.value);
   };
 
-  if (!props.data) return (null);
+  if (!props.interest) return (null);
 
-  let availableInterest = props.data.filter(inter => !inter.isSelected);
+  let availableInterest = props.interest.filter(inter => !inter.isSelected);
 
   return (
     <FormControl variant="outlined" fullWidth={true} style={{marginLeft: "10px", marginRight: "10px"}}>
@@ -73,7 +73,7 @@ function Dropdown(props) {
 }
 
 function FilterDropdownDisplay(props) {
-  if (!props.data) {
+  if (!props.interest) {
     return <Loading />
   }
 
