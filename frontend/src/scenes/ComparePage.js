@@ -175,7 +175,7 @@ class ComparePage extends Component {
                 <Grid>
                   <Button variant="contained" color="primary" onClick={this.handleClick.bind(this)} 
                     disabled={(this.state.uni1 === '' || this.state.uni2 === '' || 
-                    this.state.course1 === '' || this.state.course2 === '')}>
+                    this.state.course1 === '' || this.state.course2 === '' || this.state.course1 === this.state.course2)}>
                     Compare
                   </Button>
                 </Grid>
