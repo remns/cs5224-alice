@@ -28,9 +28,7 @@ exports.getCoursesHandler = async (event) => {
             "Profile" : {
                 "School Type": "Polytechnic"
                 "School" : "Nanyang Polytechnic"
-                "Grades" : {
-                    "GPA": 3.74
-                }
+                "Grades" : 3.74
             }
         }
      */
@@ -47,8 +45,8 @@ exports.getCoursesHandler = async (event) => {
         if (interestsFilter) {
             responseData = responseData.filter(x=> x.Category.some(y=> interestsFilter.includes(y)));
         }
-        reponseData = responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
-        reponseData = responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
+        responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
+        responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
     }
 
     const response = {
@@ -67,7 +65,7 @@ exports.getCoursesHandler = async (event) => {
 function getROI(course) {
     gesData = course.GES
     if (gesData == null) {
-        return "Unavailable"
+        return null
     } else {
         latestGes = gesData[gesData.length -1]
         grossMonthlyMedian = latestGes["Basic Monthly Median"]
@@ -78,7 +76,7 @@ function getROI(course) {
         if (grossMonthlyMedian == 'NA' || duration == 'NA'
         || feeCitizen == 'NA' || fullTimeEmployment == 'NA'
         || courseType == 'NA') {
-            return "Unavailable"
+            return null
         }
 
         if (courseType == "Annual") { 
@@ -121,7 +119,7 @@ function getEntryProbabilityJC (course, body) {
             return getEntryProbability_Jc_SUSS(course, uas)
             break
         default: // SUTD
-            return "Unavailable"
+            return null
             break
     }
 }
@@ -177,10 +175,10 @@ function getEntryProbability_Jc_SUSS(course, uas) {
         else {
             percentage = course["Indicative Grade Profile"]["UAE (60.00 - 90.00)"]
         }
-        if (percentage == "NA") return "Unavailable"
+        if (percentage == "NA") return null
         return percentage < 0.1 ? "Low" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -195,10 +193,10 @@ function getEntryProbability_Jc_SIT(course, uas) {
         else {
             percentage = course["Indicative Grade Profile"]["UAE (>80 to 90)"]
         }
-        if (percentage == "NA") return "Unavailable"
+        if (percentage == "NA") return null
         return percentage < 0.1 ? "Low" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -216,7 +214,7 @@ function getEntryProbability_Jc_NUSNTUSMU (course, body) {
                 return "Low"
             }
     } catch(error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -234,7 +232,7 @@ function getEntryProbabilityPoly(course, body) {
         case "Singapore University of Social Sciences":
             return getEntryProbability_Poly_SUSS(course, gpa)
         default: // SUTD
-            return "Unavailable"
+            return null
     }
 }
 
@@ -249,7 +247,7 @@ function getEntryProbability_Poly_NUSNTUSMU(course, gpa) {
         }
     }
     catch (error) {
-        return "Unavailable"
+        return null
     }
 }
 
@@ -264,7 +262,7 @@ function getEntryProbability_Poly_SIT(course, gpa) {
         }
         return percentage < 0.1 ? "Low" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 } 
 
@@ -277,6 +275,6 @@ function getEntryProbability_Poly_SUSS(course, gpa) {
         }
         return percentage < 0.1 ? "Low" : "High"
     } catch (error) {
-        return "Unavailable"
+        return null
     }
 }
