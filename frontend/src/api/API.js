@@ -30,10 +30,19 @@ function getAllStatistics(category, limit) {
     const fetchPromise = fetch(SERVER_URL + "/statistics")
     return fetchPromise
   }
+  else if(!limit){
+    const fetchPromise = fetch(SERVER_URL + "/statistics?category=" + category)
+    return fetchPromise
+  }
   else{
     const fetchPromise = fetch(SERVER_URL + "/statistics?category=" + category + "&limit=" + limit)
     return fetchPromise
   }
+}
+
+function getAllTrackClicks(limit) {
+  const fetchPromise = fetch(SERVER_URL + "/statistics-clicks?limit=" + limit)
+  return fetchPromise
 }
 
 
@@ -43,5 +52,6 @@ export {
   getAllCourses,
   getAllJC,
   getAllPoly,
-  getAllStatistics
+  getAllStatistics,
+  getAllTrackClicks
 }
