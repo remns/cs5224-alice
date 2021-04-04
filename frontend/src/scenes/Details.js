@@ -186,7 +186,7 @@ export default class Details extends Component {
           <Typography variant="subtitle2" style={{color: 'white'}} align="center">{course.School}</Typography>
 
           {/* CATEGORIES */}
-          <Typography variant="subtitle2" style={{marginTop: 10, color: 'white'}}><b>Category</b></Typography>
+          <Typography variant="subtitle2" style={{marginTop: 20, color: 'white'}}><b>Category</b></Typography>
           <Typography variant="subtitle2" style={{color: 'white'}}>
             {course.Category.map((el) =>
               <Typography variant="subtitle2">{el}</Typography>
@@ -198,12 +198,13 @@ export default class Details extends Component {
         <Grid item xs={9}>
 
           {/* Overview */}
-          <Typography variant="h5">Overview</Typography>
+          <Typography variant="h5" align="center" style={{marginTop: 15, marginBottom: 15}}><b>Overview</b></Typography>
           <Card>
 
             <Grid
               container
               direction="row"
+              style={{padding: 10}}
             >
               <Grid item xs={4}>
                 <Typography><b>Course Duration</b></Typography>
@@ -233,23 +234,25 @@ export default class Details extends Component {
           </Card>
 
           {/* IGP */}
-          <Typography variant="h5">Indicative Grade Profile</Typography>
+          <Typography variant="h5" align="center" style={{marginTop: 15, marginBottom: 15}}><b>Indicative Grade Profile</b></Typography>
           <Card>
             <Grid
               container
               direction="row"
               spacing={1}
+              style={{padding: 10}}
             >
               {renderIGP}
             </Grid>
           </Card>
 
           {/* FEES */}
-          <Typography variant="h5">Fees</Typography>
+          <Typography variant="h5" align="center" style={{marginTop: 15, marginBottom: 15}}><b>Fees</b></Typography>
           <Card>
             <Grid
               container
               direction="row"
+              style={{padding: 10}}
             >
               <Grid item xs={12}>
                 <Typography><b>Fee Type</b></Typography>
@@ -275,7 +278,7 @@ export default class Details extends Component {
             (stats) &&
             (
               <div>
-              <Typography style={{marginTop: 15, marginBottom: 15}} variant="h5" align="center">Graduate Employment Survey</Typography>
+              <Typography style={{marginTop: 15, marginBottom: 15}} variant="h5" align="center"><b>Graduate Employment Survey</b></Typography>
               <Grid
                 container
                 direction="row"
@@ -292,11 +295,11 @@ export default class Details extends Component {
                   <Typography><b>Gross Monthly Median</b></Typography>
                   <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly Median"])}</Typography>
                 </Grid>
-                <Grid item xs={6} align="center">
+                <Grid item xs={6} align="center" style={{marginTop: 10}}>
                   <Typography><b>Gross Monthly 75th Percentile</b></Typography>
                   <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly 75th Percentile"])}</Typography>
                 </Grid>
-                <Grid item xs={6} align="center">
+                <Grid item xs={6} align="center" style={{marginTop: 10}}>
                   <Typography><b>Gross Monthly 25th Percentile</b></Typography>
                   <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly 25th Percentile"])}</Typography>
                 </Grid>
@@ -306,6 +309,7 @@ export default class Details extends Component {
               <Grid
                 container
                 direction="row"
+                style={{marginTop: 15}}
               >
                 <Grid item xs={12}>
                   <Typography><b>Yearly Basic Monthly Median</b></Typography>

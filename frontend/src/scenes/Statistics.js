@@ -348,16 +348,17 @@ export default class Statistics extends Component {
         direction="row"
         style={{ minHeight: '100vh' }}
       >
-        <Grid item xs={12}>
-          <Typography variant="h4"><b>Statistics</b></Typography>
-          <Typography variant="h6" color="textSecondary"><b>Top 10 Results</b></Typography>
+        {/* STATISTICS */}
+        <Grid item xs={12} style={{marginTop: 20, marginBottom: 20}}>
+          <Typography variant="h4" align="center"><b>Statistics</b></Typography>
+          <Typography variant="h6" color="textSecondary" align="center"><b>Top 10 Results</b></Typography>
         </Grid>
 
         <Grid container item xs={4} justify="center" alignItems="center">
           {
             (this.state.employment.length > 0) &&
             <Grid container item direction="row" justify="center" alignItems="center">
-              <Typography variant="h5"><b>Most employable course</b></Typography>
+              <Typography variant="h5" color="secondary"><b>Most employable course</b></Typography>
               <Typography variant="h4" align="center"><b>{this.state.employment[0]["Course Code"]}</b></Typography>
               <Typography variant="h6"><b>Employment Rate: {parseFloat(this.state.employment[0]["Full-Time Employment"]) * 100}%</b></Typography>
             </Grid>
@@ -365,68 +366,76 @@ export default class Statistics extends Component {
         </Grid>
 
         {/* MOST EMPLOYABLE COURSES */}
-        <Grid item xs={8}>
-          <Card>
-            <Typography><b>Most employable courses</b></Typography>
+        <Grid item xs={8} style={{marginBottom: 10}}>
+          <Card style={{padding: 10}}>
+            <Typography variant="h6" style={{marginBottom: 5}}><b>Most employable courses</b></Typography>
             <Chart chart={this.getChartDataTopGraduateEmployment()}/>
           </Card>
         </Grid>
 
         {/* TOP AVERAGE SALARY */}
         <Grid item xs={6}>
-          <Card>
-            <Typography><b>Top Average Salary</b></Typography>
+          <Card style={{marginRight: 10, padding: 10}}>
+            <Typography style={{marginBottom: 5}}><b>Top Average Salary</b></Typography>
             <Chart chart={this.getChartDataTopAverageSalary()}/>
           </Card>
         </Grid>
 
         {/* TOP INTAKE BY PROGRAMME */}
         <Grid item xs={6}>
-          <Card>
-            <Typography><b>Top Intake by Programme</b></Typography>
+          <Card style={{padding: 10}}>
+            <Typography style={{marginBottom: 5}}><b>Top Intake by Programme</b></Typography>
             <Chart chart={this.getChartDataIntake()}/>
           </Card>
         </Grid>
 
         {/* POPULAR COURSES */}
         <Grid item xs={2} />
-        <Grid item xs={8}>
-          <Card>
-            <Typography><b>Popular Courses</b></Typography>
+        <Grid item xs={8} style={{marginTop: 10}}>
+          <Card style={{padding: 10}}>
+            <Typography style={{marginBottom: 5}}><b>Popular Courses</b></Typography>
             <Chart chart={this.getChartDataPopularCourses()}/>
           </Card>
         </Grid>
         <Grid item xs={2} />
 
         {/* IGP */}
-        <Grid item xs={12}>
-          <Typography variant="h4"><b>Indicative Grade Profiles Ranking</b></Typography>
-          <Typography variant="h6" color="textSecondary"><b>Only data for NUS, NTU, SMU are included</b></Typography>
+        <Grid item xs={12} style={{marginTop: 20, marginBottom: 40}}>
+          <Typography variant="h4" align="center"><b>Indicative Grade Profiles Ranking</b></Typography>
+          <Typography variant="h6" color="textSecondary" align="center"><b>Only data for NUS, NTU, SMU are included</b></Typography>
         </Grid>
 
         {/* A LEVELS */}
+        <Grid item xs={12} style={{marginBottom: 15}}>
+          <Typography variant="h5"><b>A-Levels</b></Typography>
+        </Grid>
+
         <Grid item xs={6}>
-          <Card>
+          <Card style={{marginRight: 10, padding: 10}}>
             <Typography><b>A Levels 10th Percentile (Highest to lowest)</b></Typography>
             {this.getChartDataIGPALevel10th()}
           </Card>
         </Grid>
         <Grid item xs={6}>
-          <Card>
+          <Card style={{padding: 10}}>
             <Typography><b>A Levels 90th Percentile (Highest to lowest)</b></Typography>
             {this.getChartDataIGPALevel90th()}
           </Card>
         </Grid>
 
         {/* POLYTECHNIC */}
+        <Grid item xs={12} style={{marginTop: 15, marginBottom: 15}}>
+          <Typography variant="h5"><b>Polytechnic</b></Typography>
+        </Grid>
+
         <Grid item xs={6}>
-          <Card>
+          <Card style={{marginRight: 10, padding: 10}}>
             <Typography><b>Polytechnic 10th Percentile (Highest to lowest)</b></Typography>
             {this.getChartDataIGPPolytechnic10th()}
           </Card>
         </Grid>
         <Grid item xs={6}>
-          <Card>
+          <Card style={{padding: 10}}>
             <Typography><b>Polytechnic 90th Percentile (Highest to lowest)</b></Typography>
             {this.getChartDataIGPPolytechnic90th()}
           </Card>

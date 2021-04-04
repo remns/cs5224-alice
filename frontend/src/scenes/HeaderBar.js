@@ -27,18 +27,22 @@ function ButtonAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: '#2783A8' }}>
         <Toolbar>
           <Grid container>
             <Grid item xs={1}>
               <Typography variant="h6">
-                logo
+                <img style={{width: 100}} src="/images/alice2_inverted.png" />
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <Typography variant="h6" className={classes.title}>
-                ALICE
-            </Typography>
+              {
+                /*
+                <Typography variant="h6" className={classes.title}>
+                    ALICE
+                </Typography>
+                */
+              }
             </Grid>
             <Grid item xs={9}>
               <Grid container direction="row" justify="flex-end" alignItems="center">

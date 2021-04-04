@@ -14,6 +14,8 @@ import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import {getAllInterest} from '../api/API.js';
 import EducationInput from '../components/EducationInput';
@@ -76,6 +78,14 @@ export default class Profile extends Component {
     this.setState({ currentInput: this.state.currentInput + 1});
   }
 
+  onBackSelected = () => {
+    if(this.state.currentInput == 0){
+      return;
+    }
+
+    this.setState({ currentInput: this.state.currentInput - 1});
+  }
+
   canGoNext = () => { // Validate the input and enable/disable button accordingly
     switch(this.state.currentInput){
       case 0:
@@ -136,11 +146,19 @@ export default class Profile extends Component {
         style={{ minHeight: '100vh' }}
       >
         <Grid item xs={12}>
-          <Grid container justify="center" alignItems="center">
-            <img style={{width: 200}} src="https://cdn.logo.com/hotlink-ok/logo-social.png" />
+          <Grid container justify="center" alignItems="center" style={{marginBottom: 20}}>
+            <img style={{width: 100}} src="/images/alice.png" />
           </Grid>
-          <Paper style={{minWidth: 350}}>
-            <Typography variant="h6" align="center">Profile</Typography>
+          <Paper style={{minWidth: 350, padding: 10}}>
+            {
+              (this.state.currentInput != 0) &&
+              <IconButton
+                style={{marginTop: 10, marginBottom: 10}}
+                onClick={this.onBackSelected}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            }
             {
               (this.state.currentInput == 0) ?
               (
@@ -168,9 +186,10 @@ export default class Profile extends Component {
               variant="contained"
               onClick={this.onNextSelected}
               disabled={!this.canGoNext()}
+              style={{marginTop: 20}}
               >
               {(this.state.currentInput == 2) ? "Find universities" : "Next"}
-              </Button>
+            </Button>
           </Paper>
         </Grid>
       </Grid>
