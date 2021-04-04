@@ -29,6 +29,10 @@ const DefaultContainer = () => (
 )
 
 export default class App extends Component {
+  componentDidMount(){
+    document.title = "ALICE"
+  }
+
   render () {
     return (
       <Router>
