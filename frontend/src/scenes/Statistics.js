@@ -39,6 +39,7 @@ export default class Statistics extends Component {
   componentDidMount(){
     this.retrieveEmploymentStatistics();
     this.retrieveSalaryStatistics();
+    this.retrievePopularCourses();
     this.retrieveIntake();
     this.retrieveIGP();
   }
@@ -211,9 +212,9 @@ export default class Statistics extends Component {
     let data = [];
     let backgroundColor = [];
 
-    for(let i = 0; i < this.state.salary.length; i++){
-      labels.push(this.state.salary[i]["Course Code"]);
-      data.push(parseFloat(this.state.salary[i]["Basic Monthly Mean"]));
+    for(let i = 0; i < this.state.popularCourses.length; i++){
+      labels.push([this.state.popularCourses[i]["Programme"], this.state.popularCourses[i]["University"]]);
+      data.push(parseFloat(this.state.popularCourses[i]["Clicks"]));
 
       var r = Math.floor(Math.random() * 255);
       var g = Math.floor(Math.random() * 255);
@@ -222,12 +223,12 @@ export default class Statistics extends Component {
     }
 
     return {
-        type: "bar",
+        type: "radar",
         data: {
             labels: labels,
             datasets: [
                 {
-                    label: "Salary Per Month (SGD)",
+                    label: "Number of times browsed",
                     data: data,
                     backgroundColor: backgroundColor
                 }
@@ -379,20 +380,20 @@ export default class Statistics extends Component {
           </Card>
         </Grid>
 
-        {/* POPULAR COURSES */}
-        <Grid item xs={6}>
-          <Card>
-            <Typography><b>Popular Courses</b></Typography>
-            <Chart chart={this.getChartDataPopularCourses()}/>
-          </Card>
-        </Grid>
-
         {/* TOP INTAKE BY PROGRAMME */}
-        <Grid item xs={2} />
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <Card>
             <Typography><b>Top Intake by Programme</b></Typography>
             <Chart chart={this.getChartDataIntake()}/>
+          </Card>
+        </Grid>
+
+        {/* POPULAR COURSES */}
+        <Grid item xs={2} />
+        <Grid item xs={8}>
+          <Card>
+            <Typography><b>Popular Courses</b></Typography>
+            <Chart chart={this.getChartDataPopularCourses()}/>
           </Card>
         </Grid>
         <Grid item xs={2} />

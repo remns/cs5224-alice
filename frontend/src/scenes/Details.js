@@ -17,7 +17,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 
-import {getAllStatistics, getAllCourses} from '../api/API.js'
+import {getAllStatistics, getAllCourses, postCourseClick} from '../api/API.js'
 import Chart from '../components/Chart';
 
 export default class Details extends Component {
@@ -33,6 +33,13 @@ export default class Details extends Component {
   }
 
   componentDidMount(){
+    const postCoursePromise = postCourseClick(this.state.id);
+    postCoursePromise
+    .then(res => res.json())
+    .then((data) => {
+    })
+    .catch(console.log)
+
     const coursesPromise = getAllCourses();
     coursesPromise
     .then(res => res.json())

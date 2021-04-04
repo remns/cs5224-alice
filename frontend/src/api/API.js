@@ -81,6 +81,14 @@ function getAllCourseWithProfile(profile) {
   return fetchPromise
 }
 
+function postCourseClick(id) {
+  let data = {
+    method: 'POST'
+  };
+  const fetchPromise = fetch(SERVER_URL + "/track/course?id=" + id, data);
+
+  return fetchPromise
+}
 
 export {
   getAllUniversity,
@@ -90,5 +98,6 @@ export {
   getAllPoly,
   getAllStatistics,
   getAllTrackClicks,
-  getAllCourseWithProfile
+  getAllCourseWithProfile,
+  postCourseClick
 }
