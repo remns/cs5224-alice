@@ -13,6 +13,7 @@ import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import SettingsTwoToneIcon from '@material-ui/icons/SettingsTwoTone';
+import GradeTwoToneIcon from '@material-ui/icons/GradeTwoTone';
 
 import { getAllUniversity, getAllInterest, getAllCourses } from '../api/API.js'
 
@@ -22,6 +23,9 @@ import CourseDisplay from '../components/CourseDisplay';
 import CourseSort from '../components/CourseSort';
 import SearchBar from '../components/SearchBar';
 import ConfirmationDialog from '../components/ConfirmationDialog.js';
+import EducationInput from '../components/EducationInput.js';
+import GPAInput from '../components/GPAInput.js';
+import ALevelInput from '../components/ALevelInput.js';
 
 const styles = {
   root: {
@@ -46,7 +50,19 @@ class Institutions extends Component {
       originalCourse: [],
 
       isResetConfigureOpen: false,
-      isOverwriteConfigureOpen: false
+      isOverwriteConfigureOpen: false,
+
+      alevel: {
+        gp: '',
+        h1: '',
+        h2_1: '',
+        h2_2: '',
+        h2_3: '',
+        mtl: '',
+        pw: ''
+      },
+      education: '',
+      gpa: '',
     }
   }
 
@@ -173,18 +189,58 @@ class Institutions extends Component {
   }
 
   loadInitialConfiguration() {
-    this.setState({isResetConfigureOpen: false});
+    this.setState({ isResetConfigureOpen: false });
 
   }
 
   saveCurrentConfiguration() {
-    this.setState({isOverwriteConfigureOpen: false});
+    this.setState({ isOverwriteConfigureOpen: false });
+  }
+
+  emptyGradeFields() {
+    this.setState({
+      education: '',
+      alevel: {
+        gp: '',
+        h1: '',
+        h2_1: '',
+        h2_2: '',
+        h2_3: '',
+        mtl: '',
+        pw: ''
+      },
+      gpa: ''
+    })
+  }
+
+  sendRequest() {
+    this.emptyGradeFields();
+  }
+
+  isFormFilled() {
+    if (this.state.education !== '') {
+      if (this.state.education === 1) {
+        for(let key in this.state.alevel){
+          if(this.state.alevel[key].length === 0){
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      if (this.state.education === 0) {
+        return this.state.gpa.length > 0 && parseFloat(this.state.gpa) <= 4
+      }
+    }
+
+    return false;
   }
 
   configureButtons() {
     return (
       <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={12} direction="row" justify="center" alignItems="center">
+        <Grid item xs={12}>
           <Typography variant="h4" style={{ textAlign: "center" }}><SettingsTwoToneIcon /> Settings</Typography>
         </Grid>
 
@@ -195,28 +251,28 @@ class Institutions extends Component {
         <Grid item xs={12}>
           <Grid container>
             <Grid item xs={6}>
-              <Button variant="outlined" color="secondary" 
-                onClick={() => this.setState({isResetConfigureOpen: true})}>
+              <Button variant="outlined" color="secondary"
+                onClick={() => this.setState({ isResetConfigureOpen: true })}>
                 Reset to Initial Configuration
               </Button>
               <ConfirmationDialog
                 title={"Confirmation"}
                 message="This will RESET all your filters and grades to the initial configuration you submitted during the profile setup or the previous saved configuration, whichever is nearer. Are you sure you want to reset?"
                 isOpen={this.state.isResetConfigureOpen}
-                handleOpen={(isOpen) => this.setState({isResetConfigureOpen: isOpen})} 
+                handleOpen={(isOpen) => this.setState({ isResetConfigureOpen: isOpen })}
                 onClickAgree={this.loadInitialConfiguration.bind(this)} />
 
             </Grid>
             <Grid item xs={6}>
               <Button variant="outlined" color="primary"
-                onClick={() => this.setState({isOverwriteConfigureOpen: true})}>
+                onClick={() => this.setState({ isOverwriteConfigureOpen: true })}>
                 Save Current Configuration
               </Button>
               <ConfirmationDialog
                 title={"Confirmation"}
                 message="This will OVERWRITE all your filters and grades in your inital configuration you submitted during the profile setup or your previous saved configuration, whichever is nearer. Are you sure you want to overwrite?"
                 isOpen={this.state.isOverwriteConfigureOpen}
-                handleOpen={(isOpen) => this.setState({isOverwriteConfigureOpen: isOpen})} 
+                handleOpen={(isOpen) => this.setState({ isOverwriteConfigureOpen: isOpen })}
                 onClickAgree={this.saveCurrentConfiguration.bind(this)} />
             </Grid>
           </Grid>
@@ -229,7 +285,7 @@ class Institutions extends Component {
     let filteredCourse = courseFilter(this.state.course, this.state.university, this.state.interest);
 
     return (
-      <Container maxWidth="xl" style={{ marginTop: '30px' }}>
+      <Container maxWidth="xl" style={{ marginTop: '30px', marginBottom: '30px' }}>
         <Grid container spacing={2}>
           <Grid item xs={3}>
 
@@ -267,6 +323,48 @@ class Institutions extends Component {
                 onDelete={this.removeFromInterestList.bind(this)} />
             </Paper>
 
+            <br />
+
+            {/**Resubmit grades Poly / JC */}
+            <Paper style={{ padding: '10px' }}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography variant="h4" style={{ textAlign: "center" }}><GradeTwoToneIcon /> Grades</Typography>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Divider style={{ margin: '10px' }} />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <EducationInput value={this.state.education} onChange={(value) => {
+                    this.emptyGradeFields();
+                    this.setState({ education: value })
+                  }} />
+                </Grid>
+
+                <Grid item xs={12} style={{ marginTop: '30px' }}>
+                  {
+                    this.state.education === 0 &&
+                    <GPAInput value={this.state.gpa} onChange={(value) => this.setState({ gpa: value })} />
+                  }
+                  {
+                    this.state.education === 1 &&
+                    <ALevelInput onChange={(value) => this.setState({ alevel: value })} />
+                  }
+                </Grid>
+
+                <Grid item xs={12} style={{ marginTop: '30px' }}>
+                  <Grid container direction="row" justify="center" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={this.sendRequest.bind(this)} disabled={!this.isFormFilled()}>
+                      Update My Grade
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Paper>
+
+
           </Grid>
 
 
@@ -301,8 +399,6 @@ class Institutions extends Component {
             </Paper>
           </Grid>
 
-
-
         </Grid>
       </Container>
     )
@@ -310,10 +406,6 @@ class Institutions extends Component {
 
   }
 }
-
-Institutions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Institutions);
 

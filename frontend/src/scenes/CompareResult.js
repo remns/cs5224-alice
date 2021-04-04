@@ -15,9 +15,10 @@ import { getAllUniversity, getAllCourses } from '../api/API.js'
 import Loading from '../components/Loading';
 import CompareTable from '../components/CompareTable';
 
-function InputCourseForm({ university, course, addCourse, isShow, handleShow}) {
+function InputCourseForm({ university, course, addCourse}) {
   const [newUni, setNewUni] = useState('');
   const [newCourse, setNewCourse] = useState('');
+  const [isShow, setIsShow] = useState(true);
 
   const handleUniChange = (event) => setNewUni(event.target.value);
   const handleCourseChange = (event) => setNewCourse(event.target.value);
@@ -26,6 +27,9 @@ function InputCourseForm({ university, course, addCourse, isShow, handleShow}) {
     setNewCourse('')
     setNewUni('')
   };
+  const handleShow = () => {
+    setIsShow(!isShow);
+  }
 
   let filteredCourse = [];
   if (newUni !== '') {
@@ -132,8 +136,7 @@ class CompareResult extends Component {
       course: [],
 
       newUni: '',
-      newCourse: '',
-      isShow: true
+      newCourse: ''
     }
   }
 
@@ -183,8 +186,7 @@ class CompareResult extends Component {
     }
     return (
       <div style={{ marginTop: '30px' }}>
-        <InputCourseForm university={this.state.university} course={this.state.course} addCourse={this.addCourse.bind(this)}
-          isShow={this.state.isShow} handleShow={() => this.setState({isShow: !this.state.isShow})} />
+        <InputCourseForm university={this.state.university} course={this.state.course} addCourse={this.addCourse.bind(this)} />
 
         <br />
 
