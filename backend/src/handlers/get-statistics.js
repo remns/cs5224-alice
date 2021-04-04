@@ -9,7 +9,8 @@ Description: Get statistics for each course and sorted in descending order by a 
 HTTP Method: GET
 HTTP Parameters (query string): 
     - limit=<number>, limits the number of results returned. If not specified, full list of courses will be returned
-    - category=<GES or IGP or Enrollment Category>, results will be sorted according to this category. If not specified, results will not be sorted.
+    - category=<GES or IGP or Enrollment Category>, results will be sorted according to this category. 
+                If not specified, returns aggregated GES results unsorted.
 */
 exports.getStatisticsHandler = async (event) => {
     const { httpMethod, path, queryStringParameters } = event;
@@ -26,7 +27,7 @@ exports.getStatisticsHandler = async (event) => {
 
     var responseData = [];    
 
-    if (queryStringParameters) {
+    if (queryStringParameters && queryStringParameters.category) {
         if (gesCats.includes(queryStringParameters.category)) {
             fillGesCache();
             switch(queryStringParameters.category) {
@@ -124,11 +125,12 @@ exports.getStatisticsHandler = async (event) => {
         }
     }
     else {
-        console.log("no category parameter supplied")
-        error = true;
+        // no category parameter supplied. return aggregated ges data unsorted
+        fillGesCache();
+        responseData = [...ges_cache];
     }
 
-    if (!error && queryStringParameters.limit !== undefined) {
+    if (!error && queryStringParameters && queryStringParameters.limit) {
         responseData = responseData.slice(0, queryStringParameters.limit);
     }
 
