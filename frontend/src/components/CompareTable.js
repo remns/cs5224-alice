@@ -1,25 +1,14 @@
-import React, { Component, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import Grid from '@material-ui/core/Grid';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import ThumbUpAltTwoToneIcon from '@material-ui/icons/ThumbUpAltTwoTone';
-
-import { getAllUniversity, getAllCourses } from '../api/API.js'
-import Loading from '../components/Loading';
+import React from 'react';
 import DataExtractor from '../components/DataExtractor';
 import UniversityLogo from '../components/UniversityLogo';
+
 
 const styles = {
   rowItem: {
@@ -117,7 +106,7 @@ function getCompareUniversity(compareList) {
           return (
             <Grid item xs key={index} component={Box} borderRight={1}>
               <Grid container direction="column" justify="center" alignItems="center" style={styles.rowItem}>
-                <img src={imageURL} style={{ padding: '10px', maxWidth: "35%", maxHeight: '25%' }} />
+                <img src={imageURL} alt="school logo" style={{ padding: '10px', maxWidth: "35%", maxHeight: '25%' }} />
               </Grid>
             </Grid>
           );

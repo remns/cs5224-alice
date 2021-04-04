@@ -1,22 +1,21 @@
+import 'fontsource-roboto';
 import React, { Component } from 'react';
-
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
-import Profile from './scenes/Profile';
-import Institutions from './scenes/Institutions';
-import Statistics from './scenes/Statistics';
+  Route, Switch
+} from "react-router-dom";
 import ComparePage from './scenes/ComparePage';
 import CompareResult from './scenes/CompareResult';
 import Details from './scenes/Details';
 import HeaderBar from './scenes/HeaderBar';
-
-import 'fontsource-roboto';
+import Institutions from './scenes/Institutions';
+import Profile from './scenes/Profile';
+import Statistics from './scenes/Statistics';
 import './styles/main.css';
+
+
+
 
 const DefaultContainer = () => (
   <div>
@@ -30,10 +29,6 @@ const DefaultContainer = () => (
 )
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render () {
     return (
       <Router>

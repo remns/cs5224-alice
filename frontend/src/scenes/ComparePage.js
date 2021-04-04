@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import { Typography, Paper, Container, Divider } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-
-import { getAllUniversity, getAllCourses } from '../api/API.js'
+import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import React, { Component } from 'react';
+import { getAllCourses, getAllUniversity } from '../api/API.js';
 import Loading from '../components/Loading';
-
-const styles = {
-
-}
 
 function CompareInput(props) {
   let filteredCourse = [];

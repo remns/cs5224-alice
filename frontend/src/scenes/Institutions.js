@@ -1,31 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { withStyles } from '@material-ui/styles';
-import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
+import Typography from '@material-ui/core/Typography';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
-import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
-import SettingsTwoToneIcon from '@material-ui/icons/SettingsTwoTone';
 import GradeTwoToneIcon from '@material-ui/icons/GradeTwoTone';
-
-import { getAllUniversity, getAllInterest, getAllCourses, getAllCourseWithProfile } from '../api/API.js'
-
-import FilterDisplay from '../components/FilterDisplay';
-import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
+import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+import SchoolTwoToneIcon from '@material-ui/icons/SchoolTwoTone';
+import SettingsTwoToneIcon from '@material-ui/icons/SettingsTwoTone';
+import { withStyles } from '@material-ui/styles';
+import React, { Component } from 'react';
+import { getAllCourses, getAllCourseWithProfile, getAllInterest, getAllUniversity } from '../api/API.js';
+import ALevelInput from '../components/ALevelInput.js';
+import ConfirmationDialog from '../components/ConfirmationDialog.js';
 import CourseDisplay from '../components/CourseDisplay';
 import CourseSort from '../components/CourseSort';
-import SearchBar from '../components/SearchBar';
-import ConfirmationDialog from '../components/ConfirmationDialog.js';
 import EducationInput from '../components/EducationInput.js';
+import FilterDisplay from '../components/FilterDisplay';
+import FilterDropdownDisplay from '../components/FilterDropdownDisplay';
 import GPAInput from '../components/GPAInput.js';
-import ALevelInput from '../components/ALevelInput.js';
+import SearchBar from '../components/SearchBar';
+
+
 
 const styles = {
   root: {
@@ -272,7 +269,7 @@ class Institutions extends Component {
             <Grid item xs={6}>
               <Button variant="outlined" color="primary"
                 onClick={() => this.setState({ isOverwriteConfigureOpen: true })}>
-                Save Current Configuration
+                Save Current Configuration lala
               </Button>
               <ConfirmationDialog
                 title={"Confirmation"}

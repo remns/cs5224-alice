@@ -1,26 +1,25 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
+import AccordionActions from '@material-ui/core/AccordionActions';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
+import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Pagination from '@material-ui/lab/Pagination';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import AccordionActions from '@material-ui/core/AccordionActions';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Rating from '@material-ui/lab/Rating';
-
-import Loading from './Loading';
+import React from 'react';
 import CourseSort from './CourseSort';
 import DataExtractor from './DataExtractor';
+import Loading from './Loading';
 import RatingRubrics from './RatingRubrics';
+
 
 function SortInput(props) {
   const [dropdownVal, setDropdownVal] = React.useState('');
@@ -39,7 +38,7 @@ function SortInput(props) {
   const sortMethods = CourseSort.sortLabels;
 
   return (
-    <Grid container direction="row" direction="row" justify="center" alignItems="center">
+    <Grid container direction="row" justify="center" alignItems="center">
       <Grid item xs={2}>
         <Grid container direction="row" justify="center" alignItems="center">
           <FormControlLabel

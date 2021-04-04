@@ -1,19 +1,14 @@
-import React, { Component, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import { Typography, Paper, Container, Divider, Collapse } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import { Collapse, Paper, Typography } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
+import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
 import Switch from '@material-ui/core/Switch';
-import IconButton from '@material-ui/core/IconButton';
-import MinimizeRoundedIcon from '@material-ui/icons/MinimizeRounded';
-
-import { getAllUniversity, getAllCourses } from '../api/API.js'
-import Loading from '../components/Loading';
+import TextField from '@material-ui/core/TextField';
+import AddIcon from '@material-ui/icons/Add';
+import React, { Component, useState } from 'react';
 import CompareTable from '../components/CompareTable';
+import Loading from '../components/Loading';
+
 
 function InputCourseForm({ university, course, addCourse}) {
   const [newUni, setNewUni] = useState('');
