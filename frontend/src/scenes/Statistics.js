@@ -396,7 +396,7 @@ export default class Statistics extends Component {
         <Grid container item xs={4} justify="center" alignItems="center">
           {
             (this.state.intake.length > 0) &&
-            <Grid container item direction="row" justify="center" alignItems="center">
+            <Grid container item direction="column" justify="center" alignItems="center">
               <Typography variant="h5" color="secondary"><b>Most Intake</b></Typography>
               <Typography variant="h4" align="center"><b>{this.state.intake[0]["Programme"]}</b></Typography>
               <Typography variant="h5" align="center" color="textSecondary"><b>{this.state.intake[0]["University"]}</b></Typography>
