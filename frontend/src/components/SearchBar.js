@@ -28,9 +28,14 @@ const SearchBar = ({ courseList, onClick }) => {
           variant="outlined"
           onChange={(event) => setValue(event.target.value)}
           InputProps={{
-            ...params.InputProps, type: 'search', 
-          endAdornment: <Button variant="contained" color="primary" onClick={onSubmit}><SearchIcon/></Button>
-        }}
+            ...params.InputProps, type: 'search',
+            endAdornment: <Button variant="contained" color="primary" onClick={onSubmit}><SearchIcon /></Button>
+          }}
+          onKeyDown={event => {
+            if (event.key === 'Enter') {
+              onSubmit();
+            }
+          }}
         />
       )}
     />
