@@ -229,9 +229,15 @@ function getEntryProbability_Jc_SIT(course, uas) {
     }
 }
 
+function makeGradeString(gradeList) {
+    var h2 = gradeList.slice(0,3);
+    h2.sort();
+    return h2.join('').concat('/').concat(grades[3]);
+}
+
 function getEntryProbability_Jc_NUSNTUSMU (course, body) {
     grades = body.Profile.Grades
-    gradeString = ''.concat(grades[0]).concat(grades[1]).concat(grades[2]).concat("/").concat(grades[3])
+    gradeString = makeGradeString(grades);
     try {
         igp10 = course["Indicative Grade Profile"]["A-Levels 10th Percentile"]
         igp90 = course["Indicative Grade Profile"]["A-Levels 90th Percentile"]
