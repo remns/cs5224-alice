@@ -17,16 +17,15 @@ export default class Education extends Component {
 
     render() {
         return (
-          <FormControl fullWidth>
+          <FormControl variant="outlined" fullWidth>
               <InputLabel>Select your education level</InputLabel>
               <Select
+                label="Select your education level"
                 value={this.props.value}
                 onChange={(event) => {
                             this.setState({ education: event.target.value });
                             this.props.onChange(event.target.value);
                           }}
-                variant="outlined"
-                autoWidth
               >
                 <MenuItem value={0}>Polytechnic</MenuItem>
                 <MenuItem value={1}>Junior College</MenuItem>

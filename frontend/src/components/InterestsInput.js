@@ -41,13 +41,12 @@ export default class InterestsInput extends Component {
 
     render() {
         return (
-          <FormControl
-            fullWidth>
+          <FormControl variant="outlined" fullWidth>
               <InputLabel>Select your interests</InputLabel>
               <Select
+                label="Select your interests"
                 value={this.props.value}
                 onChange={(event) => this.onInterestChange(event)}
-                input={<Input />}
                 renderValue={(selected) => {
                   let results = [];
                   for(let i = 0; i < this.state.interests.length; i++){
@@ -57,7 +56,6 @@ export default class InterestsInput extends Component {
                   }
                   return results.join(", ");
                 }}
-                variant="outlined"
                 multiple
                 displayEmpty
               >
