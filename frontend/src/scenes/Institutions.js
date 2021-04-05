@@ -14,6 +14,7 @@ import React, { Component } from 'react';
 import { getAllCourses, getAllCourseWithProfile, getAllInterest, getAllUniversity } from '../api/API.js';
 import ALevelInput from '../components/ALevelInput.js';
 import ConfirmationDialog from '../components/ConfirmationDialog.js';
+import ProfileDialog from '../components/ProfileDialog.js';
 import CourseDisplay from '../components/CourseDisplay';
 import CourseSort from '../components/CourseSort';
 import EducationInput from '../components/EducationInput.js';
@@ -43,11 +44,11 @@ class Institutions extends Component {
       university: [],
       interest: [],
       course: [],
-
-      originalCourse: [],
+      searchWord: '',
 
       isResetConfigureOpen: false,
       isOverwriteConfigureOpen: false,
+      isProfileDialogOpen: false,
 
       alevel: {
         gp: '',
@@ -64,19 +65,19 @@ class Institutions extends Component {
   }
 
   componentDidMount() {
-    console.log(configuration.getConfiguration());
-    if (!this.props.location.state) {
+    if (!configuration.exists()) {
       this.props.history.push('/');
       return;
     }
 
+    let config = configuration.getConfiguration();
     // grab university list
     const uniPromise = getAllUniversity();
     uniPromise
       .then(res => res.json())
       .then((data) => {
         // add isChecked attribute to each row
-        data.forEach(row => row.isChecked = true);
+        data.forEach(row => row.isChecked = config.university.includes(row.Id));
         this.setState({
           university: data,
         })
@@ -88,8 +89,7 @@ class Institutions extends Component {
     interestPromise
       .then(res => res.json())
       .then((data) => {
-        data.forEach(row => row.isSelected = true);
-
+        data.forEach(row => row.isSelected = config.interest.includes(row.Id));
         this.setState({
           interest: data
         })
@@ -97,31 +97,20 @@ class Institutions extends Component {
       .catch(console.log)
 
     // grab course list
-    const coursePromise = getAllCourses();
+    let currentProfile = configuration.getConfiguration();
+    this.getUpdatedCourseList(currentProfile);
+  }
+
+  getUpdatedCourseList(profile) {
+    const coursePromise = getAllCourseWithProfile(profile);
     coursePromise
       .then(res => res.json())
       .then((data) => {
         this.setState({
-          course: courseFilter(data, this.state.university, this.state.interest),
-          originalCourse: data
+          course: data
         })
-
       })
       .catch(console.log)
-
-    // send post request to server
-    const personalisedCoursePromise = getAllCourseWithProfile(this.props.location.state.interests);
-    personalisedCoursePromise
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(console.log)
-  }
-
-  integrateCurrentProfile() {
-    let profileInterest = this.props.location.state.interests;
-    console.log(this.props.location.state);
   }
 
   filterUniversity(universityId) {
@@ -170,12 +159,7 @@ class Institutions extends Component {
   }
 
   onClickSearch(value) {
-    let copiedCourseList = [...this.state.originalCourse];
-    let filteredCourseList = copiedCourseList.filter(course =>
-      course.Programme.toLowerCase().includes(value.toLowerCase()));
-    this.setState({
-      course: filteredCourseList
-    })
+    this.setState({ searchWord: value });
   }
 
   clearAllFilter() {
@@ -188,17 +172,54 @@ class Institutions extends Component {
     this.setState({
       interest: copiedInterest,
       unviersity: copiedUniversity,
-      course: this.state.originalCourse
+      searchWord: ''
     })
   }
 
   loadInitialConfiguration() {
     this.setState({ isResetConfigureOpen: false });
+    // update grades
+    let currentProfile = configuration.getConfiguration();
+    this.getUpdatedCourseList(currentProfile);
 
+    // update uni filter
+    let uniFilter = currentProfile.university;
+    let copiedUni = [...this.state.university];
+    copiedUni.forEach(uni => (uniFilter.includes(uni.Id)) ? uni.isChecked = true : uni.isChecked = false);
+
+    // update interest filter
+    let interestFilter = currentProfile.interest;
+    let copiedInterest = [...this.state.interest];
+    copiedInterest.forEach(inter => (interestFilter.includes(inter.Id)) ? inter.isSelected = true : inter.isSelected = false);
+
+    this.setState({
+      university: copiedUni,
+      interest: copiedInterest
+    })
   }
 
   saveCurrentConfiguration() {
     this.setState({ isOverwriteConfigureOpen: false });
+
+    // format uni arr
+    let copiedUniArr = [...this.state.university];
+    let uniArr = copiedUniArr
+      .filter(uni => uni.isChecked === true)
+      .map(uni => uni.Id);
+
+    // format interest arr
+    let copiedInterestArr = [...this.state.interest];
+    let interestArr = copiedInterestArr
+      .filter(inter => inter.isSelected === true)
+      .map(inter => inter.Id);
+
+    // store current configuration
+    let data = [
+      uniArr,
+      interestArr
+    ]
+
+    configuration.setFilterConfiguration(...data);
   }
 
   emptyGradeFields() {
@@ -218,14 +239,20 @@ class Institutions extends Component {
   }
 
   sendRequest() {
+    configuration.setGradeConfiguration(this.state.education, this.state.gpa, this.state.alevel);
+    this.getUpdatedCourseList(configuration.getConfiguration());
     this.emptyGradeFields();
+  }
+
+  openProfileDialog() {
+    this.setState({ isProfileDialogOpen: true });
   }
 
   isFormFilled() {
     if (this.state.education !== '') {
       if (this.state.education === 1) {
-        for(let key in this.state.alevel){
-          if(this.state.alevel[key].length === 0){
+        for (let key in this.state.alevel) {
+          if (this.state.alevel[key].length === 0) {
             return false;
           }
         }
@@ -286,7 +313,11 @@ class Institutions extends Component {
   }
 
   render() {
-    let filteredCourse = courseFilter(this.state.course, this.state.university, this.state.interest);
+    let filteredCourse = courseFilter(this.state.course, this.state.university, this.state.interest, this.state.searchWord);
+    let config = configuration.getConfiguration();
+    let education = config.education;
+    let gpa = config.gpa;
+    let alevel = config.alevel;
 
     return (
       <Container maxWidth="xl" style={{ marginTop: '30px', marginBottom: '30px' }}>
@@ -360,9 +391,24 @@ class Institutions extends Component {
 
                 <Grid item xs={12} style={{ marginTop: '30px' }}>
                   <Grid container direction="row" justify="center" alignItems="center">
-                    <Button variant="contained" color="primary" onClick={this.sendRequest.bind(this)} disabled={!this.isFormFilled()}>
-                      Update My Grade
+                    <Grid item xs>
+                      <Button variant="outlined" color="secondary" onClick={this.openProfileDialog.bind(this)}>
+                        View Existing Profile
                     </Button>
+                    <ProfileDialog
+                      title={"Profile"}
+                      isOpen={this.state.isProfileDialogOpen}
+                      handleOpen={(isOpen) => this.setState({ isProfileDialogOpen: isOpen })}
+                      education={education}
+                      gpa={gpa}
+                      alevel={alevel}
+                    />
+                    </Grid>
+                    <Grid item xs>
+                      <Button variant="outlined" color="primary" onClick={this.sendRequest.bind(this)} disabled={!this.isFormFilled()}>
+                        Update My Grades
+                    </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
@@ -383,14 +429,17 @@ class Institutions extends Component {
                 </Grid>
                 <Grid item xs={5}>
                   <Grid container direction="row" justify="center" alignItems="center">
-                    <Button variant="contained" onClick={this.clearAllFilter.bind(this)}>
+                    <Button variant="contained" onClick={this.clearAllFilter.bind(this)} style={{ marginRight: '10px' }}>
                       Clear All Filters
+                    </Button>
+                    <Button variant="contained" onClick={() => this.onClickSearch('')}>
+                      Clear Search
                     </Button>
                   </Grid>
                 </Grid>
                 <Grid item xs={5}>
                   <Grid container direction="row" justify="flex-end" alignItems="center">
-                    <SearchBar onClick={this.onClickSearch.bind(this)} courseList={this.state.originalCourse} />
+                    <SearchBar onClick={this.onClickSearch.bind(this)} courseList={this.state.course} />
                   </Grid>
                 </Grid>
               </Grid>
@@ -415,9 +464,14 @@ export default withStyles(styles)(Institutions);
 
 // ==========================================================
 
-function courseFilter(courseArr, uniArr, interestList) {
-  let filteredCourseByUni = filterCourse(courseArr, uniArr);
+function courseFilter(courseArr, uniArr, interestList, searchWord) {
+  let copiedCourseArr = [...courseArr];
+  if (!(searchWord === '')) {
+    copiedCourseArr = filterSearch(copiedCourseArr, searchWord);
+  }
+  let filteredCourseByUni = filterCourse(copiedCourseArr, uniArr);
   let filteredCourseByInterest = filterInterest(filteredCourseByUni, interestList);
+
 
   return filteredCourseByInterest;
 }
@@ -446,4 +500,11 @@ function filterInterest(courseArr, interestList) {
   });
 
   return filteredCourse;
+}
+
+function filterSearch(courseArr, searchWord) {
+  let filteredCourseList = courseArr.filter(course =>
+    course.Programme.toLowerCase().includes(searchWord.toLowerCase()));
+
+  return filteredCourseList;
 }

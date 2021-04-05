@@ -72,11 +72,11 @@ function getAllCourseWithProfile(profile) {
       "Grades": grades
     }
   }
-  let data = {
+  let options = {
     method: 'POST',
     body: JSON.stringify(parsedProfile)
   };
-  const fetchPromise = fetch(SERVER_URL + "/courses", data);
+  const fetchPromise = fetch(SERVER_URL + "/courses", options);
 
   return fetchPromise
 }

@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import React, { Component } from 'react';
-import { getAllInterest } from '../api/API.js';
+import { getAllInterest, getAllUniversity } from '../api/API.js';
 import ALevelInput from '../components/ALevelInput';
 import EducationInput from '../components/EducationInput';
 import GPAInput from '../components/GPAInput';
@@ -21,6 +21,7 @@ export default class Profile extends Component {
       courses: [],
       interests: [],
       interestsSelected: [],
+      universities: [],
       currentInput: 0,
       gpa: '',
       education: 0,
@@ -52,6 +53,17 @@ export default class Profile extends Component {
         })
       })
       .catch(console.log)
+    
+    const uniPromise = getAllUniversity();
+    uniPromise
+      .then(res => res.json())
+      .then((data) => {
+        let uniArr = data.map((uni, index) => uni.Id);
+        this.setState({
+          universities: uniArr,
+        })
+      })
+      .catch(console.log)
   }
 
   onNextSelected = () => {
@@ -63,16 +75,9 @@ export default class Profile extends Component {
         interestsId.push(interest.Id);
       }
 
-      let result = {
-        education: this.state.education,
-        gpa: this.state.gpa,
-        alevel: this.state.alevel,
-        interests: interestsId
-      };
+      configuration.setConfiguration(this.state.universities, interestsId, this.state.education, this.state.gpa, this.state.alevel,);
 
-      configuration.setConfiguration(undefined, interestsId, undefined, this.state.alevel, this.state.education, this.state.gpa);
-
-      this.props.history.push('/institutions', result);
+      this.props.history.push('/institutions');
     }
     this.setState({ currentInput: this.state.currentInput + 1});
   }
