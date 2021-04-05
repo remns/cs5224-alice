@@ -81,9 +81,10 @@ function getRecScore(course) {
         case "Medium":
             score +=2;
             break;
-        case "High":
+        case "Low":
             score +=1;
             break;
+        // null is 0 points
     }
     return score;
 }
@@ -204,6 +205,7 @@ function getEntryProbability_Jc_SUSS(course, uas) {
         if (percentage == "NA") return null
         return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
+        console.error(`getEntryProbability_Jc_SUSS: ${error}`)
         return null
     }
 }
@@ -222,6 +224,7 @@ function getEntryProbability_Jc_SIT(course, uas) {
         if (percentage == "NA") return null
         return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
+        console.error(`getEntryProbability_Jc_SIT: ${error}`)
         return null
     }
 }
@@ -232,11 +235,9 @@ function getEntryProbability_Jc_NUSNTUSMU (course, body) {
     try {
         igp10 = course["Indicative Grade Profile"]["A-Levels 10th Percentile"]
         igp90 = course["Indicative Grade Profile"]["A-Levels 90th Percentile"]
-        tenP = igp10.localeCompare(gradeString) < 0;
-        ninetyP = igp90.localeCompare(gradeString) < 0;
-        console.log(`gradeString ${gradeString}`)
-        console.log(`compare 10th percentile:: ${tenP}`)
-        console.log(`compare 90th percentile:: ${ninetyP}`)
+        if (igp10 == "NA") {
+            return null;
+        }
         if (igp10.localeCompare(gradeString) < 0) {
             // grade is less than 10th percentile
             return "Low"
@@ -249,6 +250,7 @@ function getEntryProbability_Jc_NUSNTUSMU (course, body) {
             return "High"
         }
     } catch(error) {
+        console.error(`getEntryProbability_Jc_NUSNTUSMU: ${error}`)
         return null
     }
 }
@@ -275,6 +277,10 @@ function getEntryProbability_Poly_NUSNTUSMU(course, gpa) {
     try {
         igp10 = course["Indicative Grade Profile"]["Polytechnic 10th Percentile"]
         igp90 = course["Indicative Grade Profile"]["Polytechnic 90th Percentile"]
+        console.log(`gpa: ${gpa}, igp10: ${igp10}, igp90: ${igp90}`);
+        if (igp10 == "NA") {
+            return null;
+        }
         if (gpa < igp10) {
             return "Low"
         }
@@ -286,6 +292,7 @@ function getEntryProbability_Poly_NUSNTUSMU(course, gpa) {
         }
     }
     catch (error) {
+        console.error(`getEntryProbability_Poly_NUSNTUSMU: ${error}`)
         return null
     }
 }
@@ -299,8 +306,12 @@ function getEntryProbability_Poly_SIT(course, gpa) {
         } else {
             percentage = course["Indicative Grade Profile"]["Polytechnic (3.6 - 4.0)"]
         }
+        if (percentage == "NA") {
+            return null;
+        }
         return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
+        console.error(`getEntryProbability_Poly_SIT: ${error}`)
         return null
     }
 } 
@@ -312,8 +323,12 @@ function getEntryProbability_Poly_SUSS(course, gpa) {
         } else {
             percentage = course["Indicative Grade Profile"]["Polytechnic (3.00 - 4.00)"]
         }
+        if (percentage == "NA") {
+            return null;
+        }
         return percentage < 0.1 ? "Low" : percentage < 0.9 ? "Medium" : "High"
     } catch (error) {
+        console.error(`getEntryProbability_Poly_SUSS: ${error}`)
         return null
     }
 }
