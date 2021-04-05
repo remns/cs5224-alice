@@ -215,7 +215,7 @@ function getCompareROI(compareList) {
           if (!course.ROI) {
             return getEmptyField();
           }
-          let ROI = (course.ROI) ? (parseFloat(course.ROI).toFixed(2) * 100) + " %" : '-';
+          let ROI = (course.ROI) ? (parseFloat(course.ROI) * 100).toFixed(0) + " %" : '-';
           return (
             <Grid item xs key={index} component={Box} borderRight={1}>
               <Grid container direction="row" justify="center" alignItems="center" style={styles.rowItem}>

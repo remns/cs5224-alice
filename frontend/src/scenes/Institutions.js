@@ -154,6 +154,12 @@ class Institutions extends Component {
   }
 
   sortCourse(sortId, isAscending) {
+    if (sortId === '') {
+      let copiedCourse = [...this.state.course]
+      copiedCourse.sort((a, b) => b.RecScore - a.RecScore);
+      this.setState({ course: copiedCourse });
+      return ;
+    }
     const sortedCourses = CourseSort.sortBySortId(sortId, this.state.course, isAscending);
     this.setState({ course: sortedCourses });
   }

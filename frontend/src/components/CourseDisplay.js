@@ -58,10 +58,13 @@ function SortInput(props) {
       <Grid item xs={10}>
         <Grid container direction="row" justify="center" alignItems="center">
           <TextField select label="Sort By" value={dropdownVal} onChange={handleChange} variant="outlined" fullWidth={true}>
+            <MenuItem key={0} value=''>
+              None
+            </MenuItem>
             {
               sortMethods.map((method, index) => {
                 return (
-                  <MenuItem key={index} value={method.id}>
+                  <MenuItem key={index + 1} value={method.id}>
                     {method.name}
                   </MenuItem>
                 );
@@ -134,7 +137,7 @@ class CourseDisplay extends React.Component {
       }
 
       let annualCost = (row['Fee Type'] === "One-Time") ? row['Fee Citizen'] / row['Duration'] : row['Fee Citizen'];
-      let ROI = (row.ROI) ? (parseFloat(row.ROI).toFixed(2) * 100) + " %" : '-';
+      let ROI = (row.ROI) ? (parseFloat(row.ROI) * 100).toFixed(0) + " %" : '-';
       return (
         <Accordion key={index} expanded={this.state.expanded === index}
           onChange={() => this.setState({ expanded: (this.state.expanded === index) ? -1 : index })}>
