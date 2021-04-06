@@ -134,6 +134,12 @@ export default class Statistics extends Component {
       .catch(console.log)
   }
 
+  random = (seed) => {
+      var x = Math.sin(seed++) * 10000;
+      console.log(x - Math.floor(x));
+      return x - Math.floor(x);
+  }
+
   getChartDataTopGraduateEmployment = () => {
     let labels = [];
     let data = [];
@@ -143,9 +149,9 @@ export default class Statistics extends Component {
       labels.push(this.state.employment[i]["Course Code"]);
       data.push(parseFloat(this.state.employment[i]["Full-Time Employment"]) * 100);
 
-      var r = Math.floor(Math.random() * 255);
-      var g = Math.floor(Math.random() * 255);
-      var b = Math.floor(Math.random() * 255);
+      var r = Math.floor(this.random(this.state.employment[i]["Full-Time Employment"]) * 255);
+      var g = Math.floor(this.random(this.state.employment[i]["Full-Time Employment"] + 1) * 255);
+      var b = Math.floor(this.random(this.state.employment[i]["Full-Time Employment"] + 2) * 255);
       backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ", 0.5)");
     }
 
@@ -177,9 +183,9 @@ export default class Statistics extends Component {
       labels.push(this.state.salary[i]["Course Code"]);
       data.push(parseFloat(this.state.salary[i]["Basic Monthly Mean"]));
 
-      var r = Math.floor(Math.random() * 255);
-      var g = Math.floor(Math.random() * 255);
-      var b = Math.floor(Math.random() * 255);
+      var r = Math.floor(this.random(this.state.salary[i]["Basic Monthly Mean"]) * 255);
+      var g = Math.floor(this.random(this.state.salary[i]["Basic Monthly Mean"] + 1) * 255);
+      var b = Math.floor(this.random(this.state.salary[i]["Basic Monthly Mean"] + 2) * 255);
       backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ", 0.5)");
     }
 
@@ -216,9 +222,9 @@ export default class Statistics extends Component {
       labels.push([this.state.popularCourses[i]["Programme"], this.state.popularCourses[i]["University"]]);
       data.push(parseFloat(this.state.popularCourses[i]["Clicks"]));
 
-      var r = Math.floor(Math.random() * 255);
-      var g = Math.floor(Math.random() * 255);
-      var b = Math.floor(Math.random() * 255);
+      var r = Math.floor(this.random(this.state.popularCourses[i]["Clicks"]) * 255);
+      var g = Math.floor(this.random(this.state.popularCourses[i]["Clicks"] + 1) * 255);
+      var b = Math.floor(this.random(this.state.popularCourses[i]["Clicks"] + 2) * 255);
       backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ", 0.5)");
     }
 
@@ -255,9 +261,9 @@ export default class Statistics extends Component {
       labels.push(this.state.intake[i]["Programme"] + " - " + this.state.intake[i]["University"]);
       data.push(this.state.intake[i]["Intake"]);
 
-      var r = Math.floor(Math.random() * 255);
-      var g = Math.floor(Math.random() * 255);
-      var b = Math.floor(Math.random() * 255);
+      var r = Math.floor(this.random(this.state.intake[i]["Intake"]) * 255);
+      var g = Math.floor(this.random(this.state.intake[i]["Intake"] + 1) * 255);
+      var b = Math.floor(this.random(this.state.intake[i]["Intake"] + 2) * 255);
       backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ", 0.7)");
     }
 
