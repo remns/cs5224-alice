@@ -4,12 +4,14 @@ const sortLabels = [
   {"id": 1, "name": "Median Salary"},
   {"id": 2, "name": "Employment Rate"},
   {"id": 3, "name": "Return on Investment (ROI)"},
+  {"id": 4, "name": "Course Fee"}
 ];
 
 const sortMethods = [
   {"id": 1, "func": sortBy(DataExtractor.getMedianSalary)},
   {"id": 2, "func": sortBy(DataExtractor.getEmploymentRate)},
   {"id": 3, "func": sortBy(DataExtractor.getROI)},
+  {"id": 4, "func": sortBy(DataExtractor.getAnnualCost)}
 ];
 
 function sortBySortId(sortId, courses, isAscending) {

@@ -52,11 +52,11 @@ function getAllCourseWithProfile(profile) {
 
   let educationType = ["Polytechnic", "Junior College"];
   let grades = null;
-  if (profile.education === 1) {
+  if (profile.education === 0) {
     grades = profile.gpa;
   }
 
-  if (profile.education === 0) {
+  if (profile.education === 1) {
     let alevelObj = profile.alevel;
     let gradeArr = [];
     for (let key in alevelObj) {
@@ -72,6 +72,7 @@ function getAllCourseWithProfile(profile) {
       "Grades": grades
     }
   }
+
   let options = {
     method: 'POST',
     body: JSON.stringify(parsedProfile)
