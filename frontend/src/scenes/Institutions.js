@@ -445,7 +445,7 @@ class Institutions extends Component {
                 </Grid>
                 <Grid item xs={5}>
                   <Grid container direction="row" justify="flex-end" alignItems="center">
-                    <SearchBar onClick={this.onClickSearch.bind(this)} courseList={this.state.course} />
+                    <SearchBar onClick={this.onClickSearch.bind(this)} courseList={filteredCourse} />
                   </Grid>
                 </Grid>
               </Grid>
