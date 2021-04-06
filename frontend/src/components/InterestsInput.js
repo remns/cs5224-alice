@@ -41,32 +41,34 @@ export default class InterestsInput extends Component {
 
     render() {
         return (
-          <FormControl variant="outlined" fullWidth>
-              <InputLabel>Select your interests</InputLabel>
-              <Select
-                label="Select your interests"
-                value={this.props.value}
-                onChange={(event) => this.onInterestChange(event)}
-                renderValue={(selected) => {
-                  let results = [];
-                  for(let i = 0; i < this.state.interests.length; i++){
-                    if(selected.indexOf(this.state.interests[i].value) > -1){
-                      results.push(this.state.interests[i].Name);
+          <div style={{maxWidth: 500}}>
+            <FormControl variant="outlined" fullWidth>
+                <InputLabel>Select your interests</InputLabel>
+                <Select
+                  label="Select your interests"
+                  value={this.props.value}
+                  onChange={(event) => this.onInterestChange(event)}
+                  renderValue={(selected) => {
+                    let results = [];
+                    for(let i = 0; i < this.state.interests.length; i++){
+                      if(selected.indexOf(this.state.interests[i].value) > -1){
+                        results.push(this.state.interests[i].Name);
+                      }
                     }
-                  }
-                  return results.join(", ");
-                }}
-                multiple
-                displayEmpty
-              >
-                {this.state.interests.map((el) => (
-                  <MenuItem key={el.name} value={el.value}>
-                    <Checkbox checked={this.props.value.indexOf(el.value) > -1} />
-                    <ListItemText primary={el.Name} />
-                  </MenuItem>
-                ))}
-              </Select>
-          </FormControl>
+                    return results.join(", ");
+                  }}
+                  multiple
+                  displayEmpty
+                >
+                  {this.state.interests.map((el) => (
+                    <MenuItem key={el.name} value={el.value}>
+                      <Checkbox checked={this.props.value.indexOf(el.value) > -1} />
+                      <ListItemText primary={el.Name} />
+                    </MenuItem>
+                  ))}
+                </Select>
+            </FormControl>
+          </div>
         )
     }
 }

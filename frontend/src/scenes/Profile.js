@@ -13,6 +13,8 @@ import InterestsInput from '../components/InterestsInput';
 
 import configuration from '../components/configuration.js';
 
+import classes from '../css/video.module.css';
+
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +55,7 @@ export default class Profile extends Component {
         })
       })
       .catch(console.log)
-    
+
     const uniPromise = getAllUniversity();
     uniPromise
       .then(res => res.json())
@@ -141,62 +143,68 @@ export default class Profile extends Component {
     ));
 
     return (
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: '100vh' }}
-      >
-        <Grid item xs={12}>
-          <Grid container justify="center" alignItems="center" style={{marginBottom: 20}}>
-            <img style={{width: 100}} src="/images/alice.png" />
-          </Grid>
-          <Paper style={{minWidth: 350, padding: 10}}>
-            {
-              (this.state.currentInput != 0) &&
-              <IconButton
-                style={{marginTop: 10, marginBottom: 10}}
-                onClick={this.onBackSelected}
-              >
-                <ArrowBackIcon />
-              </IconButton>
-            }
-            {
-              (this.state.currentInput == 0) ?
-              (
-                <EducationInput onChange={this.onEducationInput} value={this.state.education} />
-              ) :
-              (this.state.currentInput == 1 && this.state.education == 0) ?
-              (
-                <GPAInput onChange={this.onGPAInput} value={this.state.gpa} />
-              ) :
-              (this.state.currentInput == 1 && this.state.education == 1) ?
-              (
-                <ALevelInput onChange={this.onALevelInput} />
-              ) :
-              (this.state.currentInput == 2) ?
-              (
-                <InterestsInput onChange={this.onInterestInput} value={this.state.interestsSelected} />
-              )  :
-              <Box />
-            }
+      <div>
+        <video className={classes.Video} loop autoPlay>
+          <source src="/videos/video.mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: '100vh', backgroundColor: 'rgba(0,0,0,0.4)'}}
+        >
+          <Grid item xs={12}>
+            <Paper style={{minWidth: 350, padding: 10}}>
+              <Grid container justify="center" alignItems="center" style={{marginBottom: 20}}>
+                <img style={{width: 100}} src="/images/alice.png" />
+              </Grid>
+              {
+                (this.state.currentInput != 0) &&
+                <IconButton
+                  style={{marginBottom: 10}}
+                  onClick={this.onBackSelected}
+                >
+                  <ArrowBackIcon />
+                </IconButton>
+              }
+              {
+                (this.state.currentInput == 0) ?
+                (
+                  <EducationInput onChange={this.onEducationInput} value={this.state.education} />
+                ) :
+                (this.state.currentInput == 1 && this.state.education == 0) ?
+                (
+                  <GPAInput onChange={this.onGPAInput} value={this.state.gpa} />
+                ) :
+                (this.state.currentInput == 1 && this.state.education == 1) ?
+                (
+                  <ALevelInput onChange={this.onALevelInput} />
+                ) :
+                (this.state.currentInput == 2) ?
+                (
+                  <InterestsInput onChange={this.onInterestInput} value={this.state.interestsSelected} />
+                )  :
+                <Box />
+              }
 
-            <Button
-              type="button"
-              fullWidth
-              color="primary"
-              variant="contained"
-              onClick={this.onNextSelected}
-              disabled={!this.canGoNext()}
-              style={{marginTop: 20}}
-              >
-              {(this.state.currentInput == 2) ? "Find universities" : "Next"}
-            </Button>
-          </Paper>
+              <Button
+                type="button"
+                fullWidth
+                color="primary"
+                variant="contained"
+                onClick={this.onNextSelected}
+                disabled={!this.canGoNext()}
+                style={{marginTop: 20}}
+                >
+                {(this.state.currentInput == 2) ? "Find universities" : "Next"}
+              </Button>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     )
   }
 }
