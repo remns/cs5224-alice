@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import { getAllCourses, getAllStatistics, postCourseClick } from '../api/API.js';
+import DataExtractor from '../components/DataExtractor';
 import Chart from '../components/Chart';
-
 
 export default class Details extends Component {
   constructor(props) {
@@ -31,7 +31,6 @@ export default class Details extends Component {
     .then(res => res.json())
     .then((data) => {
       let courseResult = data.find(el => (this.state.id == el.Id));
-      console.log(courseResult);
       this.setState({
         course: courseResult
       });
@@ -273,23 +272,23 @@ export default class Details extends Component {
               >
                 <Grid item xs={4} align="center">
                   <Typography><b>Overall Employment</b></Typography>
-                  <Typography variant="h6">{(stats["Overall Employment"] != "NaN") ? Math.round(stats["Overall Employment"] * 100) + "%" : "-"}</Typography>
+                  <Typography variant="h6">{(!DataExtractor.isEmpty(stats["Overall Employment"])) ? Math.round(stats["Overall Employment"] * 100) + "%" : "-"}</Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography><b>Gross Monthly Mean</b></Typography>
-                  <Typography variant="h6">{(stats["Gross Monthly Mean"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly Mean"]) : "-"}</Typography>
+                  <Typography variant="h6">{(!DataExtractor.isEmpty(stats["Gross Monthly Mean"])) ? "$" + this.thousandsFormatter(stats["Gross Monthly Mean"]) : "-"}</Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography><b>Gross Monthly Median</b></Typography>
-                  <Typography variant="h6">{(stats["Gross Monthly Median"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly Median"]) : "-"}</Typography>
+                  <Typography variant="h6">{(!DataExtractor.isEmpty(stats["Gross Monthly Median"])) ? "$" + this.thousandsFormatter(stats["Gross Monthly Median"]) : "-"}</Typography>
                 </Grid>
                 <Grid item xs={6} align="center" style={{marginTop: 10}}>
                   <Typography><b>Gross Monthly 75th Percentile</b></Typography>
-                  <Typography variant="h6">{(stats["Gross Monthly 75th Percentile"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly 75th Percentile"]) : "-"}</Typography>
+                  <Typography variant="h6">{(!DataExtractor.isEmpty(stats["Gross Monthly 75th Percentile"])) ? "$" + this.thousandsFormatter(stats["Gross Monthly 75th Percentile"]) : "-"}</Typography>
                 </Grid>
                 <Grid item xs={6} align="center" style={{marginTop: 10}}>
                   <Typography><b>Gross Monthly 25th Percentile</b></Typography>
-                  <Typography variant="h6">{(stats["Gross Monthly 25th Percentile"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly 25th Percentile"]) : "-"}</Typography>
+                  <Typography variant="h6">{(!DataExtractor.isEmpty(stats["Gross Monthly 25th Percentile"])) ? "$" + this.thousandsFormatter(stats["Gross Monthly 25th Percentile"]) : "-"}</Typography>
                 </Grid>
               </Grid>
 
