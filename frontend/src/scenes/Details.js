@@ -208,11 +208,11 @@ export default class Details extends Component {
                   {
                     (!course.GES) ? "NA"
                     :
-                    (course.GES["Overall Employment"] >= 0.9) ? "Very High"
+                    (course.GES[course.GES.length - 1]["Overall Employment"] >= 0.9) ? "Very High"
                     :
-                    (course.GES["Overall Employment"] >= 0.8) ? "High"
+                    (course.GES[course.GES.length - 1]["Overall Employment"] >= 0.8) ? "High"
                     :
-                    (course.GES["Overall Employment"] >= 0.7) ? "Average"
+                    (course.GES[course.GES.length - 1]["Overall Employment"] >= 0.7) ? "Average"
                     :
                     "Low"
                   }
@@ -273,23 +273,23 @@ export default class Details extends Component {
               >
                 <Grid item xs={4} align="center">
                   <Typography><b>Overall Employment</b></Typography>
-                  <Typography variant="h6">{Math.round(stats["Overall Employment"] * 100)}%</Typography>
+                  <Typography variant="h6">{(stats["Overall Employment"] != "NaN") ? Math.round(stats["Overall Employment"] * 100) + "%" : "-"}</Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography><b>Gross Monthly Mean</b></Typography>
-                  <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly Mean"])}</Typography>
+                  <Typography variant="h6">{(stats["Gross Monthly Mean"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly Mean"]) : "-"}</Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography><b>Gross Monthly Median</b></Typography>
-                  <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly Median"])}</Typography>
+                  <Typography variant="h6">{(stats["Gross Monthly Median"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly Median"]) : "-"}</Typography>
                 </Grid>
                 <Grid item xs={6} align="center" style={{marginTop: 10}}>
                   <Typography><b>Gross Monthly 75th Percentile</b></Typography>
-                  <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly 75th Percentile"])}</Typography>
+                  <Typography variant="h6">{(stats["Gross Monthly 75th Percentile"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly 75th Percentile"]) : "-"}</Typography>
                 </Grid>
                 <Grid item xs={6} align="center" style={{marginTop: 10}}>
                   <Typography><b>Gross Monthly 25th Percentile</b></Typography>
-                  <Typography variant="h6">${this.thousandsFormatter(stats["Gross Monthly 25th Percentile"])}</Typography>
+                  <Typography variant="h6">{(stats["Gross Monthly 25th Percentile"] != "NaN") ? "$" + this.thousandsFormatter(stats["Gross Monthly 25th Percentile"]) : "-"}</Typography>
                 </Grid>
               </Grid>
 

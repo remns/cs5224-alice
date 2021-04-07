@@ -144,7 +144,7 @@ export default class Profile extends Component {
 
     return (
       <div>
-        <video className={classes.Video} loop autoPlay>
+        <video className={classes.Video} loop autoPlay muted>
           <source src="/videos/video.mp4" />
           Your browser does not support the video tag.
         </video>
