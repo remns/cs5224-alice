@@ -176,17 +176,22 @@ function fillGesCache() {
                     var grossMedian = 0;
                     var gross25 = 0;
                     var gross75 = 0;
-                    let years = course.GES.length;
+                    var years = course.GES.length;
 
                     course.GES.forEach(ges => {
-                        overall += ges["Overall Employment"];
-                        fte += ges["Full-Time Employment"];
-                        basicMean += ges["Basic Monthly Mean"];
-                        basicMedian += ges["Basic Monthly Median"];
-                        grossMean += ges["Gross Monthly Mean"];
-                        grossMedian += ges["Gross Monthly Median"];
-                        gross25 += ges["Gross Monthly 25th Percentile"];
-                        gross75 += ges["Gross Monthly 75th Percentile"];
+                        if (ges["Overall Employment"] !== "NA") {
+                            overall += ges["Overall Employment"];
+                            fte += ges["Full-Time Employment"];
+                            basicMean += ges["Basic Monthly Mean"];
+                            basicMedian += ges["Basic Monthly Median"];
+                            grossMean += ges["Gross Monthly Mean"];
+                            grossMedian += ges["Gross Monthly Median"];
+                            gross25 += ges["Gross Monthly 25th Percentile"];
+                            gross75 += ges["Gross Monthly 75th Percentile"];
+                        }
+                        else {
+                            years -= 1;
+                        }
                     })
 
                     ges_cache.push({
