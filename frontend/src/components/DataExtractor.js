@@ -1,3 +1,11 @@
+function isEmpty(input){
+  if (input !== "" && input !== "NA" & input !== "NaN") {
+    return false;
+  }
+
+  return true;
+}
+
 function getMedianSalary(course) {
   let medianPay = "";
 
@@ -76,6 +84,7 @@ function getROI(course) {
 }
 
 export default {
+  isEmpty,
   getMedianSalary,
   getEmploymentRate,
   getGESYear,
