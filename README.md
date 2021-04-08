@@ -27,7 +27,7 @@ Backend deployment: https://3jqms9dxp6.execute-api.ap-southeast-1.amazonaws.com/
 ### Pre-requisite Tools
 Following tools are required for local builds
 - Docker
-- AWS CLI
+- AWS CLI (Configure region to ap-southeast-1)
 - AWS SAM
 
 [Installation Instructions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
@@ -37,6 +37,13 @@ Run a local instance of DynamoDb in a Docker container at http://localhost:8000
 ```
 docker network create alice-network
 docker run --network alice-network --name dynamodb -d -p 8000:8000 amazon/dynamodb-local
+```
+
+Install the necessary dependencies and return to root directory
+```
+cd backend
+npm install
+cd ../
 ```
 
 Create Tables and initialise data
