@@ -6,7 +6,7 @@ ALICE is a SaaS web application that aims to aid Junior College (JC) or Polytech
 
 ![ALICE](./docs/img/alice.png)
 
-This GitHub project contains the code for ALICE. Application Demo: https://dutizh1sabqu4.cloudfront.net
+This [GitHub project](https://github.com/remns/cs5224-alice/) contains the code for ALICE. Application Demo: https://dutizh1sabqu4.cloudfront.net
 
 ## Code Overview
 ALICE is architected as a Single-Page-Application, consisting of a React frontend and an API backend.
@@ -90,6 +90,7 @@ ALICE uses CloudFormation to deploy its backend resources.
     aws cloudformation package --template template.yml --s3-bucket <YOUR_BUCKET_NAME> --output-template template-export.yml
     ```
 3. Create a new CloudFormation stack using the template file ```template-export.yml``` generated in step 2.
+    
 
 ### Frontend
 Configure the URL for your API in the frontend environment file ```./frontend/.env```
@@ -108,6 +109,4 @@ aws s3 sync ./build <YOUR_BUCKET_NAME> --acl public-read && cd -
 
 ## Testing
 1. Access the frontend site. ALICE will guide you through filling in the student profile and provide recommended courses.
-![frontend](./docs/img/alice.png)
-
 2. Manually exercise the APIs. Postman scripts are available in /backend/tools/postman.
