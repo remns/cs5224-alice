@@ -29,6 +29,7 @@ Following tools are required for local builds
 - Docker
 - AWS CLI
 - AWS SAM
+
 [Installation Instructions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 
 ### Backend - DynamoDB
@@ -49,7 +50,7 @@ aws dynamodb create-table --table-name AliceCourseTable2 --attribute-definitions
 node .\backend\tools\db\initCourseTable.js http://localhost:8000
 ```
 
-Create table for course 'AliceCourseTable2' and initialise data
+Create table for popularity 'AliceClicksTable2' and initialise data
 ```
 aws dynamodb create-table --table-name AliceClicksTable2 --attribute-definitions AttributeName=CourseId,AttributeType=N AttributeName=Clicks,AttributeType=N AttributeName=GsiPk,AttributeType=N --global-secondary-indexes "IndexName=ClicksIndex2,KeySchema=[{AttributeName=GsiPk,KeyType=HASH},{AttributeName=Clicks,KeyType=RANGE}],Projection={ProjectionType=ALL},ProvisionedThroughput={ReadCapacityUnits=2,WriteCapacityUnits=2}" --key-schema AttributeName=CourseId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=2,WriteCapacityUnits=2 --endpoint-url http://localhost:8000
 
@@ -84,8 +85,10 @@ ALICE uses CloudFormation to deploy its backend resources.
 
 1. Create an S3 bucket to store CloudFormation packages
 2. Package backend code
-    ```cd backend```
-    ```aws cloudformation package --template template.yml --s3-bucket <YOUR_BUCKET_NAME> --output-template template-export.yml```
+    ```
+    cd backend
+    aws cloudformation package --template template.yml --s3-bucket <YOUR_BUCKET_NAME> --output-template template-export.yml
+    ```
 3. Create a new CloudFormation stack using the template file ```template-export.yml``` generated in step 2.
 
 ### Frontend
