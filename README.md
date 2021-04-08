@@ -44,8 +44,7 @@ ALICE uses two tables, one for courses and one for course popularity tracking
 
 Create table for course 'AliceCourseTable2' and initialise data
 ```
-aws dynamodb create-table --table-name AliceCourseTable2 --attribute-definitions AttributeName=Id,AttributeType=N 
---key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=2,WriteCapacityUnits=2 --endpoint-url http://localhost:8000
+aws dynamodb create-table --table-name AliceCourseTable2 --attribute-definitions AttributeName=Id,AttributeType=N --key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=2,WriteCapacityUnits=2 --endpoint-url http://localhost:8000
 
 node .\backend\tools\db\initCourseTable.js http://localhost:8000
 ```
