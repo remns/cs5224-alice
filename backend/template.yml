@@ -224,8 +224,8 @@ Resources:
           AttributeName: Id
           KeyType: HASH        
       ProvisionedThroughput:
-        ReadCapacityUnits: 2
-        WriteCapacityUnits: 2
+        ReadCapacityUnits: 10
+        WriteCapacityUnits: 5
       TableName: AliceCourseTable2
 
   ClicksTable2:
@@ -259,8 +259,8 @@ Resources:
           Projection:
             ProjectionType: "ALL"
           ProvisionedThroughput:
-            ReadCapacityUnits: 2
-            WriteCapacityUnits: 2
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
       # LocalSecondaryIndexes: 
       #   - LocalSecondaryIndex          
       ProvisionedThroughput:
