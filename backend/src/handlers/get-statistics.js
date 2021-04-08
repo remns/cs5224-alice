@@ -1,5 +1,10 @@
 const dataFile = require("./../../data/course-data.json");
 const enrollmentDataFile = require("./../../data/enrollment-data.json");
+
+const dynamodb = require('aws-sdk/clients/dynamodb');
+const docClient = new dynamodb.DocumentClient();
+const tableName = process.env.DDB_TABLE;
+
 ges_cache = [];
 igp_cache = [];
 enrollment_cache = [];
@@ -29,7 +34,7 @@ exports.getStatisticsHandler = async (event) => {
 
     if (queryStringParameters && queryStringParameters.category) {
         if (gesCats.includes(queryStringParameters.category)) {
-            fillGesCache();
+            await fillGesCache();
             switch(queryStringParameters.category) {
                 case "Overall Employment":
                     responseData = ges_cache.map( x => ( 
@@ -99,7 +104,7 @@ exports.getStatisticsHandler = async (event) => {
             
         }
         else if (igpCats.includes(queryStringParameters.category)) {
-            fillIgpCache();
+            await fillIgpCache();
             switch(queryStringParameters.category) {
                 case "A-Levels 10th Percentile":
                     responseData = filterAndSortByCategoryString(igp_cache, "A-Levels 10th Percentile");
@@ -126,7 +131,7 @@ exports.getStatisticsHandler = async (event) => {
     }
     else {
         // no category parameter supplied. return aggregated ges data unsorted
-        fillGesCache();
+        await fillGesCache();
         responseData = [...ges_cache];
     }
 
@@ -157,11 +162,24 @@ exports.getStatisticsHandler = async (event) => {
     return response;
 };
 
-function fillGesCache() {
+async function fillGesCache() {
     if (ges_cache.length === 0) {
         console.log("Calculating GES statistics");
-        dataFile.forEach(course => {
-            
+
+        const params = {
+            TableName: tableName,
+        }
+        var courseData;
+        await docClient.scan(params).promise()
+            .then(function(data){
+                courseData = data["Items"];
+            })
+            .catch(function(err) {
+                throw new Error("Could not retrieve data. " + JSON.stringify(err));
+            });        
+
+        // dataFile.forEach(course => {
+        courseData.forEach(course => {         
             if(!course.GES) {
                 // not all course have GES
                 console.log(`Missing GES data for ${course["Course Code"]} (${course.Id})`);
@@ -219,13 +237,25 @@ function fillGesCache() {
     }
 }
 
-function fillIgpCache() {
+async function fillIgpCache() {
     if (igp_cache.length === 0) {
         console.log("Sorting IGP data");
 
+        const params = {
+            TableName: tableName,
+        }
+        var courseData;
+        await docClient.scan(params).promise()
+            .then(function(data){
+                courseData = data["Items"];
+            })
+            .catch(function(err) {
+                throw new Error("Could not retrieve data. " + JSON.stringify(err));
+            });       
+
         let uniFilter = ["National University of Singapore", "Nanyang Technological University", "Singapore Management University"]
 
-        igp_cache = dataFile
+        igp_cache = courseData
             .filter(x => uniFilter.includes(x.University))
             .map(x=> (
                 ({Id, "Course Code": courseCode, "Indicative Grade Profile": igp}) => 

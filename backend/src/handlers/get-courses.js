@@ -1,4 +1,12 @@
 const data = require("./../../data/course-data.json");
+const dynamodb = require('aws-sdk/clients/dynamodb');
+
+const docClient = new dynamodb.DocumentClient();
+
+// const tableName = process.env.DDB_TABLE;
+const tableName = process.env.DDB_TABLE;
+
+data_cache = [];
 
 exports.getCoursesHandler = async (event) => {
     const { httpMethod, path } = event;
@@ -32,18 +40,33 @@ exports.getCoursesHandler = async (event) => {
             }
         }
      */
-    var responseData = data;
 
-    if (event.body) {
-        let body = JSON.parse(event.body);        
-        let uniFilter = body.Filters.University;
-        let interestsFilter = body.Filters.Category;
-        
-        if (uniFilter) {
-            responseData = responseData.filter(x => uniFilter.includes(x.University));
+    if (data_cache.length === 0){
+        const params = {
+            TableName: tableName,
         }
-        if (interestsFilter) {
-            responseData = responseData.filter(x=> x.Category.some(y=> interestsFilter.includes(y)));
+        await docClient.scan(params).promise()
+            .then(function(data){
+                data_cache = data["Items"];
+            })
+            .catch(function(err) {
+                throw new Error("Could not retrieve data. " + JSON.stringify(err));
+            });
+    }
+
+    var responseData = data_cache;
+    if (event.body) {
+        let body = JSON.parse(event.body); 
+        if (body.Filters){
+            let uniFilter = body.Filters.University;
+            let interestsFilter = body.Filters.Category;
+            
+            if (uniFilter) {
+                responseData = responseData.filter(x => uniFilter.includes(x.University));
+            }
+            if (interestsFilter) {
+                responseData = responseData.filter(x=> x.Category.some(y=> interestsFilter.includes(y)));
+            }
         }
         responseData.map((course) => course.ROI = getROI(course)); // Append ROI field
         responseData.map((course) => course.Entry_Probability = getEntryProbability(course, body)); // Append probability field
