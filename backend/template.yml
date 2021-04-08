@@ -29,6 +29,9 @@ Globals:
 Parameters:
   AppId:
     Type: String
+  DB_ENDPOINT:
+    Type: String
+    Description: local or aws
 
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
@@ -54,6 +57,7 @@ Resources:
         Variables:
           # Make table name accessible as environment variable from function code during execution
           DDB_TABLE: !Ref CourseTable
+          DB_ENDPOINT: !Ref DB_ENDPOINT
       Events:
         ApiPost:
           Type: Api
@@ -147,6 +151,7 @@ Resources:
         Variables:
           # Make table name accessible as environment variable from function code during execution
           DDB_TABLE: !Ref CourseTable
+          DB_ENDPOINT: !Ref DB_ENDPOINT
       Events:
         Api:
           Type: Api
@@ -171,6 +176,7 @@ Resources:
         Variables:
           # Make table name accessible as environment variable from function code during execution
           DDB_TABLE: !Ref ClicksTable2
+          DB_ENDPOINT: !Ref DB_ENDPOINT
       Events:
         Api:
           Type: Api
@@ -195,6 +201,7 @@ Resources:
         Variables:
           # Make table name accessible as environment variable from function code during execution
           DDB_TABLE: !Ref ClicksTable2
+          DB_ENDPOINT: !Ref DB_ENDPOINT
       Events:
         Api:
           Type: Api

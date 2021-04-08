@@ -2,11 +2,16 @@ const AWS = require("aws-sdk");
 const dynamodb = require('aws-sdk/clients/dynamodb');
 const dataFile = require("./../../data/course-data.json");
 
-AWS.config.update({
-  region: "ap-southeast-1",
-  endpoint: "https://dynamodb.ap-southeast-1.amazonaws.com"
+endpointArg = "https://dynamodb.ap-southeast-1.amazonaws.com"
+if (process.argv.length > 2) {
+    endpointArg = process.argv[2]
+}
+
+const docClient = new dynamodb.DocumentClient({
+    region: "ap-southeast-1",
+    endpoint: endpointArg
 });
-const docClient = new dynamodb.DocumentClient();
+
 
 const tableName = "AliceClicksTable2"
 

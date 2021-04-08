@@ -2,7 +2,15 @@ const dataFile = require("./../../data/course-data.json");
 const enrollmentDataFile = require("./../../data/enrollment-data.json");
 
 const dynamodb = require('aws-sdk/clients/dynamodb');
-const docClient = new dynamodb.DocumentClient();
+let docClient;
+if (process.env.DB_ENDPOINT) {
+    docClient = new dynamodb.DocumentClient({
+        endpoint: process.env.DB_ENDPOINT
+    })
+}
+else {
+    docClient = new dynamodb.DocumentClient();
+}
 const tableName = process.env.DDB_TABLE;
 
 ges_cache = [];

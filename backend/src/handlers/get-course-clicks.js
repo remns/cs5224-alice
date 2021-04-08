@@ -1,7 +1,15 @@
 // Create a DocumentClient that represents the query to get all items
 const dynamodb = require('aws-sdk/clients/dynamodb');
 
-const docClient = new dynamodb.DocumentClient();
+let docClient;
+if (process.env.DB_ENDPOINT) {
+    docClient = new dynamodb.DocumentClient({
+        endpoint: process.env.DB_ENDPOINT
+    })
+}
+else {
+    docClient = new dynamodb.DocumentClient();
+}
 
 // Get the DynamoDB table name from environment variables
 const tableName = process.env.DDB_TABLE;

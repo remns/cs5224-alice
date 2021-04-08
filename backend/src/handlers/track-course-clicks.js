@@ -1,7 +1,18 @@
 // Create a DocumentClient that represents the query to get all items
 const dynamodb = require('aws-sdk/clients/dynamodb');
 
-const docClient = new dynamodb.DocumentClient();
+let docClient;
+console.log("ENDPOINT " + process.env.DB_ENDPOINT);
+if (process.env.DB_ENDPOINT) {
+    console.log("Using local DB");
+    docClient = new dynamodb.DocumentClient({
+        endpoint: process.env.DB_ENDPOINT
+    })
+}
+else {
+    console.log("Using foreign DB");
+    docClient = new dynamodb.DocumentClient();
+}
 
 // Get the DynamoDB table name from environment variables
 const tableName = process.env.DDB_TABLE;
