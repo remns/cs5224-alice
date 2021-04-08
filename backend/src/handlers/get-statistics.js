@@ -3,9 +3,9 @@ const enrollmentDataFile = require("./../../data/enrollment-data.json");
 
 const dynamodb = require('aws-sdk/clients/dynamodb');
 let docClient;
-if (process.env.DB_ENDPOINT) {
+if (process.env.dbEnv === "local") {
     docClient = new dynamodb.DocumentClient({
-        endpoint: process.env.DB_ENDPOINT
+        endpoint: "http://dynamodb:8000/"
     })
 }
 else {

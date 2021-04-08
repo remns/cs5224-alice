@@ -2,15 +2,14 @@
 const dynamodb = require('aws-sdk/clients/dynamodb');
 
 let docClient;
-console.log("ENDPOINT " + process.env.DB_ENDPOINT);
-if (process.env.DB_ENDPOINT) {
+if (process.env.dbEnv === "local") {
     console.log("Using local DB");
     docClient = new dynamodb.DocumentClient({
-        endpoint: process.env.DB_ENDPOINT
+        endpoint: "http://dynamodb:8000/"
     })
 }
 else {
-    console.log("Using foreign DB");
+    console.log("Using aws DB");
     docClient = new dynamodb.DocumentClient();
 }
 
