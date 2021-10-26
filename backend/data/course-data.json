@@ -36,6 +36,17 @@
                 "Gross Monthly Median": 3150,
                 "Gross Monthly 25th Percentile": 2750,
                 "Gross Monthly 75th Percentile": 3275
+            },
+            {
+                "Year": 2020,
+                "Overall Employment": 0.971,
+                "Full-Time Employment": 0.706,
+                "Basic Monthly Mean": 2845,
+                "Basic Monthly Median": 2835,
+                "Gross Monthly Mean": 2862,
+                "Gross Monthly Median": 2887,
+                "Gross Monthly 25th Percentile": 2675,
+                "Gross Monthly 75th Percentile": 3000 
             }
         ],
         "Indicative Grade Profile": {
